@@ -62,6 +62,51 @@ The mission of Betty is to provide a way to use computers through natural langua
 Specifically, the benefit is being able to do things on your computer without leaving the command line or screwing around on the internet trying to find the right command. Betty just works.
 
 
+Documentation
+-------------
+
+The following is a non-exhaustive list of things you can do:
+
+    Count
+    betty how many words are in this directory
+    betty how many characters are in myfile.py
+    betty count lines in this folder
+    (Note that there's many ways to say more or less the same thing.)
+
+    Internet
+    betty download http://www.mysite.com/something.tar.gz to something.tar.gz
+    betty uncompress something.tar.gz
+    betty unarchive something.tar.gz to somedir
+    (You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)
+    
+    iTunes
+    betty mute itunes
+    betty unmute itunes
+    betty pause the music
+    betty resume itunes
+    betty stop my music
+    betty next song
+    betty prev track
+    (Note that the words song, track, music, etc. are interchangeable)
+
+    Fun
+    betty go crazy
+    betty whats the meaning of life
+    ...and more that are left for you to discover!
+
+    Meta
+    betty what version are you (or just betty version)
+    betty whats your github again
+    
+    Permissions
+    betty give me permission to this directory
+    betty give anotheruser ownership of myfile.txt
+    
+    User
+    betty whats my username
+    betty whats my real name
+    
+
 Contributing
 ------------
 
