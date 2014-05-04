@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-$URL = 'https://www.my-website-goes-here.com/'
+$URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.0'
 $executors = []
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
