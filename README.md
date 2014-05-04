@@ -1,7 +1,7 @@
 Betty (version 0.1.0)
 =====================
 
-Betty is an intelligent personal assistant for your command line.
+Betty is a friendly English-like interface for your command line.
 
 She translates English-like phrases into commands.
 
