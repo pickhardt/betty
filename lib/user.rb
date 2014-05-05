@@ -22,7 +22,14 @@ module User
         :explanation => "Gets your external ip address."
       }
     end
-    
+  
+    if command.match(/^who\'?s?(\s+else)?(\s+is)?\s(logged|signed|connected)\s+?in\??$/i)
+      responses << {
+        :command => "who | cut -f 1 -d ' ' | uniq",
+        :explanation => "Lists who is logged in on this machine."
+      }
+    end
+
     responses
   end
 end
