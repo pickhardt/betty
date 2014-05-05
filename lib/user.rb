@@ -30,6 +30,13 @@ module User
       }
     end
 
+    if command.match(/^where\s+am\si$/i)
+      responses << {
+        :command => "pwd",
+        :explanation => "Shows you your current directory."
+      }
+    end
+
     responses
   end
 end
