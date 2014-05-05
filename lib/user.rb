@@ -31,22 +31,11 @@ module User
 
       computerCommand = ""
       case program
-      when "python"
-        computerCommand = "python -V"
-      when "ruby"
-        computerCommand = "ruby -v"
-      when "node"
-        computerCommand = "node --version"
-      when "redis"
-        computerCommand = "redis-server -v"
+      
       when "mysql"
         computerCommand = "mysql -u root -p -e ' SELECT VERSION(); '"
-      when "php"
-        computerCommand = "php -v"
-      when "mongo" || "mongoDB"
-        computerCommand = "mongo --version"
       else
-        computerCommand = program + " -v"
+        computerCommand = program + " --version"
       end
       
       responses << {
