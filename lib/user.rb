@@ -15,6 +15,13 @@ module User
         :explanation => "Gets your full name."
       }
     end
+
+    if command.match(/^what\'?s?(\s+is)?(\s+my)?(\s+ip)?\s?(address)?\??$/i)
+      responses << {
+        :command => "curl ifconfig.me",
+        :explanation => "Gets your external ip address."
+      }
+    end
     
     responses
   end
