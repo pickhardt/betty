@@ -19,13 +19,9 @@ Android users: it's like Google Now for the command line. (What's Google Now? It
 Set Up
 ------
 
-First, git clone this repo.
-
-Then add the following alias to your ~/.bashrc
-
-alias betty="~/path/to/betty/main.rb"
-
-Then run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
+1. git clone this repo. `git clone https://github.com/pickhardt/betty` will do.
+2. Run `python install.py` in `betty/`.
+3. Run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
 
 Examples
 --------
