@@ -23,14 +23,16 @@ First, git clone this repo.
 
 Then add the following alias to your ~/.bashrc
 
-alias betty="~/path/to/betty/main.rb"
+```alias betty="~/path/to/betty/main.rb"```
 
-Then run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
+Then run: ```. ~/.bashrc```
+
+Then run commands: ```betty how many words are in this directory``` or ```betty uncompress something.tar.gz```
 
 Examples
 --------
 
-Give Betty natural language input, for instance "betty whats my username", and she'll respond in the most appropriate way.
+Give Betty natural language input, for instance ```betty whats my username```, and she'll respond in the most appropriate way.
 
     > betty whats my username
     Betty: Running whoami
