@@ -3,7 +3,10 @@ Betty (version 0.1.0)
 
 Betty is a friendly English-like interface for your command line.
 
-She translates English-like phrases into commands.
+She translates English-like phrases into commands in case you every run into
+situations [like this][xkcd].
+
+[xkcd]:http://xkcd.com/1168/
 
 This means you don't have to leave your command line to look up an obscure but useful command. Just ask Betty!
 
