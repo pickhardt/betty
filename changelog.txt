@@ -3,9 +3,11 @@
 
 Added an install script.
 
-Added processes: "show me my processes matching log"
+Added find: "find all files that contain california"
 
 Added datetime: "what day of the week is it"
+
+Added processes: "show me my processes matching log"
 
 Added version: "whats my version of ruby".
 
