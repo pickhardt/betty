@@ -1,0 +1,16 @@
+v0.1.1
+------
+
+Added "whats my ip address"
+
+Added "who else is logged in"
+
+Added "what song is playing"
+
+Added this changelog.
+
+
+v0.1.0
+-------
+
+First public launch.

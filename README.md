@@ -1,4 +1,4 @@
-Betty (version 0.1.0)
+Betty (version 0.1.1)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -87,6 +87,7 @@ The following is a non-exhaustive list of things you can do:
     betty stop my music
     betty next song
     betty prev track
+    betty what song is playing
     (Note that the words song, track, music, etc. are interchangeable)
 
     Fun
@@ -105,6 +106,8 @@ The following is a non-exhaustive list of things you can do:
     User
     betty whats my username
     betty whats my real name
+    betty whats my ip address
+    betty who else is logged in
     
 
 Contributing

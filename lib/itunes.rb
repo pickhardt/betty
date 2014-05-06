@@ -76,6 +76,19 @@ module ITunes
       nil
     end
   end
+
+  def self.playing(command)
+    matching = command.match(/^what\'?s?\s+((songs?|musics?|tracks?|iTunes)\s+)?(is)?\s?+play(?:ing)?$/i)
+
+    if matching
+      {
+        :command => "osascript -e 'tell application \"iTunes\" to get name of current track'",
+        :explanation => "Gets the name of the playing track on iTunes."
+      } 
+    else
+      nil
+    end
+  end
   
   def self.interpret(command)
     responses = []
@@ -97,6 +110,9 @@ module ITunes
     
     prev_command = self.prev(command)
     responses << prev_command if prev_command
+
+    playing_command = self.playing(command)
+    responses << playing_command if playing_command
 
     responses
   end
