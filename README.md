@@ -137,7 +137,10 @@ The following is a non-exhaustive list of things you can do:
     betty whats my ip address
     betty who else is logged in
     betty whats my version of ruby
-    
+
+    Speech
+    betty speech on
+    betty speech off
 
 Contributing
 ------------
