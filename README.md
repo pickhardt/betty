@@ -25,7 +25,7 @@ Set Up
 Manually:
 
 1. git clone this repo. `git clone https://github.com/pickhardt/betty` will do.
-2. Run `python install.py` in `betty/`.
+2. Run `ruby install.rb` in `betty/`.
 3. Run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
 
 Automatically:
