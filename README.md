@@ -24,9 +24,15 @@ Set Up
 
 Manually:
 
-1. git clone this repo. `git clone https://github.com/pickhardt/betty` will do.
-2. Run `python install.py` in `betty/`.
-3. Run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
+1. First, git clone this repo with `git clone https://github.com/pickhardt/betty`
+2. Add the following alias to your ~/.bashrc
+```alias betty="~/path/to/betty/main.rb"```
+3. Use it! For instance, you can run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
+
+
+1. First, git clone this repo with `git clone https://github.com/pickhardt/betty`
+2. Run `ruby install.rb` in `betty/`.
+3. Use it! For instance, you can run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
 
 Automatically:
 

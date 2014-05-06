@@ -1,9 +1,11 @@
+This is the roadmap for Betty. It's OK to get something done sooner than on the roadmap.
+
 0.2
 ---
 
-Auto-generate docs for what commands people can use.
+Auto-generate documentation alongside the commands. Even better if the documentation can create automated tests.
 
-Add tests.
+Add tests (or leverage the documentation for automated tests).
 
 See what features people want most, then add those.
 
@@ -16,7 +18,6 @@ Write up a general philosophy about adding commands. For instance: how to handle
 Math.
 
 Unit conversions with the units command.
-
 
 0.4
 ---
@@ -39,7 +40,7 @@ More advanced and reusable syntax parsing, so that generic things can be used in
 
   Note that "the files in this directory that end in rb or py" was used in both.
 
-...
+Maybe this could also handle multiple commands (with and) or conditionals (like if). "copy something.txt into my documents folder and rename it somethingelse.txt"
 
 
 1.0
