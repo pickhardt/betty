@@ -1,5 +1,10 @@
-v0.1.1
-------
+0.1.2 (May 5, 2014)
+-------------------
+
+Added an install script.
+
+0.1.1 (May 4, 2014)
+-------------------
 
 Added "whats my ip address"
 
@@ -10,7 +15,7 @@ Added "what song is playing"
 Added this changelog.
 
 
-v0.1.0
--------
+0.1.0 (May 4, 2014)
+-------------------
 
 First public launch.

@@ -1,9 +1,12 @@
-Betty (version 0.1.1)
+Betty (version 0.1.2)
 =====================
 
 Betty is a friendly English-like interface for your command line.
 
-She translates English-like phrases into commands.
+She translates English-like phrases into commands in case you every run into
+situations [like this][xkcd].
+
+[xkcd]:http://xkcd.com/1168/
 
 This means you don't have to leave your command line to look up an obscure but useful command. Just ask Betty!
 
@@ -19,13 +22,9 @@ Android users: it's like Google Now for the command line. (What's Google Now? It
 Set Up
 ------
 
-First, git clone this repo.
-
-Then add the following alias to your ~/.bashrc
-
-alias betty="~/path/to/betty/main.rb"
-
-Then run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
+1. git clone this repo. `git clone https://github.com/pickhardt/betty` will do.
+2. Run `python install.py` in `betty/`.
+3. Run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
 
 Examples
 --------
