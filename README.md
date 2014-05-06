@@ -116,6 +116,9 @@ The following is a non-exhaustive list of things you can do:
     betty whats the meaning of life
     ...and more that are left for you to discover!
 
+    Map
+    betty show me a map of mountain view
+    
     Meta
     betty what version are you (or just betty version)
     betty whats your github again

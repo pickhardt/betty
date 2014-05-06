@@ -7,6 +7,8 @@ Added find: "find all files that contain california"
 
 Added datetime: "what day of the week is it"
 
+Added map: "show me a map of mountain view"
+
 Added processes: "show me my processes matching log"
 
 Added version: "whats my version of ruby".
