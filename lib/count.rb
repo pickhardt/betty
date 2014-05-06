@@ -1,6 +1,6 @@
 module Count
   def self.count_stuff(command)
-    match = command.match(/^count\s+(words?|lines?|char(?:acter)?s?)\s+in\s+(.+)$/i) ||
+    match = command.match(/^count\s+(?:the\s+)?(?:total\s+)?(?:number\s+of\s+)?(words?|lines?|char(?:acter)?s?)\s+in\s+(.+)$/i) ||
             command.match(/^how\s+many\s+(words?|lines?|char(?:acter)?s?)\s+are(?:\s+there)?\s+in\s+(.+)$/i)
     
     if match
