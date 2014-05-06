@@ -22,7 +22,7 @@ module Count
       
       {
         :command => "find #{ is_this_directory ? '.' : where } -type f -exec wc -#{ flag } \{\} \\; | awk '{total += $1} END {print total}'",
-        :explanation => "Counts the total number of #{ what } in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : what }."
+        :explanation => "Counts the total number of #{ what } in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : where }."
       }
     end
   end
