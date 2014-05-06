@@ -1,0 +1,3 @@
+describe Betty do
+
+end

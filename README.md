@@ -22,14 +22,21 @@ Android users: it's like Google Now for the command line. (What's Google Now? It
 Set Up
 ------
 
+Manually:
+
 1. git clone this repo. `git clone https://github.com/pickhardt/betty` will do.
 2. Run `python install.py` in `betty/`.
 3. Run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
 
+Automatically:
+
+Run `ruby install.rb`
+
+
 Examples
 --------
 
-Give Betty natural language input, for instance "betty whats my username", and she'll respond in the most appropriate way.
+Give Betty natural language input, for instance `betty whats my username`, and she'll respond in the most appropriate way.
 
     > betty whats my username
     Betty: Running whoami
@@ -71,6 +78,15 @@ The following is a non-exhaustive list of things you can do:
     betty how many characters are in myfile.py
     betty count lines in this folder
     (Note that there's many ways to say more or less the same thing.)
+    
+    Datetime
+    betty what time is it
+    betty what is todays date
+    betty what month is it
+    betty whats today
+    
+    Find
+    betty find me all files that contain california
 
     Internet
     betty download http://www.mysite.com/something.tar.gz to something.tar.gz
@@ -102,11 +118,16 @@ The following is a non-exhaustive list of things you can do:
     betty give me permission to this directory
     betty give anotheruser ownership of myfile.txt
     
+    Process
+    betty show me all processes by root containing grep
+    betty show me all my processes containing netbio
+    
     User
     betty whats my username
     betty whats my real name
     betty whats my ip address
     betty who else is logged in
+    betty whats my version of ruby
     
 
 Contributing
