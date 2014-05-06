@@ -36,6 +36,24 @@ module User
         :explanation => "Shows you your current directory."
       }
     end
+    
+    
+    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?(?:\s+version)?(?:\s+of)?(\s[a-zA-Z\-_]+)?\??$/i)
+      program = $1.strip
+    
+      command_to_use = ""
+      case program
+      when "mysql"
+        command_to_use = "mysql -u root -p -e ' SELECT VERSION(); '"
+      else
+        command_to_use = "#{ program } --version"
+      end
+      
+      responses << {
+        :command => command_to_use,
+        :explanation => "Gets the version of #{ program }."
+      }
+    end
 
     responses
   end

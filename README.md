@@ -29,7 +29,7 @@ Set Up
 Examples
 --------
 
-Give Betty natural language input, for instance "betty whats my username", and she'll respond in the most appropriate way.
+Give Betty natural language input, for instance `betty whats my username`, and she'll respond in the most appropriate way.
 
     > betty whats my username
     Betty: Running whoami

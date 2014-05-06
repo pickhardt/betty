@@ -7,6 +7,9 @@ Added processes: "show me my processes matching log"
 
 Added datetime: "what day of the week is it"
 
+Added version: "whats my version of ruby".
+
+
 0.1.1 (May 4, 2014)
 -------------------
 
