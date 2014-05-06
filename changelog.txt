@@ -3,14 +3,18 @@
 
 Added an install script.
 
+Added processes: "show me my processes matching log"
+
+Added datetime: "what day of the week is it"
+
 0.1.1 (May 4, 2014)
 -------------------
 
-Added "whats my ip address"
+Added ip address: "whats my ip address"
 
-Added "who else is logged in"
+Added who's logged in: "who else is logged in"
 
-Added "what song is playing"
+Added another iTunes song finder: "what song is playing"
 
 Added this changelog.
 

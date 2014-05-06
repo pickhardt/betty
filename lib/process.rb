@@ -1,5 +1,4 @@
 module Process
-  
   def self.examples
     puts "list of all processes"
     puts "processes by user root"
@@ -11,7 +10,7 @@ module Process
     find_user_id my_name
   end
 
-  def self.find_user_id name
+  def self.find_user_id(name)
     id=`id -u #{name}`
     id.strip
   end
