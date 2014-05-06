@@ -1,9 +1,9 @@
 module Process
   
   def self.examples
-    %w[ list of all processes
-        processes by user root
-        show me my processes matching log]
+    [ "list of all processes",
+      "processes by user root",
+      "show me my processes matching log" ]
   end
   
   def self.test
