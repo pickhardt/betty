@@ -3,7 +3,13 @@
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.3'
 $executors = []
-Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file|
+  begin
+    require file
+  rescue Exception => e
+    puts "Module #{file} could not be loaded because of "+e
+  end
+}
 
 BettyConfig.initialize
 
