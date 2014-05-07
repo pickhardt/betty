@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#!/usr/bin/env ruby
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.3'
