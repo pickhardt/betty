@@ -1,4 +1,4 @@
-Betty (version 0.1.2)
+Betty (version 0.1.3)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -139,8 +139,8 @@ The following is a non-exhaustive list of things you can do:
     betty whats my version of ruby
 
     Speech
-    betty speech on
-    betty speech off
+    betty speak to me
+    betty stop speaking to me
 
 Contributing
 ------------

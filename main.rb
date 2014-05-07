@@ -1,12 +1,19 @@
 #!/usr/bin/env ruby
 
 $URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.2'
+$VERSION = '0.1.3'
 $executors = []
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
-require 'json'
+require 'yaml'
 
-$config = File.read(ENV['HOME']+'/.bettyconfig') if File.exist?(ENV['HOME']+'/.bettyconfig')
+$config = {}
+if File.exist?(ENV['HOME']+'/.bettyconfig')
+  begin
+    $config = YAML.load(File.read(ENV['HOME']+'/.bettyconfig')) || {}
+  rescue
+    # bad yaml file?
+  end
+end
 
 def get_input_integer(min, max, options={})
   while true
@@ -60,28 +67,45 @@ def run(response)
     say "Running #{ response[:command] }"
     res = `#{response[:command]}`
     puts res
-    if $config and JSON.parse($config)["speech"]
+    if $config["speech"]
       speak(res)
     end
   end
 end
 
 def speak(text)
-  require 'open-uri'
-  text = text.split(/ [+-]/)[0]
-  text = text.gsub(' ', '%20')
-  if text != ''
-    url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
-    open('/tmp/data.mp3', 'wb') do |file|
-      file << open(url).read
+  if User.has_command?('say')
+    system("say \"#{ text }\"") # formerly mpg123 -q
+  else
+    has_afplay = User.has_command?('afplay')
+    has_mpg123 = User.has_command?('mpg123')
+    if has_afplay || has_mpg123
+      require 'open-uri'
+      text = text.split(/ [+-]/)[0]
+      text = text.gsub(' ', '%20')
+      speech_path = '/tmp/betty_speech.mp3'
+
+      if text != ''
+        url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
+        open(speech_path, 'wb') do |file|
+          file << open(url).read
+        end
+
+        if has_afplay 
+          system("afplay #{ speech_path }")
+        elsif has_mpg123
+          system("mpg123 -q #{ speech_path }")
+        end
+
+        system("rm #{ speech_path }")
+      end
     end
-    system("mpg123 -q /tmp/data.mp3")
   end
 end
 
 def say(phrase, options={})
   puts "#{ options[:no_name] ? '' : 'Betty: ' }#{ phrase }"
-  if $config and JSON.parse($config)["speech"]
+  if $config["speech"]
     speak(phrase)
   end
 end
@@ -104,7 +128,7 @@ def main(commands)
     end
   elsif responses.length > 1
     say "Okay, I have multiple ways to respond."
-    say "Enter the number of the command you want me to run one, or N (no) if you don't want me to run any."
+    say "Enter the number of the command you want me to run, or N (no) if you don't want me to run any."
     responses.each_with_index do |response, index|
       say "[#{ index + 1 }] #{ response[:command] }", :no_name => true
       say("    #{ response[:explanation] }", :no_name => true) if response[:explanation]
