@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'readline'
 
 def ask(prompt="", newline=false)
@@ -5,12 +6,17 @@ def ask(prompt="", newline=false)
   Readline.readline(prompt, true).squeeze(" ").strip
 end
 
+
+INSTALL_LOC = Dir.home + '/betty/'
+if Dir.exist? INSTALL_LOC
+  raise "~/betty already exists! Please manually remove if you want to proceed" 
+end
+
 puts "We will install to ~/betty and put an alias in your .<shell>rc. Hit <enter> or 'y' if this is okay."
 STDOUT.flush
 CONTINUE = ask "> "
 if CONTINUE == "" || CONTINUE == "y"
     # copy to ~/betty/
-    INSTALL_LOC = Dir.home + '/betty/'
     COPY_COMMAND = 'cp -rf '+ Dir.pwd + ' ' + INSTALL_LOC
     print "Running `" + COPY_COMMAND + "`\n"
     system COPY_COMMAND 

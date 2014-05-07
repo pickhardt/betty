@@ -23,7 +23,7 @@ module Process
   
   def self.interpret(command)
     responses = []
-    # if RUBY_VERSION>1.8
+    #process_pattern=/process.*/ if RUBY_VERSION<1.9
     begin
     process_pattern=%r{
       (show|find|give|me|a|list|of|those|\s)*
@@ -35,7 +35,7 @@ module Process
       (belonging|belong|to|by|\s)* (user\s(?<user_id>\w+))?
       ((like|matching|pattern|containing|contain|\s)+ (?<pattern>\w+))?
     }imx
-    rescue
+    rescue Exception => e
       return "process_pattern needs ruby >=1.9"
     end
     
