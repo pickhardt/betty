@@ -1,4 +1,9 @@
 module User  
+  def self.has_command?(command)
+    response = `which #{ command }`
+    response != ""
+  end
+
   def self.interpret(command)
     responses = []
     
@@ -27,6 +32,31 @@ module User
       responses << {
         :command => "who | cut -f 1 -d ' ' | uniq",
         :explanation => "Lists who is logged in on this machine."
+      }
+    end
+
+    if command.match(/^where\s+am\si$/i)
+      responses << {
+        :command => "pwd",
+        :explanation => "Shows you your current directory."
+      }
+    end
+    
+    
+    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)?\??$/i)
+      program = $1.strip
+    
+      command_to_use = ""
+      case program
+      when "mysql"
+        command_to_use = "mysql -u root -p -e ' SELECT VERSION(); '"
+      else
+        command_to_use = "#{ program } --version"
+      end
+      
+      responses << {
+        :command => command_to_use,
+        :explanation => "Gets the version of #{ program }."
       }
     end
 
