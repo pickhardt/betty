@@ -4,6 +4,9 @@ $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.2'
 $executors = []
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
+require 'json'
+
+$config = File.read(ENV['HOME']+'/.bettyconfig') if File.exist?(ENV['HOME']+'/.bettyconfig')
 
 def get_input_integer(min, max, options={})
   while true
@@ -55,12 +58,32 @@ def run(response)
 
   if response[:command]
     say "Running #{ response[:command] }"
-    system response[:command]
+    res = `#{response[:command]}`
+    puts res
+    if $config and JSON.parse($config)["speech"]
+      speak(res)
+    end
+  end
+end
+
+def speak(text)
+  require 'open-uri'
+  text = text.split(/ [+-]/)[0]
+  text = text.gsub(' ', '%20')
+  if text != ''
+    url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
+    open('/tmp/data.mp3', 'wb') do |file|
+      file << open(url).read
+    end
+    system("mpg123 -q /tmp/data.mp3")
   end
 end
 
 def say(phrase, options={})
   puts "#{ options[:no_name] ? '' : 'Betty: ' }#{ phrase }"
+  if $config and JSON.parse($config)["speech"]
+    speak(phrase)
+  end
 end
 
 def main(commands)
