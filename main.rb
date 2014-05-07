@@ -4,16 +4,8 @@ $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.3'
 $executors = []
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
-require 'yaml'
 
-$config = {}
-if File.exist?(ENV['HOME']+'/.bettyconfig')
-  begin
-    $config = YAML.load(File.read(ENV['HOME']+'/.bettyconfig')) || {}
-  rescue
-    # bad yaml file?
-  end
-end
+BettyConfig.initialize
 
 def get_input_integer(min, max, options={})
   while true
@@ -54,7 +46,11 @@ def interpret(command)
   responses
 end
 
-def run(response)
+def run(response)  
+  if response[:call_before]
+    response[:call_before].call
+  end
+
   if response[:say]
     say response[:say]
   end
@@ -67,7 +63,7 @@ def run(response)
     say "Running #{ response[:command] }"
     res = `#{response[:command]}`
     puts res
-    if $config["speech"]
+    if BettyConfig.get("speech")
       speak(res)
     end
   end
@@ -104,8 +100,9 @@ def speak(text)
 end
 
 def say(phrase, options={})
-  puts "#{ options[:no_name] ? '' : 'Betty: ' }#{ phrase }"
-  if $config["speech"]
+  my_name = BettyConfig.get("name")
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  if BettyConfig.get("speech")
     speak(phrase)
   end
 end
