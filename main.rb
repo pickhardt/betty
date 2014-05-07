@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
+require 'logger'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.0'
 $executors = []
+$LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_cmds.log', 'a+'))
+
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 
 def get_input_integer(min, max, options={})
@@ -40,6 +43,9 @@ def interpret(command)
   $executors.each do |executor|
     executors_responses = executor.interpret(command)
     responses = responses.concat(executors_responses)
+    if executors_responses.length == 1 and executors_responses[0][:command] 
+      $LOG.info('main_interpret') {"#{command} ==> #{executor.name} ==> #{executors_responses[0][:command]}"}
+    end
   end
   responses
 end
