@@ -23,17 +23,21 @@ module Process
   
   def self.interpret(command)
     responses = []
-    
+    # if RUBY_VERSION>1.8
+    begin
     process_pattern=%r{
       (show|find|give|me|a|list|of|those|\s)*
       (?<all>all\s)?
       (?<my>my\s)?
       PROCESS(es)?
-      (with|which|that|\s)*
-      (for|process|\s)* (id\s(?<process_id>[0-9]+))?
-      (for|belonging|belong|to|by|\s)* (user\s(?<user_id>\w+))?
-      ((like|matching|with|pattern|containing|that|which|contain|\s)+ (?<pattern>\w+))?
+      (with|which|for|that|have|having|\s)*
+      (process|\s)* (id\s(?<process_id>[0-9]+))?
+      (belonging|belong|to|by|\s)* (user\s(?<user_id>\w+))?
+      ((like|matching|pattern|containing|contain|\s)+ (?<pattern>\w+))?
     }imx
+    rescue
+      return "process_pattern needs ruby >=1.9"
+    end
     
     # (?# todo <kill>kill\s)
     # (?# regex comments need newer versions of ruby)
