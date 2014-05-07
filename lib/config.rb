@@ -2,6 +2,7 @@ module BettyConfig
   require 'yaml'
   
   @@config = {}
+  @@default_config = {"name" => "Betty"}
   
   def self.config_object
     @@config.inspect
@@ -25,7 +26,7 @@ module BettyConfig
   end
   
   def self.get(name)
-    @@config[name]
+    @@config[name] || @@default_config[name]
   end
   
   def self.save
