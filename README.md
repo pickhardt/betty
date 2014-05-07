@@ -1,4 +1,4 @@
-Betty (version 0.1.2)
+Betty (version 0.1.3)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -85,6 +85,11 @@ The following is a non-exhaustive list of things you can do:
     betty count lines in this folder
     (Note that there's many ways to say more or less the same thing.)
     
+    Config
+    betty change your name to Joe
+    betty speak to me
+    betty stop speaking to me
+
     Datetime
     betty what time is it
     betty what is todays date
@@ -137,7 +142,6 @@ The following is a non-exhaustive list of things you can do:
     betty whats my ip address
     betty who else is logged in
     betty whats my version of ruby
-    
 
 Contributing
 ------------
