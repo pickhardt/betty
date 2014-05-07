@@ -7,7 +7,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file|
   begin
     require file
   rescue Exception => e
-    puts "Module #{file} could not be loaded because of "+e
+    puts "Module #{file} could not be loaded because of " #+e
   end
 }
 
