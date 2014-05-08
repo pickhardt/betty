@@ -29,14 +29,11 @@ Manually:
 ```alias betty="~/path/to/betty/main.rb"```
 3. Use it! For instance, you can run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
 
+Automatically:
 
 1. First, git clone this repo with `git clone https://github.com/pickhardt/betty`
 2. Run `ruby install.rb` in `betty/`.
 3. Use it! For instance, you can run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
-
-Automatically:
-
-Run `ruby install.rb`
 
 
 Examples
