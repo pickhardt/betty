@@ -111,6 +111,10 @@ def main(commands)
   command = commands.join(' ')
   responses = interpret(command)
   
+  if command.length == 0
+    say "What can I help you with?"
+    return
+  end
   if responses.length == 1
     response = responses[0]
     if response[:ask_first]
