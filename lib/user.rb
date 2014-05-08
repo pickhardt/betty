@@ -48,6 +48,8 @@ module User
     
       command_to_use = ""
       case program
+      when "go"
+        command_to_use = "go version"
       when "mysql"
         command_to_use = "mysql -u root -p -e ' SELECT VERSION(); '"
       else
