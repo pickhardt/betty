@@ -34,7 +34,7 @@ module Internet
 
   def self.compress(command)
     match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(\s+(?:directory|dir|folder|path))?$/i)
-    puts match
+
     if match
       what_file = match[1].strip
 
