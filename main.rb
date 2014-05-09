@@ -2,9 +2,9 @@
 require 'logger'
 
 $URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.3'
+$VERSION = '0.1.4'
 $executors = []
-$LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_cmds.log', 'a+'))
+$LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 
