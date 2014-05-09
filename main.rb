@@ -71,7 +71,9 @@ end
 
 def speak(text)
   if User.has_command?('say')
-    system("say \"#{ text }\"") # formerly mpg123 -q
+    say = 'say'
+    say += " -v '#{BettyConfig.get("voice")}'" if BettyConfig.get("voice")
+    system("#{say} \"#{ text }\"") # formerly mpg123 -q
   else
     has_afplay = User.has_command?('afplay')
     has_mpg123 = User.has_command?('mpg123')
