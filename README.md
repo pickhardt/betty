@@ -101,6 +101,7 @@ The following is a non-exhaustive list of things you can do:
     betty uncompress something.tar.gz
     betty unarchive something.tar.gz to somedir
     (You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)
+    betty compress /path/to/dir
     
     iTunes
     betty mute itunes
