@@ -49,6 +49,28 @@ module BettyConfig
       }
     end
 
+    if command.match(/^(list\s(your\s)?voices)/i)
+      responses << {
+        :command => 'say -v "?"',
+        :explanation => 'List the availables voices for text-to-speech.'
+      }
+    end
+
+    if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+voice\s+to\s+(.+)$/i)
+      new_voice = $1.strip
+      responses << {
+        :call_before => lambda { self.set("voice", new_voice) },
+        :say => "OK. My new voice is #{ new_voice } from now on."
+      }
+    end
+
+    if command.match(/^what\'?s?(?:\s+is)?\s+your\s+voice\??$/i)
+      my_voice = self.get("voice")
+      responses << {
+        :say => "My voice is setted as #{ my_voice }."
+      }
+    end
+
     if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+name\s+to\s+(.+)$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
       new_name = $1.strip
       responses << {

@@ -1,4 +1,4 @@
-Betty (version 0.1.3)
+Betty (version 0.1.4)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -133,6 +133,15 @@ The following is a non-exhaustive list of things you can do:
     Process
     betty show me all processes by root containing grep
     betty show me all my processes containing netbio
+    
+    Sizes
+    betty show size for myfile.txt
+    
+    Spotify
+    betty play spotify
+    betty pause spotify
+    betty next spotify
+    betty previous spotify
     
     User
     betty whats my username

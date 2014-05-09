@@ -39,8 +39,8 @@ module Internet
       what_file = match[1].strip
 
       {
-        :command => "cd #{what_file}; tar -czvf #{what_file}.tar.gz *"
-        :explanation => "Compress the contents of #{what_file} directory, outputting the compressed file to parent directory"
+        :command => "cd #{ what_file }; tar -czvf #{ what_file }.tar.gz *",
+        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to parent directory"
       }
     end
   end
