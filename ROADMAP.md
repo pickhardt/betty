@@ -31,7 +31,9 @@ Configuration settings.
 0.6
 ---
 
-More advanced and reusable syntax parsing, so that generic things can be used in many commands.
+Tokenization.
+
+Generally useful classes (File, Directory, FileOrDirectory, etc). Specifically, more advanced and reusable syntax parsing, so that generic things can be used in many commands.
 
   For example, a generic way to parse phrases that mean files:
   
