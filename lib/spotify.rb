@@ -70,6 +70,19 @@ module Spotify
 
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Spotify",
+      :description => "Control \033[34mSpotify\033[0m",
+      :usage => "- betty play spotify
+- betty pause spotify
+- betty next spotify
+- betty previous spotify"
+    }
+    commands
+  end
 end
 
 $executors << Spotify

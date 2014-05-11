@@ -58,6 +58,26 @@ def interpret(command)
   responses
 end
 
+def help(command)
+  responses = []
+  $executors.each do |executor|
+    responses = responses.concat(executor.help)
+  end
+  if command != ""
+    response = responses.detect{|h| h[:category]=="#{ command.split(' ')[0] }"}
+    if response
+      say "I can do that if you help me. Check out the following examples:\n#{ response[:usage] }\nPlease note: I am case sensitive. Watch out for my feelings..."
+    else
+      say "Sorry, I don't know how to #{ command } yet. If you are a developer you can teach me! \nI do know how to"
+      responses.each do |response|
+        puts "- #{ response[:description] }" if response[:description]
+      end
+    end
+  else
+    say "What can I help you with?"
+  end
+end
+
 def run(response)  
   if response[:call_before]
     response[:call_before].call
@@ -147,7 +167,7 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    say "Sorry, I don't understand."
+    help(command)
   end
 end
 
