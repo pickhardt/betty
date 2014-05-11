@@ -9,8 +9,9 @@ module Fun
     end
     
     if command.match(/^make\s+me\s+a\s+(.+)$/i)
+      thing = "#{ $1 }"
       responses << {
-        :say => "Make your own damn #{ $1 }.",
+        :call => lambda { self.make_me_a(thing) }
       }
     end
     
@@ -40,6 +41,14 @@ module Fun
     end
     
     responses
+  end
+  
+  def self.make_me_a(thing)
+    if Process.uid != 0
+      puts "Make your own damn #{thing}."
+    else
+      puts "Okay."
+    end
   end
   
   def self.go_crazy
