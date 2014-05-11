@@ -70,6 +70,7 @@ The mission of Betty is to provide a way to use computers through natural langua
 
 Specifically, the benefit is being able to do things on your computer without leaving the command line or screwing around on the internet trying to find the right command. Betty just works.
 
+Please go ahead and add your own **[ideas](https://github.com/pickhardt/betty/blob/dev/ROADMAP.md)**
 
 Documentation
 -------------
