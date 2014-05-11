@@ -1,4 +1,4 @@
-Betty (version 0.1.3)
+Betty (version 0.1.4)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -29,14 +29,11 @@ Manually:
 ```alias betty="~/path/to/betty/main.rb"```
 3. Use it! For instance, you can run commands: "betty how many words are in this directory" or "betty uncompress something.tar.gz"
 
+Automatically:
 
 1. First, git clone this repo with `git clone https://github.com/pickhardt/betty`
 2. Run `ruby install.rb` in `betty/`.
 3. Use it! For instance, you can run commands: `betty how many words are in this directory` or `betty uncompress something.tar.gz`
-
-Automatically:
-
-Run `ruby install.rb`
 
 
 Examples
@@ -104,6 +101,7 @@ The following is a non-exhaustive list of things you can do:
     betty uncompress something.tar.gz
     betty unarchive something.tar.gz to somedir
     (You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)
+    betty compress /path/to/dir
     
     iTunes
     betty mute itunes
@@ -136,6 +134,15 @@ The following is a non-exhaustive list of things you can do:
     betty show me all processes by root containing grep
     betty show me all my processes containing netbio
     
+    Sizes
+    betty show size for myfile.txt
+    
+    Spotify
+    betty play spotify
+    betty pause spotify
+    betty next spotify
+    betty previous spotify
+    
     User
     betty whats my username
     betty whats my real name
@@ -157,3 +164,7 @@ Releases will follow a semantic versioning format:
 `<major>.<minor>.<patch>`
 
 For more information on SemVer, visit [http://semver.org/](http://semver.org/).
+
+License
+-------
+Released under the Apache License 2.0. Related link: www.apache.org/licenses/LICENSE-2.0.html

@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
+require 'logger'
 
 $URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.3'
+$VERSION = '0.1.4'
 $executors = []
+$LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
+
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file|
   begin
     require file
@@ -48,6 +51,9 @@ def interpret(command)
   $executors.each do |executor|
     executors_responses = executor.interpret(command)
     responses = responses.concat(executors_responses)
+    if executors_responses.length == 1 and executors_responses[0][:command] 
+      $LOG.info('main_interpret') {"#{command} ==> #{executor.name} ==> #{executors_responses[0][:command]}"}
+    end
   end
   responses
 end
@@ -77,7 +83,9 @@ end
 
 def speak(text)
   if User.has_command?('say')
-    system("say \"#{ text }\"") # formerly mpg123 -q
+    say = 'say'
+    say += " -v '#{BettyConfig.get("voice")}'" if BettyConfig.get("voice")
+    system("#{say} \"#{ text }\"") # formerly mpg123 -q
   else
     has_afplay = User.has_command?('afplay')
     has_mpg123 = User.has_command?('mpg123')
