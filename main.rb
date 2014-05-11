@@ -113,16 +113,24 @@ def speak(text)
   end
 end
 
-def geany(command)
+# needs BettyConfig.get("web")!="false"    
+# edit ~/.bettyconfig or say 'use web'
+# example: "betty what is the weather"
+def web_query(command)
   require 'net/http'
-
   encoded = URI.escape(command)
-  url = URI.parse("https://weannie.pannous.com")
+  chatmode=  BettyConfig.get("chat").to_s=="true"
+  
+  web_service = "https://ask.pannous.com"
   path = "/api?out=simple&input=#{ encoded }"
+  path += "&exclude=ChatBot,Dialogues" if not chatmode 
+
+  url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
+    puts "Asking the internet..." if not chatmode
+    puts "Thinking..." if chatmode
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
-      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
       https.request(req)
     }
     res.body
@@ -165,7 +173,7 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    response = geany(command)
+    response = web_query(command) if BettyConfig.get("web")!="false" # edit ~/.bettyconfig or say 'use web'
     if response != nil and response != ""
       say response
     else

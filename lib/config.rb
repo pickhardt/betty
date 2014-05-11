@@ -2,7 +2,7 @@ module BettyConfig
   require 'yaml'
   
   @@config = {}
-  @@default_config = {"name" => "Betty"}
+  @@default_config = {"name" => "Betty","speech"=>"false","web"=>"false","chat"=>"false"}
   
   def self.config_object
     @@config.inspect
@@ -35,6 +35,8 @@ module BettyConfig
   
   def self.interpret(command)
     responses = []
+    
+    # todo: merge all switch|turn ... on|off commands
     if command.match(/^(turn\s+)?speech\s+on$/i) || command.match(/^speak\s+to\s+me$/)
       responses << {
         :call_before => lambda { self.set("speech", true) },
@@ -48,6 +50,35 @@ module BettyConfig
         :say => "Speech OFF"
       }
     end
+    
+    if command.match(/^(turn\s+)?web\s+on$/i) || command.match(/^use\s(the\s)?internet$/)
+      responses << {
+        :call_before => lambda { self.set("web", true) },
+        :say => "Web queries ON",
+      }
+    end
+
+    if command.match(/^(turn\s+)?web\s+off$/i) || command.match(/^don'?t\suse\s(the\s)?internet$/)
+      responses << {
+        :call_before => lambda { self.set("web", false) },
+        :say => "Web queries OFF"
+      }
+    end
+    
+    if command.match(/^(turn\s+)?chat(mode)?\s+on$/i) || command.match(/^chat\swith\sme$/)
+      responses << {
+        :call_before => lambda { self.set("chat", true) },
+        :say => "Chatmode ON",
+      }
+    end
+
+    if command.match(/^(turn\s+)?chat(mode)?\s+off$/i) || command.match(/^don'?t\schat\swith\sme$/)
+      responses << {
+        :call_before => lambda { self.set("chat", false) },
+        :say => "Chatmode OFF"
+      }
+    end
+    
 
     if command.match(/^(list\s(your\s)?voices)/i)
       responses << {
