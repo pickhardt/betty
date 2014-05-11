@@ -28,7 +28,7 @@ module Find
         end
 
         responses << {
-          :command => "find #{ directory } | egrep \"#{ pattern }\"",
+          :command => "find #{ directory } | egrep '#{ pattern }'",
           :explanation => "Find files in #{ directory } with name "\
                           "matching #{ pattern}."
         }
