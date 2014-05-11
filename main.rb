@@ -19,12 +19,12 @@ BettyConfig.initialize
 def get_input_integer(min, max, options={})
   while true
     input = STDIN.gets.strip
-    
+
     if options[:allow_no] && ['n', 'no'].include?(input.downcase)
       return false
     end
 
-    input_integer = input.to_i    
+    input_integer = input.to_i
     if input_integer.to_s == input && min <= input_integer && input_integer <= max
       return input_integer
     end
@@ -113,6 +113,24 @@ def speak(text)
   end
 end
 
+def geany(command)
+  require 'net/http'
+
+  encoded = URI.escape(command)
+  url = URI.parse("https://weannie.pannous.com")
+  path = "/api?out=simple&input=#{ encoded }"
+  req = Net::HTTP::Get.new(path)
+  begin
+    res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
+      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      https.request(req)
+    }
+    res.body
+  rescue Exception
+    nil
+  end
+end
+
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
   puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
@@ -124,7 +142,7 @@ end
 def main(commands)
   command = commands.join(' ')
   responses = interpret(command)
-  
+
   if responses.length == 1
     response = responses[0]
     if response[:ask_first]
@@ -147,7 +165,12 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    say "Sorry, I don't understand."
+    response = geany(command)
+    if response != nil and response != ""
+      say response
+    else
+      say "I didn't understand you"
+    end
   end
 end
 
