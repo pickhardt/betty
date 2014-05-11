@@ -149,11 +149,15 @@ The following is a non-exhaustive list of things you can do:
     betty whats my ip address
     betty who else is logged in
     betty whats my version of ruby
+	
+	Web queries
+	betty turn web on
+	betty please tell me what is the weather like in London
 
 Contributing
 ------------
 
-Contributions are welcome! If you would like to contribute, please issue a pull request against the dev branch, not the master branch.
+Contributions are welcome! If you would like to contribute, please issue a pull request against the **dev branch**, not the master branch.
 
 
 Versioning

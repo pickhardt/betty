@@ -128,8 +128,8 @@ def web_query(command)
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
-    puts "Asking the internet..." if not chatmode
-    puts "Thinking..." if chatmode
+    puts "Asking the internet ..." if not chatmode
+    puts "Thinking ..." if chatmode
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
       https.request(req)
     }
