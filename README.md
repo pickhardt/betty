@@ -46,7 +46,7 @@ Give Betty natural language input, for instance `betty whats my username`, and s
     jrp
     
     > betty whats my real name
-    Betty: Running finger `whoami` | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //'
+    Betty: Running finger `whoami` | sed 's/.*: *//;q'
     Jeff Pickhardt
 
 If there's more than one way Betty could respond, she'll ask you to select the one you want.
@@ -56,10 +56,10 @@ If there's more than one way Betty could respond, she'll ask you to select the o
     Betty: Enter the number of the command you want me to run one, or N (no) if you don't want me to run any.
     [1] whoami
         Gets your system username.
-    [2] finger `whoami` | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //'
+    [2] finger `whoami` | sed 's/.*: *//;q'
         Gets your full name.
     > 2
-    Betty: Running finger `whoami` | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //'
+    Betty: Running finger `whoami` | sed 's/.*: *//;q'
     Jeff Pickhardt
 
 

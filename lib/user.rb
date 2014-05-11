@@ -16,7 +16,7 @@ module User
     
     if command.match(/^who\s+am\si$/i) || command.match(/^what\'?s?(\s+is)?\s+my\s((real|full|actual)\s+)?name\??$/i)
       responses << {
-        :command => "finger `whoami` | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //'",
+        :command => "finger $(whoami) | sed 's/.*: *//;q'",
         :explanation => "Gets your full name."
       }
     end
