@@ -31,6 +31,19 @@ module Internet
       }
     end
   end
+
+  def self.compress(command)
+    match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(\s+(?:directory|dir|folder|path))?$/i)
+
+    if match
+      what_file = match[1].strip
+
+      {
+        :command => "cd #{ what_file }; tar -czvf #{ what_file }.tar.gz *",
+        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to parent directory"
+      }
+    end
+  end
   
   def self.interpret(command)
     responses = []
@@ -40,6 +53,9 @@ module Internet
     
     uncompress_command = self.uncompress(command)
     responses << uncompress_command if uncompress_command
+
+    compress_command = self.compress(command)
+    responses << compress_command if compress_command
     
     responses
   end

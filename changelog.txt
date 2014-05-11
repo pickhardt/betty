@@ -1,16 +1,55 @@
-v0.1.1
-------
+0.1.4 (May 8, 2014)
+-------------------
 
-Added "whats my ip address"
+Added Spotify commands.
 
-Added "who else is logged in"
+Added compress: "betty compress myfile.txt"
 
-Added "what song is playing"
+Added more voice commands: "betty whats your voice" or "betty change your voice to Vicki"
+
+Added .betty_history file.
+
+0.1.3 (May 7, 2014)
+-------------------
+
+Bug fix: removed regex comments, for earlier versions of Ruby that don't support it.
+
+Added speech: "betty speak to me"
+
+Added a way to change betty's name "betty change your name to Joe"
+
+Added translate (basic) "betty translate house from english to spanish"
+
+
+0.1.2 (May 5, 2014)
+-------------------
+
+Added an install script.
+
+Added find: "find all files that contain california"
+
+Added datetime: "what day of the week is it"
+
+Added map: "show me a map of mountain view"
+
+Added processes: "show me my processes matching log"
+
+Added version: "whats my version of ruby".
+
+
+0.1.1 (May 4, 2014)
+-------------------
+
+Added ip address: "whats my ip address"
+
+Added who's logged in: "who else is logged in"
+
+Added another iTunes song finder: "what song is playing"
 
 Added this changelog.
 
 
-v0.1.0
--------
+0.1.0 (May 4, 2014)
+-------------------
 
 First public launch.

@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
+require 'logger'
 
 $URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.1'
+$VERSION = '0.1.4'
 $executors = []
+$LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
+
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
+
+BettyConfig.initialize
 
 def get_input_integer(min, max, options={})
   while true
@@ -40,11 +45,18 @@ def interpret(command)
   $executors.each do |executor|
     executors_responses = executor.interpret(command)
     responses = responses.concat(executors_responses)
+    if executors_responses.length == 1 and executors_responses[0][:command] 
+      $LOG.info('main_interpret') {"#{command} ==> #{executor.name} ==> #{executors_responses[0][:command]}"}
+    end
   end
   responses
 end
 
-def run(response)
+def run(response)  
+  if response[:call_before]
+    response[:call_before].call
+  end
+
   if response[:say]
     say response[:say]
   end
@@ -55,12 +67,52 @@ def run(response)
 
   if response[:command]
     say "Running #{ response[:command] }"
-    system response[:command]
+    res = `#{response[:command]}`
+    puts res
+    if BettyConfig.get("speech")
+      speak(res)
+    end
+  end
+end
+
+def speak(text)
+  if User.has_command?('say')
+    say = 'say'
+    say += " -v '#{BettyConfig.get("voice")}'" if BettyConfig.get("voice")
+    system("#{say} \"#{ text }\"") # formerly mpg123 -q
+  else
+    has_afplay = User.has_command?('afplay')
+    has_mpg123 = User.has_command?('mpg123')
+    if has_afplay || has_mpg123
+      require 'open-uri'
+      text = text.split(/ [+-]/)[0]
+      text = text.gsub(' ', '%20')
+      speech_path = '/tmp/betty_speech.mp3'
+
+      if text != ''
+        url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
+        open(speech_path, 'wb') do |file|
+          file << open(url).read
+        end
+
+        if has_afplay 
+          system("afplay #{ speech_path }")
+        elsif has_mpg123
+          system("mpg123 -q #{ speech_path }")
+        end
+
+        system("rm #{ speech_path }")
+      end
+    end
   end
 end
 
 def say(phrase, options={})
-  puts "#{ options[:no_name] ? '' : 'Betty: ' }#{ phrase }"
+  my_name = BettyConfig.get("name")
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  if BettyConfig.get("speech")
+    speak(phrase)
+  end
 end
 
 def main(commands)
@@ -81,7 +133,7 @@ def main(commands)
     end
   elsif responses.length > 1
     say "Okay, I have multiple ways to respond."
-    say "Enter the number of the command you want me to run one, or N (no) if you don't want me to run any."
+    say "Enter the number of the command you want me to run, or N (no) if you don't want me to run any."
     responses.each_with_index do |response, index|
       say "[#{ index + 1 }] #{ response[:command] }", :no_name => true
       say("    #{ response[:explanation] }", :no_name => true) if response[:explanation]
