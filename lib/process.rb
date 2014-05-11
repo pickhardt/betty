@@ -1,4 +1,5 @@
 module Process
+  
   def self.examples
     [ "list of all processes",
       "processes by user root",
