@@ -71,9 +71,9 @@ module Fun
     commands = []
     commands << {
       :category => "Fun",
-      :usage => "- betty go crazy
-- betty whats the meaning of life
-...and more that are left for you to discover!"
+      :usage => ["- betty go crazy",
+      "- betty whats the meaning of life",
+      "...and more that are left for you to discover!"]
     }
     commands
   end

@@ -27,9 +27,9 @@ module Permissions
     commands = []
     commands << {
       :category => "Permissions",
-      :description => "Manage file \033[34mPermissions\033[0m",
-      :usage => "- betty give me permission to this directory
-- betty give anotheruser ownership of myfile.txt"
+      :description => 'Manage file \033[34mPermissions\033[0m',
+      :usage => ["- betty give me permission to this directory",
+      "- betty give anotheruser ownership of myfile.txt"]
     }
     commands
   end

@@ -64,12 +64,12 @@ module Internet
     commands = []
     commands << {
       :category => "Internet",
-      :description => "Download files from \033[34minternet\033[0m, uncompress/compress them",
-      :usage => "- betty download http://www.mysite.com/something.tar.gz to something.tar.gz
-- betty uncompress something.tar.gz
-- betty unarchive something.tar.gz to somedir
-(You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)
-- betty compress /path/to/dir"
+      :description => 'Download files from \033[34minternet\033[0m, uncompress/compress them',
+      :usage => ["- betty download http://www.mysite.com/something.tar.gz to something.tar.gz",
+      "- betty uncompress something.tar.gz",
+      "- betty unarchive something.tar.gz to somedir",
+      "(You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)",
+      "- betty compress /path/to/dir"]
     }
     commands
   end

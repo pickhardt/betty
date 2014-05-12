@@ -95,9 +95,9 @@ module BettyConfig
     commands = []
     commands << {
       :category => "Config",
-      :usage => "- betty change your name to Joe
-- betty speak to me
-- betty stop speaking to me"
+      :usage => ["- betty change your name to Joe",
+      "- betty speak to me",
+      "- betty stop speaking to me"]
     }
     commands
   end

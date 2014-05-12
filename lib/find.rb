@@ -42,8 +42,8 @@ module Find
     commands = []
     commands << {
       :category => "Find",
-      :description => "\033[34mFind\033[0m files",
-      :usage => "- betty find me all files that contain california"
+      :description => '\033[34mFind\033[0m files',
+      :usage => ["- betty find me all files that contain california"]
     }
     commands
   end

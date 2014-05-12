@@ -66,11 +66,17 @@ def help(command)
   if command != ""
     response = responses.detect{|h| h[:category]=="#{ command.split(' ')[0] }"}
     if response
-      say "I can do that if you help me. Check out the following examples:\n#{ response[:usage] }\nPlease note: I am case sensitive. Watch out for my feelings..."
+      say "I can do that if you help me. Check out the following examples"
+      # say "#{ response[:usage] }", :no_name => true
+      response[:usage].each do |usage|
+        say usage, :no_name => true
+      end
+      say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
     else
-      say "Sorry, I don't know how to #{ command } yet. If you are a developer you can teach me! \nI do know how to"
+      say "Sorry, I don't know how to #{ command } yet. If you are a developer you can teach me!"
+      say "I do know how to", :no_name => true
       responses.each do |response|
-        puts "- #{ response[:description] }" if response[:description]
+        say "#{ response[:description] }" if response[:description]
       end
     end
   else
@@ -101,6 +107,19 @@ def run(response)
   end
 end
 
+def sanitize(text)
+  begin
+    color = text.match(/\\(\S+)/)[1]
+    replace_with = color[7..-8]
+    text = text.gsub(color, replace_with)
+  rescue
+  end
+  text = text.split(/ [+-]/)[0]
+  text = text.gsub(' ', '%20')
+  text = text.gsub('\\', '')
+  return text
+end
+
 def speak(text)
   if User.has_command?('say')
     say = 'say'
@@ -111,8 +130,7 @@ def speak(text)
     has_mpg123 = User.has_command?('mpg123')
     if has_afplay || has_mpg123
       require 'open-uri'
-      text = text.split(/ [+-]/)[0]
-      text = text.gsub(' ', '%20')
+      text = sanitize(text)
       speech_path = '/tmp/betty_speech.mp3'
 
       if text != ''
@@ -135,7 +153,8 @@ end
 
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
-  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  text = eval('"' + phrase + '"')
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ text }"
   if BettyConfig.get("speech")
     speak(phrase)
   end

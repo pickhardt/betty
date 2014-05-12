@@ -22,8 +22,8 @@ module Translate
     commands = []
     commands << {
       :category => "Translate",
-      :description => "\033[34mTranslate\033[0m",
-      :usage => "- betty translate from English to Spanish"
+      :description => '\033[34mTranslate\033[0m',
+      :usage =>["- betty translate from English to Spanish"]
     }
     commands
   end

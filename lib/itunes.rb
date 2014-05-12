@@ -121,16 +121,16 @@ module ITunes
     commands = []
     commands << {
       :category => "iTunes",
-      :description => "Control \033[34miTunes\033[0m",
-      :usage => "- betty mute itunes
-- betty unmute itunes
-- betty pause the music
-- betty resume itunes
-- betty stop my music
-- betty next song
-- betty prev track
-- betty what song is playing
-(Note that the words song, track, music, etc. are interchangeable)"
+      :description => 'Control \033[34miTunes\033[0m',
+      :usage => ["- betty mute itunes",
+      "- betty unmute itunes",
+      "- betty pause the music",
+      "- betty resume itunes",
+      "- betty stop my music",
+      "- betty next song",
+      "- betty prev track",
+      "- betty what song is playing",
+      "(Note that the words song, track, music, etc. are interchangeable)"]
     }
     commands
   end

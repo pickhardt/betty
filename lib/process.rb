@@ -63,9 +63,9 @@ module Process
     commands = []
     commands << {
       :category => "Process",
-      :description => "Manipulate running \033[34mProcess\033[0mes",
-      :usage => "- betty show me all processes by root containing grep
-- betty show me all my processes containing netbio"
+      :description => 'Manipulate a running \033[34mProcess\033[0m',
+      :usage => ["- betty show me all processes by root containing grep",
+      "- betty show me all my processes containing netbio"]
     }
     commands
   end
