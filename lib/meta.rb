@@ -19,6 +19,16 @@ module Meta
     
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Meta",
+      :usage => ["- betty what version are you (or just betty version)",
+      "- betty whats your github again"]
+    }
+    commands
+  end
 end
 
 $executors << Meta

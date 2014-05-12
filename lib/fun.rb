@@ -66,6 +66,17 @@ module Fun
     
     system 'osascript -e "tell application \"Terminal\" to set background color of window 1 to {64000,64000,64000,0}"'
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Fun",
+      :usage => ["- betty go crazy",
+      "- betty whats the meaning of life",
+      "...and more that are left for you to discover!"]
+    }
+    commands
+  end
 end
 
 $executors << Fun

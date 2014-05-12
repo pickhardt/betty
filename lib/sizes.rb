@@ -56,6 +56,16 @@ module Sizes
     
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Sizes",
+      :description => 'Find file \033[34mSizes\033[0m',
+      :usage => ["- betty show size for file myfile.txt"]
+    }
+    commands
+  end
 end
 
 $executors << Sizes

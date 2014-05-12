@@ -58,6 +58,32 @@ def interpret(command)
   responses
 end
 
+def help(command)
+  responses = []
+  $executors.each do |executor|
+    responses = responses.concat(executor.help)
+  end
+  if command != ""
+    response = responses.detect{|h| h[:category]=="#{ command.split(' ')[0] }"}
+    if response
+      say "I can do that if you help me. Check out the following examples"
+      # say "#{ response[:usage] }", :no_name => true
+      response[:usage].each do |usage|
+        say usage, :no_name => true
+      end
+      say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
+    else
+      say "Sorry, I don't know how to #{ command } yet. If you are a developer you can teach me!"
+      say "I do know how to", :no_name => true
+      responses.each do |response|
+        say "#{ response[:description] }" if response[:description]
+      end
+    end
+  else
+    say "What can I help you with?"
+  end
+end
+
 def run(response)  
   if response[:call_before]
     response[:call_before].call
@@ -81,6 +107,19 @@ def run(response)
   end
 end
 
+def sanitize(text)
+  begin
+    color = text.match(/\\(\S+)/)[1]
+    replace_with = color[7..-8]
+    text = text.gsub(color, replace_with)
+  rescue
+  end
+  text = text.split(/ [+-]/)[0]
+  text = text.gsub(' ', '%20')
+  text = text.gsub('\\', '')
+  return text
+end
+
 def speak(text)
   if User.has_command?('say')
     say = 'say'
@@ -91,8 +130,7 @@ def speak(text)
     has_mpg123 = User.has_command?('mpg123')
     if has_afplay || has_mpg123
       require 'open-uri'
-      text = text.split(/ [+-]/)[0]
-      text = text.gsub(' ', '%20')
+      text = sanitize(text)
       speech_path = '/tmp/betty_speech.mp3'
 
       if text != ''
@@ -141,7 +179,8 @@ end
 
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
-  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  text = eval('"' + phrase + '"')
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ text }"
   if BettyConfig.get("speech")
     speak(phrase)
   end
@@ -173,11 +212,11 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    response = web_query(command) if BettyConfig.get("web")!="false" # edit ~/.bettyconfig or say 'use web'
-    if response != nil and response != ""
-      say response
+    # edit ~/.bettyconfig or say 'use web' 
+    if BettyConfig.get("web") and not command.match "^help"
+      say web_query(command) 
     else
-      say "I didn't understand you"
+      help(command)
     end
   end
 end

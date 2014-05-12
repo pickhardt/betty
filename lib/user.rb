@@ -64,6 +64,20 @@ module User
 
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "User",
+      :description => 'Show information related to your \033[34mUser\033[0m accounts',
+      :usage => ["- betty whats my username",
+      "- betty whats my real name",
+      "- betty whats my ip address",
+      "- betty who else is logged in",
+      "- betty whats my version of ruby"]
+    }
+    commands
+  end
 end
 
 $executors << User

@@ -29,6 +29,16 @@ module OS
 
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "OS",
+      :description => 'Show \033[34mOS\033[0m name',
+      :usage => ["- betty show what OS is used"]
+    }
+    commands
+  end
 end
 
 $executors << OS

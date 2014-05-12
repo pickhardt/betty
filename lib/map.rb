@@ -23,6 +23,16 @@ module Map
 
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Map",
+      :description => 'Pull out \033[34mMap\033[0ms from Google',
+      :usage => ["- betty show me a map of mountain view"]
+    }
+    commands
+  end
 end
 
 $executors << Map
