@@ -59,6 +59,9 @@ def interpret(command)
 end
 
 def help(command)
+  # betty --help find
+  # betty I need help with the find command
+  command=command.sub("I need","").sub("help","").sub("with","").sub("the","").sub("command","").sub("--","").strip
   responses = []
   $executors.each do |executor|
     responses = responses.concat(executor.help)
@@ -213,7 +216,7 @@ def main(commands)
     run(responses[which_to_run - 1]) if which_to_run
   else
     # edit ~/.bettyconfig or say 'use web' 
-    if BettyConfig.get("web") and not command.match "^help"
+    if BettyConfig.get("web") and not command.empty? and not command.match "help"
       say web_query(command) 
     else
       help(command)
