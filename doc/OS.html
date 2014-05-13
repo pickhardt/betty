@@ -85,6 +85,9 @@
 
   <section class="description">
     
+<p>task: This module determins the kind of <a href="OS.html">OS</a> that betty
+is running on and shows the <a href="OS.html">OS</a> when user asks betty</p>
+
   </section>
 
   
@@ -119,13 +122,13 @@
 
         <div class="method-description">
           
-          
+          <p>Shows the help for the specified executer</p>
           
           
 
           
           <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File lib/os.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/os.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
   <span class="ruby-identifier">commands</span> = []
   <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
@@ -158,13 +161,14 @@
 
         <div class="method-description">
           
-          
+          <p>Validates the question that is asked from betty Sees whether or not the
+question is related to <a href="OS.html">OS</a></p>
           
           
 
           
           <div class="method-source-code" id="interpret-source">
-            <pre><span class="ruby-comment"># File lib/os.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/os.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
   <span class="ruby-identifier">responses</span> = []
 
@@ -202,22 +206,28 @@
 
         <div class="method-description">
           
-          
+          <p>finds the <a href="OS.html">OS</a> and returns its name</p>
           
           
 
           
           <div class="method-source-code" id="platform_name-source">
-            <pre><span class="ruby-comment"># File lib/os.rb, line 3</span>
+            <pre><span class="ruby-comment"># File lib/os.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">platform_name</span>
   <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;&quot;</span>
 
   <span class="ruby-keyword">case</span> <span class="ruby-constant">RUBY_PLATFORM</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;/cygwin|mswin|mingw|bccwin|wince|emx/&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/cygwin|mswin|mingw|bccwin|wince|emx/</span>
       <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;Windows&quot;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;/darwin/&#39;</span>
-      <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;Mac OS&quot;</span>
-    <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/darwin/</span>
+      <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;OS X&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/freebsd/</span>
+      <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;FreeBSD&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/openbsd/</span>
+      <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;OpenBSD&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/netbsd/</span>
+      <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;NetBSD&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/linux/</span>
       <span class="ruby-identifier">os</span> = <span class="ruby-string">&quot;Linux&quot;</span>
   <span class="ruby-keyword">end</span>
 
