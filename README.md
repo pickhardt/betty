@@ -1,4 +1,4 @@
-Betty (version 0.1.4)
+Betty (version 0.1.5)
 =====================
 
 Betty is a friendly English-like interface for your command line.

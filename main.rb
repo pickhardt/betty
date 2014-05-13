@@ -2,7 +2,7 @@
 require 'logger'
 
 $URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.4'
+$VERSION = '0.1.5'
 $executors = []
 $LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
 
