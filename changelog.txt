@@ -1,3 +1,8 @@
+0.1.5 (May 12, 2014)
+-------------------
+
+Add Google search(basic) "betty search in google by friendly english-like interface for your command line"
+
 0.1.4 (May 8, 2014)
 -------------------
 
