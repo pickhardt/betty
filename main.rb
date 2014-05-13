@@ -160,11 +160,19 @@ def web_query(command)
   require 'net/http'
   encoded = URI.escape(command)
   chatmode = BettyConfig.get("chat")
+
   
   web_service = "https://ask.pannous.com"
-  path = "/api?out=simple&input=#{ encoded }"
+  path = "/api?"
+  path += "input=#{ encoded }"
   path += "&exclude=ChatBot,Dialogues" if not chatmode 
-
+  begin
+      require 'json'
+  rescue
+      path += "&out=simple" #no json, just text
+  end
+  
+  puts web_service+path
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
@@ -173,9 +181,18 @@ def web_query(command)
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
       https.request(req)
     }
-    res.body
-  rescue Exception
-    nil
+    answer=res.body
+    return answer if not answer.match /^\{/ # no json, just text
+    json=JSON.parse answer
+    actions=json['output'][0]['actions']
+    url=actions['open']['url'] rescue nil
+    image=actions['show']['images'][0] rescue nil
+    `open #{url}` if url and BettyConfig.get("web") 
+    `open #{image}` if image and BettyConfig.get("web") 
+    return actions['say']['text']
+  rescue Exception =>e
+    puts $!
+    "error querying web service #{e}"
   end
 end
 
