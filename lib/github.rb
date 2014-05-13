@@ -7,15 +7,15 @@
 
 ## task: Takes care of all the Git commands headaches for user
 
-module Github
+module GitHub
 
   # creates a new repository on github
   def self.create_new_repository command
-    match = command.match(/^create\snew\srepo\s+(.*)\s+(.*)$/)
+    match = command.match(/^create\snew\srepo\s+(.*)\s+on\s+(.*)$/)
 
     if match
-      account_name = match[1].strip
-      repo_name = match[2].strip
+      account_name = match[2].strip
+      repo_name = match[1].strip
 
       if nil != account_name && nil != repo_name
         {
@@ -38,6 +38,19 @@ module Github
     responses
   end
 
+  # Shows the help for specified executor
+  def self.help
+    commands = []
+
+    commands << {
+      :Category => "GitHub",
+      :description => "Automate git commands",
+      :usage => ["- betty create new repo yout_github_account_name repo_name"]
+    }
+
+    commands
+  end
+
 end
 
-$executors << Github
+$executors << GitHub
