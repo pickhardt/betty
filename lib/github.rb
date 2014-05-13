@@ -45,7 +45,7 @@ module GitHub
     commands << {
       :Category => "GitHub",
       :description => "Automate git commands",
-      :usage => ["- betty create new repo yout_github_account_name repo_name"]
+      :usage => ["- betty create new repo repo_name on your_github_account_name"]
     }
 
     commands
