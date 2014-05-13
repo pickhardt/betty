@@ -61,7 +61,7 @@ end
 def help(command)
   # betty --help find
   # betty I need help with the find command
-  command=command.sub("I need","").sub("help","").sub("with","").sub("the","").sub("command","").sub("--","").strip
+  command = command.sub("I need","").sub("help","").sub("with","").sub("the","").sub("command","").sub("--","").strip
   responses = []
   $executors.each do |executor|
     responses = responses.concat(executor.help)
@@ -76,11 +76,7 @@ def help(command)
       end
       say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
     else
-      say "Sorry, I don't know how to #{ command } yet. If you are a developer you can teach me!"
-      say "I do know how to", :no_name => true
-      responses.each do |response|
-        say "#{ response[:description] }" if response[:description]
-      end
+      say "I don't understand. Hopefully someone will make a pull request so that one day I will understand."
     end
   else
     say "What can I help you with?"
@@ -160,7 +156,7 @@ end
 def web_query(command)
   require 'net/http'
   encoded = URI.escape(command)
-  chatmode=  BettyConfig.get("chat").to_s=="true"
+  chatmode = BettyConfig.get("chat").to_s == "true"
   
   web_service = "https://ask.pannous.com"
   path = "/api?out=simple&input=#{ encoded }"
@@ -216,7 +212,7 @@ def main(commands)
     run(responses[which_to_run - 1]) if which_to_run
   else
     # edit ~/.bettyconfig or say 'use web' 
-    if BettyConfig.get("web") and not command.empty? and not command.match "help"
+    if BettyConfig.get("web") && !command.empty? && !command.match("help")
       say web_query(command) 
     else
       help(command)
