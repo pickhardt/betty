@@ -1,11 +1,5 @@
 module Process
   
-  def self.examples
-    [ "list of all processes",
-      "processes by user root",
-      "show me my processes matching log" ]
-  end
-  
   def self.test
     for phrase in examples
       puts "FAILED "+phrase if interpret(phrase).empty?
@@ -64,8 +58,11 @@ module Process
     commands << {
       :category => "Process",
       :description => 'Manipulate a running \033[34mProcess\033[0m',
-      :usage => ["- betty show me all processes by root containing grep",
-      "- betty show me all my processes containing netbio"]
+      :usage => ["list of all processes",
+      "processes by user root",
+      "show me my processes matching log",
+      "show me all processes by root containing grep",
+      "show me all my processes containing netbio"]
     }
     commands
   end

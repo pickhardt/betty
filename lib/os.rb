@@ -41,7 +41,7 @@ module OS
     commands << {
       :category => "OS",
       :description => 'Show \033[34mOS\033[0m name',
-      :usage => ["- betty show what OS is used"]
+      :usage => ["show what OS is used"]
     }
     commands
   end

@@ -29,7 +29,7 @@ module Map
     commands << {
       :category => "Map",
       :description => 'Pull out \033[34mMap\033[0ms from Google',
-      :usage => ["- betty show me a map of mountain view"]
+      :usage => ["show me a map of mountain view"]
     }
     commands
   end

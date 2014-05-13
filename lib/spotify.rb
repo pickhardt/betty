@@ -76,10 +76,10 @@ module Spotify
     commands << {
       :category => "Spotify",
       :description => 'Control \033[34mSpotify\033[0m',
-      :usage => ["- betty play spotify",
-      "- betty pause spotify",
-      "- betty next spotify",
-      "- betty previous spotify"]
+      :usage => ["play spotify",
+      "pause spotify",
+      "next spotify",
+      "previous spotify"]
     }
     commands
   end

@@ -24,8 +24,8 @@ module Meta
     commands = []
     commands << {
       :category => "Meta",
-      :usage => ["- betty what version are you (or just betty version)",
-      "- betty whats your github again"]
+      :usage => ["what version are you (or just betty version)",
+      "whats your github again"]
     }
     commands
   end
