@@ -2,7 +2,7 @@ module BettyConfig
   require 'yaml'
   
   @@config = {}
-  @@default_config = {"name" => "Betty"}
+  @@default_config = {"name" => "Betty","speech"=>false,"web"=>false,"chat"=>false}
   
   def self.config_object
     @@config.inspect
@@ -35,19 +35,50 @@ module BettyConfig
   
   def self.interpret(command)
     responses = []
-    if command.match(/^(turn\s+)?speech\s+on$/i) || command.match(/^speak\s+to\s+me$/)
+    
+    # todo: merge all turn ... on|off commands
+    if command.match(/^(turn|switch|the|\s)*speech\s+on$/i) || command.match(/^speak\s+to\s+me$/)
       responses << {
         :call_before => lambda { self.set("speech", true) },
         :say => "Speech ON",
       }
     end
 
-    if command.match(/^(turn\s+)?speech\s+off$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
+    if command.match(/^(turn|switch|the|\s)*speech\s+off$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
       responses << {
         :call_before => lambda { self.set("speech", false) },
         :say => "Speech OFF"
       }
     end
+    
+    if command.match(/^(turn|switch|the|\s)*web(\s*mode)?\s+on$/i) || command.match(/^use\s(the\s)?internet$/)
+      responses << {
+        :call_before => lambda { self.set("web", true) },
+        :say => "Web queries ON",
+      }
+    end
+
+    if command.match(/^(turn|switch|the|\s)*web(\s*mode)?\s+off$/i) || command.match(/^don'?t\suse\s(the\s)?internet$/)
+      responses << {
+        :call_before => lambda { self.set("web", false) },
+        :say => "Web queries OFF"
+      }
+    end
+    
+    if command.match(/^(turn|switch|the|\s)*chat(\s*mode)?\s+on$/i) || command.match(/^chat\swith\sme$/)
+      responses << {
+        :call_before => lambda { self.set("chat", true) },
+        :say => "Chatmode ON",
+      }
+    end
+
+    if command.match(/^(turn|switch|the|\s)*chat(\s*mode)?\s+off$/i) || command.match(/^don'?t\schat\swith\sme$/)
+      responses << {
+        :call_before => lambda { self.set("chat", false) },
+        :say => "Chatmode OFF"
+      }
+    end
+    
 
     if command.match(/^(list\s(your\s)?voices)/i)
       responses << {
@@ -89,6 +120,17 @@ module BettyConfig
     end
 
     responses
+  end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Config",
+      :usage => ["- betty change your name to Joe",
+      "- betty speak to me",
+      "- betty stop speaking to me"]
+    }
+    commands
   end
 end
 

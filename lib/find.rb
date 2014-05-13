@@ -2,27 +2,50 @@ module Find
   def self.interpret(command)
     responses = []
 
-    match = command.match(/^find\s+(me\s+)?(all\s+)?(\S+\s+)?files(\s+in\s+(\S+))?(\s+that\s+contain\s+(.+))?$/i)
+    match = command.match(/^find\s+(?:me\s+)?(?:all\s+)?(\S+\s+)?files(?:\s+in\s+(\S+))?(?:\s+that\s+contain\s+(.+))?$/i)
 
     if match
-      pattern = match[3] ? "\\*.#{match[3].strip}" : "\\*"
-      directory = match[5] ? match[5].strip : "."
-      contains = match[7] ? match[7].strip : nil
+      directory = match[2] ? match[2].strip : "."
+      contains = match[3] ? match[3].strip : nil
 
       if contains
+        # pattern for grep --include
+        # we must have ',' in the end in case there is only one extension
+        pattern = match[1] ? "\\*.\{#{ match[1].strip },\}" : "\\*"
+
         responses << {
           :command => "grep --include=#{ pattern } -Rn #{ contains } #{ directory }",
-          :explanation => "Find files with extension that contains string."
+          :explanation => "Find files in #{ directory } with name matching "\
+                          "#{ pattern } that contain '#{ contains }'."
         }
       else
+        if match[1]
+          # replace ',' with '|' for egrep pattern
+          extensions = match[1].strip.gsub(',', '|')
+          pattern = "\\.(#{ extensions })$"
+        else
+          pattern = ".*"
+        end
+
         responses << {
-          :command => "find #{ directory } -name #{ pattern }",
-          :explanation => "Find all files with extension."
+          :command => "find #{ directory } | egrep '#{ pattern }'",
+          :explanation => "Find files in #{ directory } with name "\
+                          "matching #{ pattern}."
         }
       end
     end
 
     responses
+  end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Find",
+      :description => '\033[34mFind\033[0m files',
+      :usage => ["- betty find me all files that contain california"]
+    }
+    commands
   end
 end
 

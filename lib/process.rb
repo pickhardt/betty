@@ -58,6 +58,17 @@ module Process
 
     return responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Process",
+      :description => 'Manipulate a running \033[34mProcess\033[0m',
+      :usage => ["- betty show me all processes by root containing grep",
+      "- betty show me all my processes containing netbio"]
+    }
+    commands
+  end
 end
 
 $executors << Process

@@ -17,6 +17,16 @@ module Translate
 
     responses
   end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Translate",
+      :description => '\033[34mTranslate\033[0m',
+      :usage =>["- betty translate from English to Spanish"]
+    }
+    commands
+  end
 end
 
 $executors << Translate

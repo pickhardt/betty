@@ -9,14 +9,15 @@ module Fun
     end
     
     if command.match(/^make\s+me\s+a\s+(.+)$/i)
+      thing = "#{ $1 }"
       responses << {
-        :say => "Make your own damn #{ $1 }.",
+        :call => lambda { self.make_me_a(thing) }
       }
     end
     
     if command.match(/^sudo\s+make\s+me\s+a\s+(.+)$/i)
       responses << {
-        :say => "Ha, like sudo has any effect on me!"
+        :say => "I think you meant to place sudo at the start of the command."
       }
     end
     
@@ -42,6 +43,14 @@ module Fun
     responses
   end
   
+  def self.make_me_a(thing)
+    if Process.uid != 0
+      puts "Make your own damn #{thing}."
+    else
+      puts "Ha, like sudo has any effect on me!"
+    end
+  end
+  
   def self.go_crazy
     (0...63).step(3) do |i|
       system "osascript -e \"tell application \\\"Terminal\\\" to set background color of window 1 to {64000,#{ 64 - i }000,63000,0}\""
@@ -56,6 +65,17 @@ module Fun
     end
     
     system 'osascript -e "tell application \"Terminal\" to set background color of window 1 to {64000,64000,64000,0}"'
+  end
+
+  def self.help
+    commands = []
+    commands << {
+      :category => "Fun",
+      :usage => ["- betty go crazy",
+      "- betty whats the meaning of life",
+      "...and more that are left for you to discover!"]
+    }
+    commands
   end
 end
 
