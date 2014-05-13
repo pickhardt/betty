@@ -215,7 +215,7 @@ def main(commands)
   else
     # edit ~/.bettyconfig or say 'use web' 
     if BettyConfig.get("web") && !command.empty? && !command.match("help")
-      say web_query(command) 
+      say web_query(command).sub("Jeannie",BettyConfig.get("name")) 
     else
       help(command)
     end
