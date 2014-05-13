@@ -17,7 +17,7 @@ module Fun
     
     if command.match(/^sudo\s+make\s+me\s+a\s+(.+)$/i)
       responses << {
-        :say => "Ha, like sudo has any effect on me!"
+        :say => "I think you meant to place sudo at the start of the command."
       }
     end
     
@@ -47,7 +47,7 @@ module Fun
     if Process.uid != 0
       puts "Make your own damn #{thing}."
     else
-      puts "Okay."
+      puts "Ha, like sudo has any effect on me!"
     end
   end
   
