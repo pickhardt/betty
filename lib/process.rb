@@ -38,8 +38,8 @@ module Process
     if match  
       command="ps"
       args =  ""
-      args += " -afx"               if match[:all]
       args += " -U#{ my_user_id }"  if match[:my]
+      args += " -afx"               if match[:all] and not match[:my] and not match[:user_id]
       args += " -U#{ find_user_id(match[:user_id]) }" if match[:user_id]
       args += " | grep #{ match[:pattern] }"          if match[:pattern]
       # args+=" | kill" if match[:kill] #todo
