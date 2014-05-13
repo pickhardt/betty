@@ -9,8 +9,9 @@ end
 
 
 INSTALL_LOC = Dir.home + '/betty/'
+
 if Dir.exist? INSTALL_LOC
-  raise "~/betty already exists! Please manually remove if you want to proceed" 
+  puts "Warning: ~/betty already exists!"
 end
 
 puts "We will install to ~/betty and put an alias in your .<shell>rc. Hit <enter> or 'y' if this is okay."
@@ -18,9 +19,13 @@ STDOUT.flush
 CONTINUE = ask "> "
 if CONTINUE == "" || CONTINUE == "y"
     # copy to ~/betty/
-    COPY_COMMAND = 'cp -rf '+ Dir.pwd + ' ' + INSTALL_LOC
-    print "Running `" + COPY_COMMAND + "`\n"
-    system COPY_COMMAND 
+    if Dir.exist? INSTALL_LOC
+      # raise "~/betty already exists! Please manually remove if you want to proceed" 
+    else
+      COPY_COMMAND = 'cp -rf '+ Dir.pwd + ' ' + INSTALL_LOC
+      print "Running `" + COPY_COMMAND + "`\n"
+      system COPY_COMMAND 
+    end
 
     # get current shell
     *junk, SHELL = `echo $SHELL`.split('/')
