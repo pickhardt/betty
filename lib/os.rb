@@ -4,11 +4,17 @@ module OS
     os = ""
 
     case RUBY_PLATFORM
-      when '/cygwin|mswin|mingw|bccwin|wince|emx/'
+      when /cygwin|mswin|mingw|bccwin|wince|emx/
         os = "Windows"
-      when '/darwin/'
-        os = "Mac OS"
-      else
+      when /darwin/
+        os = "OS X"
+      when /freebsd/
+        os = "FreeBSD"
+      when /openbsd/
+        os = "OpenBSD"
+      when /netbsd/
+        os = "NetBSD"
+      when /linux/
         os = "Linux"
     end
 
