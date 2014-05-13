@@ -78,6 +78,7 @@ def help(command)
       say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
     else
       say "I don't understand. Hopefully someone will make a pull request so that one day I will understand."
+      puts "I do know how to\n" + responses.map{|x|x[:category]+":\t\t"+x[:usage].sample }.join("\n")
     end
   else
     say "What can I help you with?"
@@ -98,9 +99,8 @@ def run(response)
   end
 
   if response[:command]
-    command=response[:command]
-    say "Running #{ command }" if not command.match(/^echo/)
-    res = `#{command}`
+    say "Running #{ response[:command] }"
+    res = `#{response[:command]}`
     puts res
     if BettyConfig.get("speech")
       speak(res)
@@ -158,7 +158,7 @@ end
 def web_query(command)
   require 'net/http'
   encoded = URI.escape(command)
-  chatmode = BettyConfig.get("chat").to_s == "true"
+  chatmode = BettyConfig.get("chat")
   
   web_service = "https://ask.pannous.com"
   path = "/api?out=simple&input=#{ encoded }"
@@ -214,7 +214,7 @@ def main(commands)
   else
     # edit ~/.bettyconfig or say 'use web' 
     if BettyConfig.get("web") && !command.empty? && !command.match("help")
-      say web_query(command).sub("Jeannie",BettyConfig.get("name"))
+      say web_query(command) 
     else
       help(command)
     end
