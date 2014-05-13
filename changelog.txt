@@ -1,10 +1,9 @@
 0.1.5 (May 13, 2014)
 --------------------
 
-Added help queries.
+Added help queries: "betty help me with the datetime command"
 
-Use Jeannie (optional).
-
+Added web mode (optional): "betty turn web mode on" then "betty what is the weather in minneapolis"
 
 
 

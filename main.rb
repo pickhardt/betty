@@ -61,13 +61,14 @@ end
 def help(command)
   # betty --help find
   # betty I need help with the find command
-  command = command.sub("I need","").sub("help","").sub("with","").sub("the","").sub("command","").sub("--","").strip
+  command = command.sub("I need","").sub("help","").sub("me","").sub("with","").sub("the","").sub("command","").sub("--","").strip
   responses = []
   $executors.each do |executor|
     responses = responses.concat(executor.help)
   end
   if command != ""
-    response = responses.detect{|h| h[:category]=="#{ command.split(' ')[0] }"}
+    command = command.strip
+    response = responses.detect{|h| h[:category].downcase == "#{ command.split.first.downcase }"}
     if response
       say "I can do that if you help me. Check out the following examples"
       # say "#{ response[:usage] }", :no_name => true
@@ -165,8 +166,8 @@ def web_query(command)
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
-    puts "Asking the internet ..." if not chatmode
-    puts "Thinking ..." if chatmode
+    puts "Asking the internet..." if not chatmode
+    puts "Thinking..." if chatmode
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
       https.request(req)
     }
@@ -178,8 +179,7 @@ end
 
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
-  text = eval('"' + phrase + '"')
-  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ text }"
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
   if BettyConfig.get("speech")
     speak(phrase)
   end
