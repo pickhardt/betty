@@ -62,8 +62,8 @@ module Process
   def self.help
     commands = []
     commands << {
-      :category => "Process",
-      :description => 'Manipulate a running \033[34mProcess\033[0m',
+      :category => "Procs",
+      :description => 'Manipulate a running \033[34mProcs\033[0m (processes)',
       :usage => ["- betty show me all processes by root containing grep",
       "- betty show me all my processes containing netbio"]
     }
