@@ -1,7 +1,7 @@
 module OS
 
   def self.platform_name
-    os = "UnknownOS!"
+    os = "Unknown OS!"
 
     case RUBY_PLATFORM
       when /cygwin|mswin|mingw|bccwin|wince|emx/

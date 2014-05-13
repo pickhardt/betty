@@ -7,6 +7,7 @@ def ask(prompt="", newline=false)
 end
 
 
+
 INSTALL_LOC = Dir.home + '/betty/'
 if Dir.exist? INSTALL_LOC
   raise "~/betty already exists! Please manually remove if you want to proceed" 
@@ -23,9 +24,11 @@ if CONTINUE == "" || CONTINUE == "y"
 
     # get current shell
     *junk, SHELL = `echo $SHELL`.split('/')
-
+    bash_config='.'+SHELL.chomp + 'rc'
+    bash_config='.bash_profile' if RUBY_PLATFORM.match /darwin/ #and ... ?
+    
     # writing the alias
-    SHELLRC = (Dir.home + '/.' + SHELL.chomp + 'rc').chomp
+    SHELLRC = (Dir.home + '/' + bash_config ).chomp
     print "Writing an alias called `betty` to " + SHELLRC + "\n"
     open(SHELLRC, 'a') do |f|
       f.puts "\n"
