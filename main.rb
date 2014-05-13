@@ -99,8 +99,9 @@ def run(response)
   end
 
   if response[:command]
-    say "Running #{ response[:command] }"
-    res = `#{response[:command]}`
+    command=response[:command]
+    say "Running #{ command }" if not command.match(/^echo/)
+    res = `#{command}`
     puts res
     if BettyConfig.get("speech")
       speak(res)
