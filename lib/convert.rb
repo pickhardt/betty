@@ -34,7 +34,8 @@ module Conversion
     in_files=match[:files]
     in_format=detect_in_format in_files
     out_format=detect_out_format match[:out]
-    out_file=in_files.sub(/\.#{in_format}/,".#{out_format}")
+    out_file=match[:out] if match[:out].length>3
+    out_file||=in_files.sub(/\.#{in_format}/,".#{out_format}")
     args =  ""
 
     if match and encoding_formats.index out_format    
