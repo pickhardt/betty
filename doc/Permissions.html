@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Permissions - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-change_owner">::change_owner</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-interpret">::interpret</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Permissions">
+  <h1 id="module-Permissions" class="module">
+    module Permissions
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-change_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_owner</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="change_owner-source">
+            <pre><span class="ruby-comment"># File lib/permissions.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">change_owner</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">match</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(?:make|give)\s+(me|.+)\s+(?:permissions?|ownership|the\s+owner)\s+(?:(?:of|to|for)\s+)?(.+)$/i</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>
+    <span class="ruby-identifier">is_me</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;me&#39;</span>
+    <span class="ruby-identifier">who</span> = <span class="ruby-identifier">is_me</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;`whoami`&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">what</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">is_this_directory</span> = <span class="ruby-identifier">what</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;.&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">what</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(this\s+)?(?:dir(?:ectory)|folder|path)?$/</span>)
+    
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;sudo chown #{ is_this_directory ? &#39;-R &#39; : &#39;&#39; }#{ who } #{ is_this_directory ? &#39;.&#39; : what }&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Makes #{ is_me ? &#39;you&#39; : who } the owner of #{ is_this_directory ? &#39;all the files in the current directory, including subdirectories&#39; : what }.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/permissions.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
+  <span class="ruby-identifier">commands</span> = []
+  <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-value">:category</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Permissions&quot;</span>,
+    <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Manage file \033[34mPermissions\033[0m&#39;</span>,
+    <span class="ruby-value">:usage</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;- betty give me permission to this directory&quot;</span>,
+    <span class="ruby-string">&quot;- betty give anotheruser ownership of myfile.txt&quot;</span>]
+  }
+  <span class="ruby-identifier">commands</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/permissions.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+  
+  <span class="ruby-identifier">change_owner_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">change_owner</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">change_owner_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">change_owner_command</span>
+  
+  <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

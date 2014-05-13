@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>ROADMAP - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Roadmap">Roadmap</a>
+    <li><a href="#label-0.2">0.2</a>
+    <li><a href="#label-0.3">0.3</a>
+    <li><a href="#label-0.4">0.4</a>
+    <li><a href="#label-0.6">0.6</a>
+    <li><a href="#label-1.0">1.0</a>
+    <li><a href="#label-Project+Brainstorm">Project Brainstorm</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./ROADMAP_md.html">ROADMAP</a>
+  
+    <li><a href="./changelog_txt.html">changelog</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page ROADMAP.md">
+
+<h2 id="label-Roadmap">Roadmap<span><a href="#label-Roadmap">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>This is the roadmap for Betty. It&#39;s OK to get something done sooner
+than on the roadmap.</p>
+
+<h2 id="label-0.2">0.2<span><a href="#label-0.2">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Auto-generate documentation alongside the commands. Even better if the
+documentation can create automated tests.</p>
+
+<p>Add tests (or leverage the documentation for automated tests).</p>
+
+<p>See what features people want most, then add those.</p>
+
+<h2 id="label-0.3">0.3<span><a href="#label-0.3">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Write up a general philosophy about adding commands. For instance: how to
+handle potentially damaging commands like rm or overwriting files.</p>
+
+<p>Math.</p>
+
+<p>Unit conversions with the units command.</p>
+
+<h2 id="label-0.4">0.4<span><a href="#label-0.4">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Configuration settings.</p>
+
+<h2 id="label-0.6">0.6<span><a href="#label-0.6">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Tokenization.</p>
+
+<p>Generally useful classes (File, Directory, FileOrDirectory, etc).
+Specifically, more advanced and reusable syntax parsing, so that generic
+things can be used in many commands.</p>
+
+<p>For example, a generic way to parse phrases that mean files:</p>
+
+<p>betty count number of words in the files in this directory that end in rb
+or py</p>
+
+<p>AND</p>
+
+<p>betty move the files in this directory that end in rb or py to
+my/directory/here</p>
+
+<p>Note that “the files in this directory that end in rb or py” was used in
+both.</p>
+
+<p>Maybe this could also handle multiple commands (with and) or conditionals
+(like if). “copy something.txt into my documents folder and rename it
+somethingelse.txt”</p>
+
+<h2 id="label-1.0">1.0<span><a href="#label-1.0">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Betty for more than just the command line: it should have an API or
+otherwise be generally usable such that people can use Betty from
+non-command line interfaces.</p>
+
+<h2 id="label-Project+Brainstorm">Project Brainstorm<span><a href="#label-Project+Brainstorm">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>This is a list of medium to large project ideas.</p>
+
+<p>Documentation methods for each module. Something that can be used to both
+give helpful output to the user, and autogenerate documentation that would
+be browsable online.</p>
+
+<p>Automated testing. BDD, not TDD. Test what matters. Don&#39;t test
+everything for the sake of writing tests, and don&#39;t write brittle
+tests.</p>
+
+<p>Reusable patterns, like a pattern for detecting a file or directory and
+converting it into a File or Directory class.</p>
+
+<p>Send any unmatched commands to an API, to both log what commands people are
+running that aren&#39;t being caught, and to send back any new info for a
+response. For example, this could send unmatched commands to Jeannie.</p>
+
+<p>Understand context: where is Betty being used from? What is the user doing?
+What does the user have open? The contextual module would be able to detect
+if you&#39;re in a shell (like Terminal) or detect if you&#39;re using it
+outside the shell (say, from a process that does voice to text). If outside
+the shell, “open my documents” would command the Finder: <a
+href="http://www.macosxautomation.com/applescript/firsttutorial/14.html">www.macosxautomation.com/applescript/firsttutorial/14.html</a>
+But inside the shell, it&#39;d just do cd ~/Documents</p>
+
+<p>Voice to text capability. Run a process in the background. When somebody
+types a hotkey, beep and start recording the sound. When they&#39;re done
+talking, convert that sound to text via a voice to text API. Then run the
+command.</p>
+
+<p>Get Betty into a package manager, specifically Homebrew (<a
+href="https://github.com/Homebrew/homebrew/wiki/Formula-Cookbook">github.com/Homebrew/homebrew/wiki/Formula-Cookbook</a>).</p>
+
+<p>Design a general intents API: a way for applications and developers to
+create their own commands and register them with Betty. Then, when Betty
+runs, it could leverage third party intents, without the developers needing
+to issue a pull request into Betty. It&#39;s important that the intents API
+be neutral. It shouldn&#39;t work better with Apple technology or Google
+technology or play favorites. However, if one company supports
+functionality that another company doesn&#39;t, there&#39;s no reason to
+prevent consumers from taking advantage of that functionality. It just
+needs to be done in a neutral way.</p>
+
+<p>an idea could be if modules could have a <code>self.help</code> method that
+would get triggered on empty results and when empty arguments…</p>
+
+<p>I suppose that the main <code>betty.help</code> method would have to exist
+first and would get called when specialized method does not exist.. This
+would help in the cases when a module does not have a <code>help</code>
+method.</p>
+
+<p>sample:</p>
+
+<pre>$ betty abracadabra
+Betty: Sorry, I did not learn how to Abracadabra yet. If you are a developer you can teach me!
+I do know how to:
+- find
+- count
+... # a list of available modules should show up
+
+$ betty find
+Betty: I can find things if you help me. Check out the following examples:
+- find me files that contain interpret
+- find all md files in /this/path
+Please note: I am case sensitive. Watch out for my feelings...</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
