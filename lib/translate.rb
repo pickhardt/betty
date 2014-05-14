@@ -23,7 +23,7 @@ module Translate
     commands << {
       :category => "Translate",
       :description => '\033[34mTranslate\033[0m',
-      :usage =>["- betty translate from English to Spanish"]
+      :usage =>["- betty translate from en to es"]
     }
     commands
   end
