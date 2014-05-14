@@ -28,17 +28,54 @@ module GitHub
 
   # Clones a repository if exists
   def self.clone_a_repository command
-    matches = command.match /^clone\s+(.*)\sfrom\s+(.*)/
+    matches = command.match /^clone\s+(.*)\s+(in)?\s+(.*)?\sfrom\s+(.*)?\s+(to)?\s+(.*)?$/
 
     if matches
+      i = 3
+      branch_name = nil
+      dir = nil
       repo_name = matches[1]
-      account_name = matches[2]
+      has_in = "in" == matches[2] ? true : false
+      if has_in
+        branch_name = matches[i]
+        i += 1
+      end
+      account_name = matches[i]
+      i += 1
+      has_to = "to" == matches[i] ? true : false
+      if has_to
+        i += 1
+        dir = matches[i]
+      end
+
+      git_clone =
+      cmd = "git clone "
+      exp = "Cloning #{repo_name}"
 
       if nil != repo_name && nil != account_name
-        {
-          :command => "git clone git://github.com/#{account_name}/#{repo_name}.git",
-          :explanation => "Cloning #{repo_name} repository in #{Dir.pwd}"
-        }
+        # FIXME:
+        # if nil == branch_name && nil == dir
+          # {
+            # :command => cmd + "git://github.com/#{account_name}/#{repo_name}.git",
+            # :explanation => exp + " repository in #{Dir.pwd}"
+          # }
+        # elsif nil != branch_name && nil == dir
+          # {
+            # :command => cmd + "-b #{branch_name} " + "git://github.com/#{account_name}/#{repo_name}.git",
+            # :explanation => exp + ":#{branch_name} repository in #{Dir.pwd}"
+          # }
+        # elsif nil == branch_name && nil != dir
+          # {
+            # :command => cmd + "git://github.com/#{account_name}/#{repo_name}.git #{dir}",
+            # :explanation => exp + ":#{branch_name} repository in #{Dir.pwd}"
+          # }
+        # elsif nil != branch_name && nil != dir
+        if nil != branch_name && nil != dir
+          {
+            :command => cmd + "-b #{branch_name} " + "git://github.com/#{account_name}/#{repo_name}.git #{dir}",
+            :explanation => exp + ":#{branch_name} repository in #{Dir.pwd}"
+          }
+        end
       end
     end
   end
@@ -66,7 +103,8 @@ module GitHub
     commands << {
       :Category => "GitHub",
       :description => "Automate git commands",
-      :usage => ["- betty create new repo repo_name on your_github_account_name"]
+      :usage => ["- betty create new repo repo_name on github_account_name",
+                 "- betty clone repo_name in branch_name from github_account_name to directory"]
     }
 
     commands
