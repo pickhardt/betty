@@ -26,6 +26,23 @@ module GitHub
     end
   end
 
+  # Clones a repository if exists
+  def self.clone_a_repository command
+    matches = command.match /^clone\s+(.*)\sfrom\s+(.*)/
+
+    if matches
+      repo_name = matches[1]
+      account_name = matches[2]
+
+      if nil != repo_name && nil != account_name
+        {
+          :command => "git clone git://github.com/#{account_name}/#{repo_name}.git",
+          :explanation => "Cloning #{repo_name} repository in #{Dir.pwd}"
+        }
+      end
+    end
+  end
+
   # Validates the question that is asked from betty about GitHub
   # and calls preferred methods based on user command
   def self.interpret command
@@ -33,6 +50,10 @@ module GitHub
 
     new_repo_command = self.create_new_repository(command)
     responses << new_repo_command if new_repo_command
+
+    clone_repo_command = self.clone_a_repository command
+    responses << clone_repo_command if clone_repo_command
+
     # TODO: Add more stuff as well
 
     responses
