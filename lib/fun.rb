@@ -40,6 +40,12 @@ module Fun
       }
     end
     
+    if command.match(/sing (.*)/)
+      responses << {
+        :command => "say -v cello #{$~}"
+      }
+    end
+    
     responses
   end
   
