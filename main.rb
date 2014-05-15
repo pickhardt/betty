@@ -166,6 +166,7 @@ def web_query(command)
   web_service = "https://ask.pannous.com"
   path = "/api?"
   path += "input=#{ encoded }"
+  path += "&timeZone="+Time.now.zone
   path += "&exclude=ChatBot,Dialogues" if not chatmode 
   begin
       require 'json'
@@ -173,7 +174,7 @@ def web_query(command)
       path += "&out=simple" #no json, just text
   end
   
-  puts web_service+path
+  # puts web_service+path
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
@@ -183,13 +184,14 @@ def web_query(command)
       https.request(req)
     }
     answer=res.body
+    return "web api error" if answer.match /^</ 
     return answer if not answer.match /^\{/ # no json, just text
     json=JSON.parse answer
     actions=json['output'][0]['actions']
     url=actions['open']['url'] rescue nil
     image=actions['show']['images'][0] rescue nil
     `open #{url}` if url and BettyConfig.get("web") 
-    `open #{image}` if image and BettyConfig.get("web") 
+    `open #{image}` if image and BettyConfig.get("web") # or ascii-art ;}
     return actions['say']['text']
   rescue Exception =>e
     puts $!
