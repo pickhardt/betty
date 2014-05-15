@@ -21,11 +21,15 @@ module User
       }
     end
 
-    if command.match(/^what\'?s?(\s+is)?(\s+my)?(\s+ip)?\s?(address)?\??$/i)
+    if command.match(/^what\'?s?(\s+is)?(\s+my)?\s?(public|external|internal|private|local)?(\s+ip)?\s?(address)?\??$/i)
       responses << {
-        :command => "curl ifconfig.me",
+        :command => "ifconfig", 
+        :explanation => "Gets your internal ip address."
+        } if not command.match(/(public|external)/)
+      responses << {
+        :command => "curl -sL http://pannous.net/ip.php", # ifconfig.me is slooow!
         :explanation => "Gets your external ip address."
-      }
+      } if not command.match(/(internal|private|local)/)
     end
   
     if command.match(/^who\'?s?(\s+else)?(\s+is)?\s(logged|signed|connected)\s+?in\??$/i)
