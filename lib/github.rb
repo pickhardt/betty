@@ -48,7 +48,6 @@ module GitHub
         dir = matches[i]
       end
 
-      git_clone =
       cmd = "git clone "
       exp = "Cloning #{repo_name}"
 
