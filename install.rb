@@ -29,7 +29,7 @@ if CONTINUE == "" || CONTINUE == "y"
     end
 
     # get current shell
-    *junk, SHELL = `echo $SHELL`.split('/')
+    *junk, SHELL = `echo $SHELL`.split('/') rescue SHELL="bash" #ruby 1.8
     bash_config='.'+SHELL.chomp + 'rc'
     bash_config='.bash_profile' if RUBY_PLATFORM.match /darwin/ #and ... ?
     
