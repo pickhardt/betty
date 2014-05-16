@@ -23,7 +23,7 @@ module Datetime
       }
     end
 
-    if command.match(/^((what[s]?)|which)\s+(is\s+(the\s)?)?\s*(to|week)?day(\s+(of\s+the\s+week\s*)?(is\s)?\s*(it)?\s?(today|now)?)?\??$/i)
+    if command.match(/^((what[s]?)|which)\s+((is\s+)?\s*(the\s)?)?\s*(to|week)?day(\s+(of\s+the\s+week\s*)?(is\s)?\s*(it)?\s?(today|now)?)?\??$/i)
       responses << {
         :command => "date +\"%A\"",
         :explanation => "Gets the day of the week."
