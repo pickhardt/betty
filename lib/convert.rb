@@ -1,4 +1,4 @@
-module Conversions
+module Convert
 
   #
   ## Source: http://en.wikipedia.org/wiki/Conversion_of_units
@@ -110,7 +110,7 @@ module Conversions
         (?:(?:convert|how\s+much\s+is|what(?:\s+is|\W*s)(?:\s+the)?(?:\s+equivalent\s+of)?)\s+)?
 
         # followed by a number or 'a' word or nothing
-        ([-+]?\d+(?:\.\d+)?|(?:an?|one)(?=\s)|)
+        ([-+]?\d+(?:\.\d+)?|(?:an?|one)(?=\s)|(?=speed\s+of\s+))
 
         # unit from (up to 3 words)
         \s*(\S+(?:\s+\S+){0,2})
@@ -152,7 +152,7 @@ module Conversions
   def self.help
     commands = []
     commands << {
-      :category => "convert",
+      :category => "Convert",
       :description => 'Conversion of units.',
       :usage => [
         "- betty 144 F to C",
@@ -165,4 +165,4 @@ module Conversions
   end
 end
 
-$executors << Conversions
+$executors << Convert
