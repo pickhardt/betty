@@ -24,6 +24,7 @@ module Units
                 :seconds    => {:re => /^(?:sec(?:ond)?s?|(?-i:s))$/i,     :factor => 1.0},
                 :minutes    => {:re => /^(?:min(?:ute)?s?)$/i,             :factor => 1.0 / 60.0},
                 :moments    => {:re => /^(?:mom(?:ent)?s?)$/i,             :factor => 1.0 / 90.0},
+                :hours      => {:re => /^(?:hours?)$/i,                    :factor => 1.0 / 3600.0},
                 :days       => {:re => /^(?:days?)$/i,                     :factor => 1.0 / 86400.0},
                 :millidays  => {:re => /^(?:millidays?|(?-i:md))$/i,       :factor => 1.0 / 86.4},
                 :weeks      => {:re => /^(?:weeks?)$/i,                    :factor => 1.0 / 604800.0},
