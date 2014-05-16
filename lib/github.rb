@@ -1,5 +1,6 @@
 #
 # github.rb
+#
 # Author: Muhammad Hussein Nasrollahpour
 # Date: 2014
 # Copyright: See license agreement
@@ -8,6 +9,8 @@
 ## task: Takes care of all the Git commands headaches for user
 
 module GitHub
+
+  $got_successful = false
 
   # creates a new repository on github
   def self.create_new_repository command
@@ -18,6 +21,8 @@ module GitHub
       repo_name = match[1].strip
 
       if nil != account_name && nil != repo_name
+        $got_successful = true
+
         {
           :command => "curl -u '#{account_name}' https://api.github.com/user/repos -d '{\"name\":\"#{repo_name}\"}'",
           :explanation => "Creating a new repo on https://github.com/#{account_name}"
@@ -28,22 +33,22 @@ module GitHub
 
   # Clones a repository if exists
   def self.clone_a_repository command
-    matches = command.match /^clone\s+(.*)\s+(in)?\s+(.*)?\sfrom\s+(.*)?\s+(to)?\s+(.*)?$/
+    matches = command.match /^clone\s+(.*)\s+(on)?\s+(.*)?\sfrom\s+(.*)\s+(in)?\s+(.*)?$/
 
     if matches
       i = 3
       branch_name = nil
       dir = nil
       repo_name = matches[1]
-      has_in = "in" == matches[2] ? true : false
-      if has_in
+      has_on = "on" == matches[2] ? true : false
+      if has_on
         branch_name = matches[i]
         i += 1
       end
       account_name = matches[i]
       i += 1
-      has_to = "to" == matches[i] ? true : false
-      if has_to
+      has_in = "in" == matches[i] ? true : false
+      if has_in
         i += 1
         dir = matches[i]
       end
@@ -70,6 +75,8 @@ module GitHub
           # }
         # elsif nil != branch_name && nil != dir
         if nil != branch_name && nil != dir
+          $got_successful = true
+
           {
             :command => cmd + "-b #{branch_name} " + "git://github.com/#{account_name}/#{repo_name}.git #{dir}",
             :explanation => exp + ":#{branch_name} repository in #{Dir.pwd}"
@@ -77,6 +84,10 @@ module GitHub
         end
       end
     end
+  end
+
+  def self.success
+    $got_successful
   end
 
   # Validates the question that is asked from betty about GitHub
@@ -103,7 +114,7 @@ module GitHub
       :Category => "GitHub",
       :description => "Automate git commands",
       :usage => ["- betty create new repo repo_name on github_account_name",
-                 "- betty clone repo_name in branch_name from github_account_name to directory"]
+                 "- betty clone repo_name on branch_name from github_account_name in directory"]
     }
 
     commands
@@ -111,4 +122,4 @@ module GitHub
 
 end
 
-$executors << GitHub
+#$executors << GitHub
