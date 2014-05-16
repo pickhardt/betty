@@ -1,8 +1,16 @@
 module Datetime
+  $got_successful = false
+
+  def self.success
+    $got_successful
+  end
+
   def self.interpret(command)
     responses = []
-    
+
     if command.match(/^what\s+time\sis\sit\??$/i) || command.match(/^what\s+is\sthe\stime$/i)
+      $got_successful = true
+
       responses << {
         :command => "date +\"%T\"",
         :explanation => "Gets the current time."
@@ -10,6 +18,8 @@ module Datetime
     end
 
     if command.match(/^what\s+is\s+((today'?s?|the)\s+)?date\??$/i)
+      $got_successful = true
+
       responses << {
         :command => "date +\"%m-%d-%y\"",
         :explanation => "Gets the current date."
@@ -17,6 +27,8 @@ module Datetime
     end
 
     if command.match(/^what\s+month\sis\sit\??$/i)
+      $got_successful = true
+
       responses << {
         :command => "date +%B",
         :explanation => "Gets the current month."
@@ -25,6 +37,9 @@ module Datetime
 
     if command.match(/^what\s+day\s+(of\s+the\s+week\s+)?is\s+it\??$/i) ||
        command.match(/^what\'?s?\s+today$/)
+
+       $got_successful = true
+
       responses << {
         :command => "date +\"%A\"",
         :explanation => "Gets the day of the week."
