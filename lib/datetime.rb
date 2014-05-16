@@ -16,7 +16,7 @@ module Datetime
       }
     end
 
-    if command.match(/^what\s+month\sis\sit\??$/i)
+    if command.match(/^what[s]?\s+(is\s)?\s*(the\s)?\s*month(\s+((is\s+)?(it\s*)?(now)?))?\s*\??$/i)
       responses << {
         :command => "date +%B",
         :explanation => "Gets the current month."
