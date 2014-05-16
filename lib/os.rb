@@ -1,5 +1,7 @@
 module OS
 
+  $got_successful = false
+
   def self.platform_name
     os = ""
 
@@ -15,11 +17,17 @@ module OS
     os
   end
 
+  def self.success
+    $got_successful
+  end
+
   def self.interpret(command)
     responses = []
 
     if command.match(/^(?:show|me|whats|what|is|my|\s)*OS(?:\s|name|do i have|is used|.)*$/i)
       os = platform_name
+
+      $got_successful = true
 
       responses << {
         :command => "echo '#{os}'",
