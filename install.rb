@@ -29,7 +29,11 @@ if CONTINUE == "" || CONTINUE == "y"
     end
 
     # get current shell
-    *junk, SHELL = `echo $SHELL`.split('/') rescue SHELL="bash" #ruby 1.8
+    begin
+      *junk, SHELL = `echo $SHELL`.split('/') 
+    rescue Exception
+       SHELL="bash" #ruby 1.8 (parsing exceptions are not rescued by default)
+     end
     bash_config='.'+SHELL.chomp + 'rc'
     bash_config='.bash_profile' if RUBY_PLATFORM.match /darwin/ #and ... ?
     

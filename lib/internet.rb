@@ -64,7 +64,7 @@ module Internet
     commands = []
     commands << {
       :category => "Internet",
-      :description => 'Download files from \033[34minternet\033[0m, uncompress/compress them',
+      :description => 'Download files from \033[34mInternet\033[0m, uncompress/compress them',
       :usage => ["download http://www.mysite.com/something.tar.gz to something.tar.gz",
       "uncompress something.tar.gz",
       "unarchive something.tar.gz to somedir",

@@ -2,7 +2,7 @@ module Datetime
   def self.interpret(command)
     responses = []
     
-    if command.match(/^what\s+time\sis\sit\??$/i) || command.match(/^what\s+is\sthe\stime$/i)
+    if command.match(/^what\s+time\sis\sit\??$/i) || command.match(/^what\s+is\sthe\stime$/i) || command.match(/^what\s+is\sthe\stime\snow\??$/i)
       responses << {
         :command => "date +\"%T\"",
         :explanation => "Gets the current time."
