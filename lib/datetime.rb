@@ -4,7 +4,7 @@ module Datetime
     
     if command.match(/^((what[s]?)|which)\s+(is\s+)?(the\s)?\s*time(\s+is\s+it)?(\s+now)?\??$/i)
       responses << {
-        :command => "date +\"%T\"",
+        :command => "date +\"%r (%T)\"",
         :explanation => "Gets the current time."
       }
     end
