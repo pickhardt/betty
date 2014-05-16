@@ -9,7 +9,7 @@ module Datetime
       }
     end
 
-    if command.match(/^what\s+is\s+((today'?s?|the)\s+)?date\??$/i)
+    if command.match(/^what[s]?\s+(is\s)?\s*(the\s)?\s*(date)?\s*(today)?\s*\??$/i)
       responses << {
         :command => "date +\"%m-%d-%y\"",
         :explanation => "Gets the current date."
