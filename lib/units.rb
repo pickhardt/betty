@@ -39,7 +39,7 @@ module Units
                 :kilometers_per_hour   => {:re => /^(?:kph|km\/h|(?:kilomet(?:er|re)s|km)\s+per\s+hour)$/i,                            :factor => 3.6},
                 :metres_per_hour       => {:re => /^(?:m(?:eters?)?\/h|(?:metres?|m)\s+per\s+hour)$/i,                                 :factor => 3600.0},
                 :kilometers_per_second => {:re => /^(?:kph|km\/s(?:ec)?|(?:kilomet(?:er|re)s|km)\s+per\s+sec(?:ond)?)$/i,              :factor => 0.001},
-                :speed_of_light        => {:re => /^(?:speed\s+of\s+light|c)$/i,                                                       :factor => 1.0 / 299792458.0},
+                :speed_of_light        => {:re => /^(?:speed\s+of\s+light)$/i,                                                         :factor => 1.0 / 299792458.0},
                 :speed_of_sound        => {:re => /^(?:speed\s+of\s+sound)$/i,                                                         :factor => 1.0 / 340.29},
             },
             :length      => {   # all relative to 1 meter
@@ -85,7 +85,6 @@ module Units
                             new_amount = 0.0;
                             if category == :temperature
                                 std_from = from_data[:code].call(amount, false);
-                                std_to   = to_data[:code].call(amount, true);
                                 new_amount = to_data[:code].call(std_from, true);
                             else
                                 new_amount = amount * to_data[:factor] / from_data[:factor];
