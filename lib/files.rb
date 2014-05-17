@@ -49,10 +49,22 @@ module Files
        def self.delete_file(command)
                ## Delete file(s)
               if command.match(/(delete|remove)\s+file(s?)\s/)
-                     paths = command.sub(/(delete|remove)\s+file\s/,'').strip.split(' ')
+                     paths = command.sub(/(delete|remove)\s+file\s/,'').strip
+
+                     unless File.exist?(paths)
+                        puts "Sorry, #{paths} is not a file or does not exist"
+                        exit 0
+                     end
+
+                     puts "You sure ? I'm gonna delete the file #{paths}\n"
+                     ans = STDIN.gets.chomp 
+
+                     unless ans.match(/y|yes/)
+                        exit 0
+                     end
 
                      {
-                            :command => "rm #{paths.join(' ')}",
+                            :command => "rm #{paths}",
                             :explanation => "Remove file(s)"
                      }
               else
@@ -64,10 +76,22 @@ module Files
                ## Delete folder(s)
               if command.match(/(delete|remove)\s+folder(s?)\s/) || 
                        command.match(/(delete|remove)\s+all\s+(file(s?))\s+in\s/)
-                       paths = command.sub(/(delete|remove)\s+folder(s?)\s/,'').strip.split(' ')
+                       paths = command.sub(/(delete|remove)\s+folder(s?)\s/,'').strip
 
-                       responses << {
-                            :command => "rm -r #{paths.join(' ')}",
+                       unless File.exist?(paths) && File.directory?(paths)
+                        puts "Sorry, #{paths} is not a folder or does not exist"
+                        exit 0
+                       end
+
+                       puts "You sure ? I'm gonna delete the folder #{paths}\n"
+                       ans = STDIN.gets.chomp 
+
+                       unless ans.match(/y|yes/)
+                         exit 0
+                       end
+
+                       {
+                            :command => "rm -r #{paths}",
                             :explanation => "Remove folder(s)"
                        }
               end              
@@ -75,13 +99,18 @@ module Files
 
        def self.delete_files_and_folders(command)
               ## Delete files and folders
-              if command.match(/cleanup\s+folder(s?)\s/) || command.match(/force\s+cleanup\s+folder(s?)\s/)
-                      paths = command.sub(/cleanup\s+folder(s?)\s/,'').strip.split(' ')
+              if command.match(/((force\s)?)+cleanup\s+folder(s?)\s/)
+                      paths = command.sub(/((force\s)?)+cleanup\s+folder(s?)\s/,'').strip
                       flags = "-r "
                       flags += command.match(/force/) ? '-f ' : ''
 
-                      responses << {
-                            :command => "rm #{flags} #{paths.join(' ')}",
+                      unless File.directory?(paths)
+                        puts "Sorry, #{paths} is not a folder or does not exit"
+                        exit 0
+                      end
+
+                      {
+                            :command => "rm #{flags} #{paths}/*",
                             :explanation => "Removes all files and folders in give folder"
                       }
               end
