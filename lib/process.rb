@@ -1,11 +1,5 @@
 module Process
   
-  def self.examples
-    [ "list of all processes",
-      "processes by user root",
-      "show me my processes matching log" ]
-  end
-  
   def self.test
     for phrase in examples
       puts "FAILED "+phrase if interpret(phrase).empty?
@@ -44,8 +38,8 @@ module Process
     if match  
       command="ps"
       args =  ""
-      args += " -afx"               if match[:all]
       args += " -U#{ my_user_id }"  if match[:my]
+      args += " -afx"               if match[:all] and not match[:my] and not match[:user_id]
       args += " -U#{ find_user_id(match[:user_id]) }" if match[:user_id]
       args += " | grep #{ match[:pattern] }"          if match[:pattern]
       # args+=" | kill" if match[:kill] #todo
@@ -62,10 +56,13 @@ module Process
   def self.help
     commands = []
     commands << {
-      :category => "Procs",
-      :description => 'Manipulate a running \033[34mProcs\033[0m (processes)',
-      :usage => ["- betty show me all processes by root containing grep",
-      "- betty show me all my processes containing netbio"]
+      :category => "Process",
+      :description => 'Manipulate a running \033[34mProcess\033[0m',
+      :usage => ["list of all processes",
+      "processes by user root",
+      "show me my processes matching log",
+      "show me all processes by root containing grep",
+      "show me all my processes containing netbio"]
     }
     commands
   end

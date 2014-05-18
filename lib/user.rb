@@ -21,11 +21,15 @@ module User
       }
     end
 
-    if command.match(/^what\'?s?(\s+is)?(\s+my)?(\s+ip)?\s?(address)?\??$/i)
+    if command.match(/^what\'?s?(\s+is)?(\s+my)?\s?(public|external|internal|private|local)?(\s+ip)?\s?(address)?\??$/i)
       responses << {
-        :command => "curl -sL ifconfig.me",
+        :command => "ifconfig", 
+        :explanation => "Gets your internal ip address."
+        } if not command.match(/(public|external)/)
+      responses << {
+        :command => "curl -sL http://pannous.net/ip.php", # ifconfig.me is slooow!
         :explanation => "Gets your external ip address."
-      }
+      } if not command.match(/(internal|private|local)/)
     end
   
     if command.match(/^who\'?s?(\s+else)?(\s+is)?\s(logged|signed|connected)\s+?in\??$/i)
@@ -70,11 +74,11 @@ module User
     commands << {
       :category => "User",
       :description => 'Show information related to your \033[34mUser\033[0m accounts',
-      :usage => ["- betty whats my username",
-      "- betty whats my real name",
-      "- betty whats my ip address",
-      "- betty who else is logged in",
-      "- betty whats my version of ruby"]
+      :usage => ["whats my username",
+      "whats my real name",
+      "whats my ip address",
+      "who else is logged in",
+      "whats my version of ruby"]
     }
     commands
   end
