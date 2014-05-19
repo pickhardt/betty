@@ -1,3 +1,5 @@
+require 'rbconfig'
+
 module Map
   def self.interpret(command)
     responses = []
@@ -6,13 +8,15 @@ module Map
       search_term = $1.gsub(' ', '%20')
       command = ""
 
-      case OS.platform_name
-        when 'Mac OS'
-          command = 'open'
-        when 'Linux'
-          command = 'xdg-open'
-        when 'Windows'
+      case RbConfig::CONFIG['host_os']
+        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
           command = 'start'
+        when /darwin|mac os/
+          command = 'open'
+        when /linux/
+          command = 'xdg-open'
+        else
+          command = 'unsupported'
       end
 
       responses << {
