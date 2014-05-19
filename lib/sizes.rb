@@ -22,7 +22,7 @@ module Sizes
   
   def self.show_sizes(where)
     #puts "your command: #{@command_string}"
-  	pipe = IO.popen("du -s #{ where } | sort -n")
+  	pipe = IO.popen("du -sh #{ where } | sort -n")
 	while (line = pipe.gets)
 	  match = line.match(/^(\d+)\s+.+?$/)
 	  if match
