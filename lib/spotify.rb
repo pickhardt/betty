@@ -1,11 +1,25 @@
 module Spotify
-  
+
+  @linux_dbus_command = "dbus-send --print-reply " \
+            "--dest=org.mpris.MediaPlayer2.spotify " \
+            "/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.%s"  \
+            ">/dev/null"
+
+  @osx_osascript_command = "osascript -e 'tell application \"spotify\" to %s'"
+
   def self.start(command)
     matching = command.match(/^(start|resume|play)\s+(spotify|((?:the|my)\s+)?music)$/i)
 
     if matching
+      cmdline = ""
+      case OS.platform_name
+        when 'Mac OS'
+          cmdline = @osx_osascript_command % "play"
+        when 'Linux'
+          cmdline = @linux_dbus_command % "PlayPause"
+      end
       {
-        :command => "osascript -e 'tell application \"spotify\" to play'",
+        :command => cmdline,
         :explanation => "Starts playing spotify."
       }
     else
@@ -17,8 +31,15 @@ module Spotify
     matching = command.match(/^pause\s+(spotify|((?:the|my)\s+)?music)$/i)
 
     if matching
+      cmdline = ""
+      case OS.platform_name
+        when 'Mac OS'
+          cmdline = @osx_osascript_command % "pause"
+        when 'Linux'
+          cmdline = @linux_dbus_command % "Pause"
+      end
       {
-        :command => "osascript -e 'tell application \"spotify\" to pause'",
+        :command => cmdline,
         :explanation => "Pauses spotify."
       }
     else
@@ -30,8 +51,15 @@ module Spotify
     matching = command.match(/^(next|advance)\s+(song|music|track|spotify)$/i)
 
     if matching
+      cmdline = ""
+      case OS.platform_name
+        when 'Mac OS'
+          cmdline = @osx_osascript_command % "next track"
+        when 'Linux'
+          cmdline = @linux_dbus_command % "Next"
+      end
       {
-        :command => "osascript -e 'tell application \"spotify\" to next track'",
+        :command => cmdline,
         :explanation => "Makes spotify play the next track."
       }
     else
@@ -43,8 +71,15 @@ module Spotify
     matching = command.match(/^prev(?:ious)?\s+(song|music|track|spotify)$/i)
 
     if matching
+      cmdline = ""
+      case OS.platform_name
+        when 'Mac OS'
+          cmdline = @osx_osascript_command % "previous track"
+        when 'Linux'
+          cmdline = @linux_dbus_command % "Previous"
+      end
       {
-        :command => "osascript -e 'tell application \"spotify\" to previous track'",
+        :command => cmdline,
         :explanation => "Makes spotify play the previous track."
       }
     else
