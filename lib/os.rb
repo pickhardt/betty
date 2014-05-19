@@ -1,14 +1,20 @@
 module OS
 
   def self.platform_name
-    os = ""
+    os = "Unknown OS!"
 
     case RUBY_PLATFORM
-      when '/cygwin|mswin|mingw|bccwin|wince|emx/'
+      when /cygwin|mswin|mingw|bccwin|wince|emx/
         os = "Windows"
-      when '/darwin/'
-        os = "Mac OS"
-      else
+      when /darwin/
+        os = "OS X"
+      when /freebsd/
+        os = "FreeBSD"
+      when /openbsd/
+        os = "OpenBSD"
+      when /netbsd/
+        os = "NetBSD"
+      when /linux/
         os = "Linux"
     end
 
@@ -35,7 +41,7 @@ module OS
     commands << {
       :category => "OS",
       :description => 'Show \033[34mOS\033[0m name',
-      :usage => ["- betty show what OS is used"]
+      :usage => ["show what OS is used"]
     }
     commands
   end

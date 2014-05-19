@@ -39,11 +39,10 @@ module Datetime
     commands << {
       :category => "Datetime",
       :description => 'Show information about \033[34mDatetime\033[0m',
-      :usage => ["- betty what time is it",
-      "- betty what is todays date",
-      "- betty what month is it",
-      "- betty whats today",
-      "- betty what is the time now"]
+      :usage => ["what time is it",
+      "what is todays date",
+      "what month is it",
+      "whats today"]
     }
     commands
   end

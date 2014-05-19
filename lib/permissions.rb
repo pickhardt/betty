@@ -28,8 +28,8 @@ module Permissions
     commands << {
       :category => "Permissions",
       :description => 'Manage file \033[34mPermissions\033[0m',
-      :usage => ["- betty give me permission to this directory",
-      "- betty give anotheruser ownership of myfile.txt"]
+      :usage => ["give me permission to this directory",
+      "give anotheruser ownership of myfile.txt"]
     }
     commands
   end

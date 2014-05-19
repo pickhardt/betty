@@ -41,9 +41,9 @@ module Count
     commands << {
       :category => "Count",
       :description => '\033[34mCount\033[0m',
-      :usage => ["- betty how many words are in this directory",
-      "- betty how many characters are in myfile.py",
-      "- betty count lines in this folder",
+      :usage => ["how many words are in this directory",
+      "how many characters are in myfile.py",
+      "count lines in this folder",
       "(Note that there're many ways to say more or less the same thing.)"]
     }
     commands

@@ -43,9 +43,9 @@ module Find
     commands << {
       :category => "Find",
       :description => '\033[34mFind\033[0m files',
-      :usage => ["- betty find me all files that contain california",
-      "- betty find all rb files in ./lib/",
-      "- betty find all txt files"]
+      :usage => ["betty find me all files that contain california",
+      "betty find all rb files in ./lib/",
+      "betty find all txt files"]
     }
     commands
   end
