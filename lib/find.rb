@@ -2,7 +2,7 @@ module Find
   def self.interpret(command)
     responses = []
 
-    match = command.match(/^find\s+(?:me\s+)?(?:all\s+)?(\S+\s+)?files(?:\s+in\s+(\S+))?(?:\s+that\s+contain\s+(.+))?$/i)
+    match = command.match(/^find\s+(?:me\s+)?(?:all\s+)?(\S+\s+)?files(?:\s+in\s+((?:\S|\\\s)+))?(?:\s+(?:(?:that\s+contain)|containing)\s+(.+))?$/i)
 
     if match
       directory = match[2] ? match[2].strip : "."
