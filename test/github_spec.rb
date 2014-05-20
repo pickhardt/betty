@@ -6,6 +6,7 @@
 # Copyright: See the license agreement
 #
 
+require File.expand_path ".." + '/main.rb'
 require File.expand_path ".." + '/lib/github'
 
 # task: github executor unit tests which tests all the functionality
@@ -14,15 +15,15 @@ describe GitHub do
 
   context "create new repo" do
     it "should create new repo on GitHub" do
-      GitHub.create_new_repository "create new repo test on Ch0c0late"
-      GitHub.success.should eq(true)
+      command = GitHub.interpret("create new repo test on Ch0c0late")[0][:command]
+      command.should eq("curl -u 'Ch0c0late' https://api.github.com/user/repos -d '{\"name\":\"test\"}'")
     end
   end
 
   context "clone a repo" do
     it "should clone an existing repo from GitHub" do
-      GitHub.clone_a_repository "clone SourceCodeKit on master from Ch0c0late in ~/Documents"
-      GitHub.success.should eq(true)
+      command = GitHub.interpret("clone SourceCodeKit on master from Ch0c0late in ~/Documents")[0][:command]
+      command.should eq("git clone -b master git://github.com/Ch0c0late/SourceCodeKit.git ~/Documents")
     end
   end
 

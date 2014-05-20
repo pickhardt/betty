@@ -10,19 +10,15 @@
 
 module GitHub
 
-  $got_successful = false
-
   # creates a new repository on github
   def self.create_new_repository command
     match = command.match(/^create\snew\srepo\s+(.*)\s+on\s+(.*)$/)
 
     if match
-      account_name = match[2].strip
       repo_name = match[1].strip
+      account_name = match[2].strip
 
       if nil != account_name && nil != repo_name
-        $got_successful = true
-
         {
           :command => "curl -u '#{account_name}' https://api.github.com/user/repos -d '{\"name\":\"#{repo_name}\"}'",
           :explanation => "Creating a new repo on https://github.com/#{account_name}"
@@ -75,8 +71,6 @@ module GitHub
           # }
         # elsif nil != branch_name && nil != dir
         if nil != branch_name && nil != dir
-          $got_successful = true
-
           {
             :command => cmd + "-b #{branch_name} " + "git://github.com/#{account_name}/#{repo_name}.git #{dir}",
             :explanation => exp + ":#{branch_name} repository in #{Dir.pwd}"
@@ -84,10 +78,6 @@ module GitHub
         end
       end
     end
-  end
-
-  def self.success
-    $got_successful
   end
 
   # Validates the question that is asked from betty about GitHub
@@ -122,4 +112,4 @@ module GitHub
 
 end
 
-#$executors << GitHub
+$executors << GitHub
