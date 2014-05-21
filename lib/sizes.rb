@@ -62,7 +62,9 @@ module Sizes
     commands << {
       :category => "Sizes",
       :description => 'Find file \033[34mSizes\033[0m',
-      :usage => ["- betty show size for file myfile.txt"]
+      :usage => ["show size for file myfile.txt",
+      "whats the size of ../this/folder",
+      "whats the size of this folder"]
     }
     commands
   end

@@ -10,7 +10,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file|
   begin
     require file
   rescue Exception => e
-    puts "Module #{file} could not be loaded because of " #+e
+    puts "Module #{file} could not be loaded because of #{e.message.split('\n')[0]}"
   end
 }
 
@@ -78,6 +78,7 @@ def help(command)
       say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
     else
       say "I don't understand. Hopefully someone will make a pull request so that one day I will understand."
+      puts "I do know how to\n" + responses.map{|x|x[:category]+":\t\t"+x[:usage].sample }.join("\n")
     end
   else
     say "What can I help you with?"
@@ -98,8 +99,9 @@ def run(response)
   end
 
   if response[:command]
-    say "Running #{ response[:command] }"
-    res = `#{response[:command]}`
+    command=response[:command]
+    say "Running #{ command }" if not command.match(/^echo/)
+    res = `#{command}`
     puts res
     if BettyConfig.get("speech")
       speak(res)
@@ -123,7 +125,8 @@ end
 def speak(text)
   if User.has_command?('say')
     say = 'say'
-    say += " -v '#{BettyConfig.get("voice")}'" if BettyConfig.get("voice")
+    voice=BettyConfig.get("voice")
+    say += " -v '#{voice}'" if voice
     system("#{say} \"#{ text }\"") # formerly mpg123 -q
   else
     has_afplay = User.has_command?('afplay')
@@ -157,12 +160,21 @@ end
 def web_query(command)
   require 'net/http'
   encoded = URI.escape(command)
-  chatmode = BettyConfig.get("chat").to_s == "true"
+  chatmode = BettyConfig.get("chat")
+
   
   web_service = "https://ask.pannous.com"
-  path = "/api?out=simple&input=#{ encoded }"
+  path = "/api?"
+  path += "input=#{ encoded }"
+  path += "&timeZone="+Time.now.zone
   path += "&exclude=ChatBot,Dialogues" if not chatmode 
-
+  begin
+      require 'json'
+  rescue
+      path += "&out=simple" #no json, just text
+  end
+  
+  # puts web_service+path
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
@@ -171,9 +183,19 @@ def web_query(command)
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
       https.request(req)
     }
-    res.body
-  rescue Exception
-    nil
+    answer=res.body
+    return "web api error" if answer.match /^</ 
+    return answer if not answer.match /^\{/ # no json, just text
+    json=JSON.parse answer
+    actions=json['output'][0]['actions']
+    url=actions['open']['url'] rescue nil
+    image=actions['show']['images'][0] rescue nil
+    `open #{url}` if url and BettyConfig.get("web") 
+    `open #{image}` if image and BettyConfig.get("web") # or ascii-art ;}
+    return actions['say']['text']
+  rescue Exception =>e
+    puts $!
+    "error querying web service #{e}"
   end
 end
 
@@ -213,7 +235,7 @@ def main(commands)
   else
     # edit ~/.bettyconfig or say 'use web' 
     if BettyConfig.get("web") && !command.empty? && !command.match("help")
-      say web_query(command) 
+      say web_query(command).sub("Jeannie",BettyConfig.get("name")) 
     else
       help(command)
     end
