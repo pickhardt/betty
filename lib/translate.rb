@@ -10,7 +10,7 @@ module Translate
       to = matches[3].strip
 
       responses << {
-        :command => "open https://translate.google.com/##{from}/#{to}/#{translate_string}",
+        :command => Command.browser("https://translate.google.com/##{from}/#{to}/#{translate_string}"),
         :explanation => "Opens a browser on Google Translate translating #{translate_string} from #{from} to #{to}."
       }
     end
