@@ -4,7 +4,7 @@ module ITunes
     is_unmute = matching && matching[1] == "un"
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to set mute to #{ !is_unmute }'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to set mute to #{ !is_unmute }"}),
         :explanation => "#{ is_unmute ? 'Unmutes' : 'Mutes' } iTunes."
       }
     else
@@ -17,7 +17,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to stop'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to stop"}),
         :explanation => "Stops playing iTunes."
       }
     else
@@ -30,7 +30,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to play'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to play"}),
         :explanation => "Starts playing iTunes."
       }
     else
@@ -43,7 +43,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to pause'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to pause"}),
         :explanation => "Pauses iTunes."
       }
     else
@@ -56,7 +56,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to next track'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to next track"}),
         :explanation => "Makes iTunes play the next track."
       }
     else
@@ -69,7 +69,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to previous track'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to previous track"}),
         :explanation => "Makes iTunes play the previous track."
       }
     else
@@ -82,7 +82,7 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to get name of current track'",
+        :command => Command.bus({:osx => "tell application \"iTunes\" to get name of current track"}),
         :explanation => "Gets the name of the playing track on iTunes."
       }
     else
@@ -122,14 +122,14 @@ module ITunes
     commands << {
       :category => "iTunes",
       :description => 'Control \033[34miTunes\033[0m',
-      :usage => ["- betty mute itunes",
-      "- betty unmute itunes",
-      "- betty pause the music",
-      "- betty resume itunes",
-      "- betty stop my music",
-      "- betty next song",
-      "- betty prev track",
-      "- betty what song is playing",
+      :usage => ["mute itunes",
+      "unmute itunes",
+      "pause the music",
+      "resume itunes",
+      "stop my music",
+      "next song",
+      "prev track",
+      "what song is playing",
       "(Note that the words song, track, music, etc. are interchangeable)"]
     }
     commands
