@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'logger'
+require 'colorize'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.5'
@@ -99,7 +100,7 @@ def run(response)
 
   if response[:command]
     say "Running #{ response[:command] }"
-    res = `#{response[:command]}`
+    res = `#{response[:command]}`.colorize(:red)
     puts res
     if BettyConfig.get("speech")
       speak(res)
@@ -179,7 +180,7 @@ end
 
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
-  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }".colorize(:blue)
   if BettyConfig.get("speech")
     speak(phrase)
   end
