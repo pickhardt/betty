@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'logger'
+require 'colorize'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.5'
@@ -39,7 +40,7 @@ def get_input_y_n
       when 'y', 'yes'
         return true
       when 'n', 'no'
-        return false 
+        return false
     end
 
     say "Sorry, please enter Y for Yes or N for No."
@@ -51,7 +52,7 @@ def interpret(command)
   $executors.each do |executor|
     executors_responses = executor.interpret(command)
     responses = responses.concat(executors_responses)
-    if executors_responses.length == 1 and executors_responses[0][:command] 
+    if executors_responses.length == 1 and executors_responses[0][:command]
       $LOG.info('main_interpret') {"#{command} ==> #{executor.name} ==> #{executors_responses[0][:command]}"}
     end
   end
@@ -84,7 +85,7 @@ def help(command)
   end
 end
 
-def run(response)  
+def run(response)
   if response[:call_before]
     response[:call_before].call
   end
@@ -99,7 +100,7 @@ def run(response)
 
   if response[:command]
     say "Running #{ response[:command] }"
-    res = `#{response[:command]}`
+    res = `#{response[:command]}`.colorize(:blue)
     puts res
     if BettyConfig.get("speech")
       speak(res)
@@ -139,7 +140,7 @@ def speak(text)
           file << open(url).read
         end
 
-        if has_afplay 
+        if has_afplay
           system("afplay #{ speech_path }")
         elsif has_mpg123
           system("mpg123 -q #{ speech_path }")
@@ -151,23 +152,23 @@ def speak(text)
   end
 end
 
-# needs BettyConfig.get("web")!="false"    
+# needs BettyConfig.get("web")!="false"
 # edit ~/.bettyconfig or say 'use web'
 # example: "betty what is the weather"
 def web_query(command)
   require 'net/http'
   encoded = URI.escape(command)
   chatmode = BettyConfig.get("chat").to_s == "true"
-  
+
   web_service = "https://ask.pannous.com"
   path = "/api?out=simple&input=#{ encoded }"
-  path += "&exclude=ChatBot,Dialogues" if not chatmode 
+  path += "&exclude=ChatBot,Dialogues" if not chatmode
 
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
   begin
-    puts "Asking the internet..." if not chatmode
-    puts "Thinking..." if chatmode
+    puts "Asking the internet...".colorize(:red) if not chatmode
+    puts "Thinking...".colorize(:red) if chatmode
     res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
       https.request(req)
     }
@@ -179,7 +180,7 @@ end
 
 def say(phrase, options={})
   my_name = BettyConfig.get("name")
-  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }"
+  puts "#{ options[:no_name] ? '' : my_name + ': ' }#{ phrase }".colorize(:red)
   if BettyConfig.get("speech")
     speak(phrase)
   end
@@ -211,9 +212,9 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    # edit ~/.bettyconfig or say 'use web' 
+    # edit ~/.bettyconfig or say 'use web'
     if BettyConfig.get("web") && !command.empty? && !command.match("help")
-      say web_query(command) 
+      say web_query(command)
     else
       help(command)
     end
