@@ -5,7 +5,13 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to play'",
+        msg = 
+        :command => Command.bus({
+          :osx => "tell application \"spotify\" to play",
+          :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
+          +         " /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"\
+          +         " >/dev/null"
+        }),
         :explanation => "Starts playing spotify."
       }
     else
@@ -18,7 +24,12 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to pause'",
+        :command => Command.bus({
+          :osx => "tell application \"spotify\" to pause",
+          :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
+          +         " /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause"\
+          +         " >/dev/null"
+        }),
         :explanation => "Pauses spotify."
       }
     else
@@ -31,7 +42,12 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to next track'",
+        :command => Command.bus({
+          :osx => "tell application \"spotify\" to next track",
+          :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
+          +         " /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"\
+          +         " >/dev/null"
+        }),
         :explanation => "Makes spotify play the next track."
       }
     else
@@ -44,7 +60,13 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to previous track'",
+        :command => Command.bus({
+          :osx => "tell application \"spotify\" to previous track",
+          :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
+          +         " /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"\
+          +         " >/dev/null"
+        }),
+
         :explanation => "Makes spotify play the previous track."
       }
     else
