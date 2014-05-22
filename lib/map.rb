@@ -16,8 +16,8 @@ module Map
       end
 
       responses << {
-        :command => "#{command} https://www.google.com/maps/search/#{ search_term }",
-        :explanation => "Opens a browser with Google Maps searching for '#{ search_term }'."
+        command: "#{command} https://www.google.com/maps/search/#{ search_term }",
+        explanation: "Opens a browser with Google Maps searching for '#{ search_term }'."
       }
     end
 
@@ -27,9 +27,9 @@ module Map
   def self.help
     commands = []
     commands << {
-      :category => "Map",
-      :description => 'Pull out \033[34mMap\033[0ms from Google',
-      :usage => ["- betty show me a map of mountain view"]
+      category: "Map",
+      description: 'Pull out \033[34mMap\033[0ms from Google',
+      usage: ["- betty show me a map of mountain view"]
     }
     commands
   end

@@ -10,8 +10,8 @@ module Translate
       to = matches[3].strip
 
       responses << {
-        :command => "open https://translate.google.com/##{from}/#{to}/#{translate_string}",
-        :explanation => "Opens a browser on Google Translate translating #{translate_string} from #{from} to #{to}."
+        command: "open https://translate.google.com/##{from}/#{to}/#{translate_string}",
+        explanation: "Opens a browser on Google Translate translating #{translate_string} from #{from} to #{to}."
       }
     end
 
@@ -21,8 +21,8 @@ module Translate
   def self.help
     commands = []
     commands << {
-      :category => "Translate",
-      :description => '\033[34mTranslate\033[0m',
+      category: "Translate",
+      description: '\033[34mTranslate\033[0m',
       :usage =>["- betty translate from English to Spanish"]
     }
     commands

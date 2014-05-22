@@ -5,8 +5,8 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to play'",
-        :explanation => "Starts playing spotify."
+        command: "osascript -e 'tell application \"spotify\" to play'",
+        explanation: "Starts playing spotify."
       }
     else
       nil
@@ -18,8 +18,8 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to pause'",
-        :explanation => "Pauses spotify."
+        command: "osascript -e 'tell application \"spotify\" to pause'",
+        explanation: "Pauses spotify."
       }
     else
       nil
@@ -31,8 +31,8 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to next track'",
-        :explanation => "Makes spotify play the next track."
+        command: "osascript -e 'tell application \"spotify\" to next track'",
+        explanation: "Makes spotify play the next track."
       }
     else
       nil
@@ -44,8 +44,8 @@ module Spotify
 
     if matching
       {
-        :command => "osascript -e 'tell application \"spotify\" to previous track'",
-        :explanation => "Makes spotify play the previous track."
+        command: "osascript -e 'tell application \"spotify\" to previous track'",
+        explanation: "Makes spotify play the previous track."
       }
     else
       nil
@@ -74,9 +74,9 @@ module Spotify
   def self.help
     commands = []
     commands << {
-      :category => "Spotify",
-      :description => 'Control \033[34mSpotify\033[0m',
-      :usage => ["- betty play spotify",
+      category: "Spotify",
+      description: 'Control \033[34mSpotify\033[0m',
+      usage: ["- betty play spotify",
       "- betty pause spotify",
       "- betty next spotify",
       "- betty previous spotify"]

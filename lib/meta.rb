@@ -4,16 +4,16 @@ module Meta
     
     if command.match(/^(what\s+)?version(\s+are\s+you)?$/)
       responses << {
-        :say => $VERSION,
-        :explanation => "Gets Betty's version."
+        say: $VERSION,
+        explanation: "Gets Betty's version."
       }
     end
     
     if command.match(/^whats?\s+(?:is\s+)?your\s+(website|url|github|repo)(\s+again\?)?$/) ||
        command.match(/^(website|url)$/)
       responses << {
-        :say => $URL,
-        :explanation => "Gets Betty's website."
+        say: $URL,
+        explanation: "Gets Betty's website."
       }
     end
     
@@ -23,8 +23,8 @@ module Meta
   def self.help
     commands = []
     commands << {
-      :category => "Meta",
-      :usage => ["- betty what version are you (or just betty version)",
+      category: "Meta",
+      usage: ["- betty what version are you (or just betty version)",
       "- betty whats your github again"]
     }
     commands

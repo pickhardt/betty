@@ -9,36 +9,36 @@ module User
     
     if command.match(/^who\s+am\si$/i) || command.match(/^what\'?s?(\s+is)?\s+my\s(user)?name\??$/i)
       responses << {
-        :command => "whoami",
-        :explanation => "Gets your system username."
+        command: "whoami",
+        explanation: "Gets your system username."
       }
     end
     
     if command.match(/^who\s+am\si$/i) || command.match(/^what\'?s?(\s+is)?\s+my\s((real|full|actual)\s+)?name\??$/i)
       responses << {
-        :command => "finger $(whoami) | sed 's/.*: *//;q'",
-        :explanation => "Gets your full name."
+        command: "finger $(whoami) | sed 's/.*: *//;q'",
+        explanation: "Gets your full name."
       }
     end
 
     if command.match(/^what\'?s?(\s+is)?(\s+my)?(\s+ip)?\s?(address)?\??$/i)
       responses << {
-        :command => "curl -sL ifconfig.me",
-        :explanation => "Gets your external ip address."
+        command: "curl -sL ifconfig.me",
+        explanation: "Gets your external ip address."
       }
     end
   
     if command.match(/^who\'?s?(\s+else)?(\s+is)?\s(logged|signed|connected)\s+?in\??$/i)
       responses << {
-        :command => "who | cut -f 1 -d ' ' | uniq",
-        :explanation => "Lists who is logged in on this machine."
+        command: "who | cut -f 1 -d ' ' | uniq",
+        explanation: "Lists who is logged in on this machine."
       }
     end
 
     if command.match(/^where\s+am\si$/i)
       responses << {
-        :command => "pwd",
-        :explanation => "Shows you your current directory."
+        command: "pwd",
+        explanation: "Shows you your current directory."
       }
     end
     
@@ -57,8 +57,8 @@ module User
       end
       
       responses << {
-        :command => command_to_use,
-        :explanation => "Gets the version of #{ program }."
+        command: command_to_use,
+        explanation: "Gets the version of #{ program }."
       }
     end
 
@@ -68,9 +68,9 @@ module User
   def self.help
     commands = []
     commands << {
-      :category => "User",
-      :description => 'Show information related to your \033[34mUser\033[0m accounts',
-      :usage => ["- betty whats my username",
+      category: "User",
+      description: 'Show information related to your \033[34mUser\033[0m accounts',
+      usage: ["- betty whats my username",
       "- betty whats my real name",
       "- betty whats my ip address",
       "- betty who else is logged in",

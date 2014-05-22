@@ -21,8 +21,8 @@ module Count
       end
       
       {
-        :command => "find #{ is_this_directory ? '.' : where } -type f -exec wc -#{ flag } \{\} \\; | awk '{total += $1} END {print total}'",
-        :explanation => "Counts the total number of #{ what } in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : where }."
+        command: "find #{ is_this_directory ? '.' : where } -type f -exec wc -#{ flag } \{\} \\; | awk '{total += $1} END {print total}'",
+        explanation: "Counts the total number of #{ what } in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : where }."
       }
     end
   end
@@ -39,9 +39,9 @@ module Count
   def self.help
     commands = []
     commands << {
-      :category => "Count",
-      :description => '\033[34mCount\033[0m',
-      :usage => ["- betty how many words are in this directory",
+      category: "Count",
+      description: '\033[34mCount\033[0m',
+      usage: ["- betty how many words are in this directory",
       "- betty how many characters are in myfile.py",
       "- betty count lines in this folder",
       "(Note that there're many ways to say more or less the same thing.)"]

@@ -22,8 +22,8 @@ module OS
       os = platform_name
 
       responses << {
-        :command => "echo '#{os}'",
-        :explanation => "Show what OS is used."
+        command: "echo '#{os}'",
+        explanation: "Show what OS is used."
       }
     end
 
@@ -33,9 +33,9 @@ module OS
   def self.help
     commands = []
     commands << {
-      :category => "OS",
-      :description => 'Show \033[34mOS\033[0m name',
-      :usage => ["- betty show what OS is used"]
+      category: "OS",
+      description: 'Show \033[34mOS\033[0m name',
+      usage: ["- betty show what OS is used"]
     }
     commands
   end

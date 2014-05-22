@@ -14,8 +14,8 @@ module Find
         pattern = match[1] ? "\\*.\{#{ match[1].strip },\}" : "\\*"
 
         responses << {
-          :command => "grep --include=#{ pattern } -Rn #{ contains } #{ directory }",
-          :explanation => "Find files in #{ directory } with name matching "\
+          command: "grep --include=#{ pattern } -Rn #{ contains } #{ directory }",
+          explanation: "Find files in #{ directory } with name matching "\
                           "#{ pattern } that contain '#{ contains }'."
         }
       else
@@ -28,8 +28,8 @@ module Find
         end
 
         responses << {
-          :command => "find #{ directory } | egrep '#{ pattern }'",
-          :explanation => "Find files in #{ directory } with name "\
+          command: "find #{ directory } | egrep '#{ pattern }'",
+          explanation: "Find files in #{ directory } with name "\
                           "matching #{ pattern}."
         }
       end
@@ -41,9 +41,9 @@ module Find
   def self.help
     commands = []
     commands << {
-      :category => "Find",
-      :description => '\033[34mFind\033[0m files',
-      :usage => ["- betty find me all files that contain california",
+      category: "Find",
+      description: '\033[34mFind\033[0m files',
+      usage: ["- betty find me all files that contain california",
       "- betty find all rb files in ./lib/",
       "- betty find all txt files"]
     }

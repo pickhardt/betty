@@ -4,39 +4,39 @@ module Fun
     
     if command.match(/^what\'?s?(\s+is)?\s+the\s+meaning\s+of\s+life\??$/i)
       responses << {
-        :say => "42."
+        say: "42."
       }
     end
     
     if command.match(/^make\s+me\s+a\s+(.+)$/i)
       thing = "#{ $1 }"
       responses << {
-        :call => lambda { self.make_me_a(thing) }
+        call: lambda { self.make_me_a(thing) }
       }
     end
     
     if command.match(/^sudo\s+make\s+me\s+a\s+(.+)$/i)
       responses << {
-        :say => "I think you meant to place sudo at the start of the command."
+        say: "I think you meant to place sudo at the start of the command."
       }
     end
     
     if command.match(/^what\'?s?(\s+is)?\s+my\s(mother\s+fucking?)\s+name\??$/i)
       responses << {
-        :say => "Snoop Doggy Dogg."
+        say: "Snoop Doggy Dogg."
       }
     end
     
     if command.match(/^you\'?(re)?\s+(are\s+)?(cool|awesome|amazing|fun(ny)?|rock\s+my\s+world|rule)$/i)
       responses << {
-        :say => "You betcha."
+        say: "You betcha."
       }
     end
     
     if command.match(/^go\s+crazy$/i) || command.match(/^trip\s+(out|acid)$/i)
       responses << {
-        :call => lambda { self.go_crazy },
-        :say => "Woah."
+        call: lambda { self.go_crazy },
+        say: "Woah."
       }
     end
     
@@ -70,8 +70,8 @@ module Fun
   def self.help
     commands = []
     commands << {
-      :category => "Fun",
-      :usage => ["- betty go crazy",
+      category: "Fun",
+      usage: ["- betty go crazy",
       "- betty whats the meaning of life",
       "...and more that are left for you to discover!"]
     }

@@ -39,74 +39,74 @@ module BettyConfig
     # todo: merge all turn ... on|off commands
     if command.match(/^(turn|switch|the|\s)*speech\s+on$/i) || command.match(/^speak\s+to\s+me$/)
       responses << {
-        :call_before => lambda { self.set("speech", true) },
-        :say => "Speech ON",
+        call_before: lambda { self.set("speech", true) },
+        say: "Speech ON",
       }
     end
 
     if command.match(/^(turn|switch|the|\s)*speech\s+off$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
       responses << {
-        :call_before => lambda { self.set("speech", false) },
-        :say => "Speech OFF"
+        call_before: lambda { self.set("speech", false) },
+        say: "Speech OFF"
       }
     end
     
     if command.match(/^(turn|switch|the|\s)*web(\s*mode)?\s+on$/i) || command.match(/^use\s(the\s)?internet$/)
       responses << {
-        :call_before => lambda { self.set("web", true) },
-        :say => "Web queries ON",
+        call_before: lambda { self.set("web", true) },
+        say: "Web queries ON",
       }
     end
 
     if command.match(/^(turn|switch|the|\s)*web(\s*mode)?\s+off$/i) || command.match(/^don'?t\suse\s(the\s)?internet$/)
       responses << {
-        :call_before => lambda { self.set("web", false) },
-        :say => "Web queries OFF"
+        call_before: lambda { self.set("web", false) },
+        say: "Web queries OFF"
       }
     end
     
     if command.match(/^(turn|switch|the|\s)*chat(\s*mode)?\s+on$/i) || command.match(/^chat\swith\sme$/)
       responses << {
-        :call_before => lambda { self.set("chat", true) },
-        :say => "Chatmode ON",
+        call_before: lambda { self.set("chat", true) },
+        say: "Chatmode ON",
       }
     end
 
     if command.match(/^(turn|switch|the|\s)*chat(\s*mode)?\s+off$/i) || command.match(/^don'?t\schat\swith\sme$/)
       responses << {
-        :call_before => lambda { self.set("chat", false) },
-        :say => "Chatmode OFF"
+        call_before: lambda { self.set("chat", false) },
+        say: "Chatmode OFF"
       }
     end
     
 
     if command.match(/^(list\s(your\s)?voices)/i)
       responses << {
-        :command => 'say -v "?"',
-        :explanation => 'List the availables voices for text-to-speech.'
+        command: 'say -v "?"',
+        explanation: 'List the availables voices for text-to-speech.'
       }
     end
 
     if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+voice\s+to\s+(.+)$/i)
       new_voice = $1.strip
       responses << {
-        :call_before => lambda { self.set("voice", new_voice) },
-        :say => "OK. My new voice is #{ new_voice } from now on."
+        call_before: lambda { self.set("voice", new_voice) },
+        say: "OK. My new voice is #{ new_voice } from now on."
       }
     end
 
     if command.match(/^what\'?s?(?:\s+is)?\s+your\s+voice\??$/i)
       my_voice = self.get("voice")
       responses << {
-        :say => "My voice is setted as #{ my_voice }."
+        say: "My voice is setted as #{ my_voice }."
       }
     end
 
     if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+name\s+to\s+(.+)$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
       new_name = $1.strip
       responses << {
-        :call_before => lambda { self.set("name", new_name) },
-        :say => "OK. Call me #{ new_name } from now on."
+        call_before: lambda { self.set("name", new_name) },
+        say: "OK. Call me #{ new_name } from now on."
       }
     end
     
@@ -115,7 +115,7 @@ module BettyConfig
       snoop_part = $1 ? 'Snoop Doggy ' : ''
       
       responses << {
-        :say => "My name is #{ snoop_part }#{ my_name }."
+        say: "My name is #{ snoop_part }#{ my_name }."
       }
     end
 
@@ -125,8 +125,8 @@ module BettyConfig
   def self.help
     commands = []
     commands << {
-      :category => "Config",
-      :usage => ["- betty change your name to Joe",
+      category: "Config",
+      usage: ["- betty change your name to Joe",
       "- betty speak to me",
       "- betty stop speaking to me"]
     }

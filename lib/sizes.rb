@@ -42,8 +42,8 @@ module Sizes
       is_this_directory = where == '.' || where.downcase.match(/^(this\s+)?(?:dir(?:ectory)|folder|path)?$/)
       
       {
-        :call => lambda {self.show_sizes(is_this_directory ? '.' : where )},
-        :explanation => "Shows the size of files in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : where }."
+        call: lambda {self.show_sizes(is_this_directory ? '.' : where )},
+        explanation: "Shows the size of files in #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : where }."
       }
     end
   end
@@ -60,9 +60,9 @@ module Sizes
   def self.help
     commands = []
     commands << {
-      :category => "Sizes",
-      :description => 'Find file \033[34mSizes\033[0m',
-      :usage => ["- betty show size for file myfile.txt",
+      category: "Sizes",
+      description: 'Find file \033[34mSizes\033[0m',
+      usage: ["- betty show size for file myfile.txt",
       "- betty whats the size of ../this/folder",
       "- betty whats the size of this folder"]
     }

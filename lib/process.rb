@@ -51,8 +51,8 @@ module Process
       # args+=" | kill" if match[:kill] #todo
       
         responses << {
-          :command => "#{command} #{args}",
-          :explanation => "List all processes"
+          command: "#{command} #{args}",
+          explanation: "List all processes"
         }
     end
 
@@ -62,9 +62,9 @@ module Process
   def self.help
     commands = []
     commands << {
-      :category => "Procs",
-      :description => 'Manipulate a running \033[34mProcs\033[0m (processes)',
-      :usage => ["- betty show me all processes by root containing grep",
+      category: "Procs",
+      description: 'Manipulate a running \033[34mProcs\033[0m (processes)',
+      usage: ["- betty show me all processes by root containing grep",
       "- betty show me all my processes containing netbio"]
     }
     commands

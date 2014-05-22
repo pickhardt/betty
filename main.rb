@@ -71,11 +71,11 @@ def help(command)
     response = responses.detect{|h| h[:category].downcase == "#{ command.split.first.downcase }"}
     if response
       say "I can do that if you help me. Check out the following examples"
-      # say "#{ response[:usage] }", :no_name => true
+      # say "#{ response[:usage] }", no_name: true
       response[:usage].each do |usage|
-        say usage, :no_name => true
+        say usage, no_name: true
       end
-      say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
+      say "Please note: I am case sensitive. Watch out for my feelings...", no_name: true
     else
       say "I don't understand. Hopefully someone will make a pull request so that one day I will understand."
     end
@@ -168,7 +168,7 @@ def web_query(command)
   begin
     puts "Asking the internet..." if not chatmode
     puts "Thinking..." if chatmode
-    res = Net::HTTP.start(url.host, url.port, :use_ssl => true, :read_timeout => 5) {|https|
+    res = Net::HTTP.start(url.host, url.port, use_ssl: true, read_timeout: 5) {|https|
       https.request(req)
     }
     res.body
@@ -193,7 +193,7 @@ def main(commands)
     response = responses[0]
     if response[:ask_first]
       say "I found the command '#{ responses[0][:command] }'"
-      say "       #{ responses[0][:explanation] }", :no_name => true
+      say "       #{ responses[0][:explanation] }", no_name: true
       say "Do you want me to run this? Y/n"
       if get_input_y_n
         run(response)
@@ -205,10 +205,10 @@ def main(commands)
     say "Okay, I have multiple ways to respond."
     say "Enter the number of the command you want me to run, or N (no) if you don't want me to run any."
     responses.each_with_index do |response, index|
-      say "[#{ index + 1 }] #{ response[:command] }", :no_name => true
-      say("    #{ response[:explanation] }", :no_name => true) if response[:explanation]
+      say "[#{ index + 1 }] #{ response[:command] }", no_name: true
+      say("    #{ response[:explanation] }", no_name: true) if response[:explanation]
     end
-    which_to_run = get_input_integer(1, responses.length, :allow_no => true)
+    which_to_run = get_input_integer(1, responses.length, allow_no: true)
     run(responses[which_to_run - 1]) if which_to_run
   else
     # edit ~/.bettyconfig or say 'use web' 

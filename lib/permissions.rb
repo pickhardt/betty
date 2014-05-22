@@ -8,8 +8,8 @@ module Permissions
       is_this_directory = what == '.' || what.downcase.match(/^(this\s+)?(?:dir(?:ectory)|folder|path)?$/)
       
       {
-        :command => "sudo chown #{ is_this_directory ? '-R ' : '' }#{ who } #{ is_this_directory ? '.' : what }",
-        :explanation => "Makes #{ is_me ? 'you' : who } the owner of #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : what }."
+        command: "sudo chown #{ is_this_directory ? '-R ' : '' }#{ who } #{ is_this_directory ? '.' : what }",
+        explanation: "Makes #{ is_me ? 'you' : who } the owner of #{ is_this_directory ? 'all the files in the current directory, including subdirectories' : what }."
       }
     end
   end
@@ -26,9 +26,9 @@ module Permissions
   def self.help
     commands = []
     commands << {
-      :category => "Permissions",
-      :description => 'Manage file \033[34mPermissions\033[0m',
-      :usage => ["- betty give me permission to this directory",
+      category: "Permissions",
+      description: 'Manage file \033[34mPermissions\033[0m',
+      usage: ["- betty give me permission to this directory",
       "- betty give anotheruser ownership of myfile.txt"]
     }
     commands

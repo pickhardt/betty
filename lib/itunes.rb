@@ -4,8 +4,8 @@ module ITunes
     is_unmute = matching && matching[1] == "un"
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to set mute to #{ !is_unmute }'",
-        :explanation => "#{ is_unmute ? 'Unmutes' : 'Mutes' } iTunes."
+        command: "osascript -e 'tell application \"iTunes\" to set mute to #{ !is_unmute }'",
+        explanation: "#{ is_unmute ? 'Unmutes' : 'Mutes' } iTunes."
       }
     else
       nil
@@ -17,8 +17,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to stop'",
-        :explanation => "Stops playing iTunes."
+        command: "osascript -e 'tell application \"iTunes\" to stop'",
+        explanation: "Stops playing iTunes."
       }
     else
       nil
@@ -30,8 +30,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to play'",
-        :explanation => "Starts playing iTunes."
+        command: "osascript -e 'tell application \"iTunes\" to play'",
+        explanation: "Starts playing iTunes."
       }
     else
       nil
@@ -43,8 +43,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to pause'",
-        :explanation => "Pauses iTunes."
+        command: "osascript -e 'tell application \"iTunes\" to pause'",
+        explanation: "Pauses iTunes."
       }
     else
       nil
@@ -56,8 +56,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to next track'",
-        :explanation => "Makes iTunes play the next track."
+        command: "osascript -e 'tell application \"iTunes\" to next track'",
+        explanation: "Makes iTunes play the next track."
       }
     else
       nil
@@ -69,8 +69,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to previous track'",
-        :explanation => "Makes iTunes play the previous track."
+        command: "osascript -e 'tell application \"iTunes\" to previous track'",
+        explanation: "Makes iTunes play the previous track."
       }
     else
       nil
@@ -82,8 +82,8 @@ module ITunes
 
     if matching
       {
-        :command => "osascript -e 'tell application \"iTunes\" to get name of current track'",
-        :explanation => "Gets the name of the playing track on iTunes."
+        command: "osascript -e 'tell application \"iTunes\" to get name of current track'",
+        explanation: "Gets the name of the playing track on iTunes."
       }
     else
       nil
@@ -120,9 +120,9 @@ module ITunes
   def self.help
     commands = []
     commands << {
-      :category => "iTunes",
-      :description => 'Control \033[34miTunes\033[0m',
-      :usage => ["- betty mute itunes",
+      category: "iTunes",
+      description: 'Control \033[34miTunes\033[0m',
+      usage: ["- betty mute itunes",
       "- betty unmute itunes",
       "- betty pause the music",
       "- betty resume itunes",
