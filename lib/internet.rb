@@ -33,17 +33,33 @@ module Internet
   end
 
   def self.compress(command)
-    match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
+    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
 
     if match
-      what_file = match[1].strip
-      where = match[2]
-      if where.nil?
-        where = what_file + ".tar.gz"
+      how = match[1]
+      what_file = match[2].strip
+      where = match[3]
+
+      case how
+      when "zip"
+        operation = "zip"
+        if where.nil?
+          where = what_file + ".zip"
+        end
+      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar"
+        operation = "tar -cjvf"
+        if where.nil?
+          where = what_file + ".tar.bz"
+        end
+      else
+        operation = "tar -czvf"
+        if where.nil?
+          where = what_file + ".tar.gz"
+        end
       end
-      
+            
       {
-        :command => "tar -czvf #{ where } #{ what_file }",
+        :command => "#{ operation } #{ where } #{ what_file }",
         :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to #{ where ? where : 'this directory'}"
       }
     end
