@@ -1,3 +1,5 @@
+require File.expand_path ".." + "/lib/os"
+
 module Command
 
   @@platform_error = "echo \"I don\'t know how to do that on #{OS.platform_name} yet, sorry !\""
@@ -6,7 +8,7 @@ module Command
   def self.browser(link)
     browser = ""
     case OS.platform_name
-      when 'Mac OS'
+      when 'OS X'
         browser = 'open'
       when 'Linux'
         browser = 'xdg-open'
@@ -20,7 +22,7 @@ module Command
 
   def self.bus(msg= {})
     case OS.platform_name
-      when 'Mac OS'
+      when 'OS X'
         if ! msg[:osx]
           return @@platform_error
         end
