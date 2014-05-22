@@ -33,7 +33,7 @@ module Internet
   end
 
   def self.compress(command)
-    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress|tar)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
+    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress|tar|gzip|bzip)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
 
     if match
       how = match[1]
@@ -43,19 +43,16 @@ module Internet
       case how
       when "zip"
         operation = "zip"
-        if where.nil?
-          where = what_file + ".zip"
-        end
-      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar"
+        type = ".zip"
+      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar", "bzip"
         operation = "tar -cjvf"
-        if where.nil?
-          where = what_file + ".tar.bz"
-        end
+        type = ".tar.bz"
       else
         operation = "tar -czvf"
-        if where.nil?
-          where = what_file + ".tar.gz"
-        end
+        type = ".tar.gz"
+      end
+      if where.nil?
+        where = what_file + type
       end
 
       {
