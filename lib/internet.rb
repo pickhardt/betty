@@ -33,14 +33,18 @@ module Internet
   end
 
   def self.compress(command)
-    match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(\s+(?:directory|dir|folder|path))?$/i)
+    match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
 
     if match
       what_file = match[1].strip
-
+      where = match[2]
+      if where.nil?
+        where = what_file + ".tar.gz"
+      end
+      
       {
-        :command => "cd #{ what_file }; tar -czvf #{ what_file }.tar.gz *",
-        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to parent directory"
+        :command => "tar -czvf #{ where } #{ what_file }",
+        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to #{ where ? where : 'this directory'}"
       }
     end
   end
@@ -69,7 +73,8 @@ module Internet
       "- betty uncompress something.tar.gz",
       "- betty unarchive something.tar.gz to somedir",
       "(You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)",
-      "- betty compress /path/to/dir"]
+      "- betty compress /path/to/dir",
+      "- betty compress /path/to/dir to something.tar.gz"]
     }
     commands
   end
