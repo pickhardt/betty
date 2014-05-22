@@ -7,7 +7,7 @@
 #
 
 require File.expand_path ".." + '/main.rb'
-require File.expand_path ".." + '/lib/count'
+require File.expand_path ".." + '/lib/Internet'
 
 # task: internet executor unit tests which tests all the functionality
 #       coded in internet module

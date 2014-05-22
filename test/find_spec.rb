@@ -7,7 +7,7 @@
 #
 
 require File.expand_path ".." + '/main.rb'
-require File.expand_path ".." + '/lib/count'
+require File.expand_path ".." + '/lib/find'
 
 # task: find executor unit tests which tests all the functionality
 #       coded in find module
