@@ -39,7 +39,7 @@ def get_input_y_n
       when 'y', 'yes'
         return true
       when 'n', 'no'
-        return false 
+        return false
     end
 
     say "Sorry, please enter Y for Yes or N for No."
@@ -51,7 +51,7 @@ def interpret(command)
   $executors.each do |executor|
     executors_responses = executor.interpret(command)
     responses = responses.concat(executors_responses)
-    if executors_responses.length == 1 and executors_responses[0][:command] 
+    if executors_responses.length == 1 and executors_responses[0][:command]
       $LOG.info('main_interpret') {"#{command} ==> #{executor.name} ==> #{executors_responses[0][:command]}"}
     end
   end
@@ -85,7 +85,7 @@ def help(command)
   end
 end
 
-def run(response)  
+def run(response)
   if response[:call_before]
     response[:call_before].call
   end
@@ -131,30 +131,43 @@ def speak(text)
   else
     has_afplay = User.has_command?('afplay')
     has_mpg123 = User.has_command?('mpg123')
-    if has_afplay || has_mpg123
-      require 'open-uri'
-      text = sanitize(text)
-      speech_path = '/tmp/betty_speech.mp3'
+    has_spd_say = User.has_command?('spd-say')
 
-      if text != ''
-        url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
-        open(speech_path, 'wb') do |file|
-          file << open(url).read
-        end
+    if Internet.connection_enable?
 
-        if has_afplay 
-          system("afplay #{ speech_path }")
-        elsif has_mpg123
-          system("mpg123 -q #{ speech_path }")
-        end
+      if has_afplay || has_mpg123
+         require 'open-uri'
+         text = sanitize(text)
+         speech_path = '/tmp/betty_speech.mp3'
 
-        system("rm #{ speech_path }")
+         if text != ''
+           url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
+           open(speech_path, 'wb') do |file|
+             file << open(url).read
+           end
+
+           if has_afplay
+             system("afplay #{ speech_path }")
+           elsif has_mpg123
+             system("mpg123 -q #{ speech_path }")
+           end
+
+           system("rm #{ speech_path }")
+         end
+      else
+         if has_spd_say
+          system("spd-say -t female2 -m some -r 5 -p -25 -s #{text}")
+         end
       end
-    end
+      else
+        if has_spd_say
+          system("spd-say -t female2 -m some -r 5 -p -25 -s #{text}")
+        end
+      end
   end
 end
 
-# needs BettyConfig.get("web")!="false"    
+# needs BettyConfig.get("web")!="false"
 # edit ~/.bettyconfig or say 'use web'
 # example: "betty what is the weather"
 def web_query(command)
@@ -162,18 +175,18 @@ def web_query(command)
   encoded = URI.escape(command)
   chatmode = BettyConfig.get("chat")
 
-  
+
   web_service = "https://ask.pannous.com"
   path = "/api?"
   path += "input=#{ encoded }"
   path += "&timeZone="+Time.now.zone
-  path += "&exclude=ChatBot,Dialogues" if not chatmode 
+  path += "&exclude=ChatBot,Dialogues" if not chatmode
   begin
       require 'json'
   rescue
       path += "&out=simple" #no json, just text
   end
-  
+
   # puts web_service+path
   url = URI.parse(web_service)
   req = Net::HTTP::Get.new(path)
@@ -184,13 +197,13 @@ def web_query(command)
       https.request(req)
     }
     answer=res.body
-    return "web api error" if answer.match /^</ 
+    return "web api error" if answer.match /^</
     return answer if not answer.match /^\{/ # no json, just text
     json=JSON.parse answer
     actions=json['output'][0]['actions']
     url=actions['open']['url'] rescue nil
     image=actions['show']['images'][0] rescue nil
-    `open #{url}` if url and BettyConfig.get("web") 
+    `open #{url}` if url and BettyConfig.get("web")
     `open #{image}` if image and BettyConfig.get("web") # or ascii-art ;}
     return actions['say']['text']
   rescue Exception =>e
@@ -233,9 +246,9 @@ def main(commands)
     which_to_run = get_input_integer(1, responses.length, :allow_no => true)
     run(responses[which_to_run - 1]) if which_to_run
   else
-    # edit ~/.bettyconfig or say 'use web' 
+    # edit ~/.bettyconfig or say 'use web'
     if BettyConfig.get("web") && !command.empty? && !command.match("help")
-      say web_query(command).sub("Jeannie",BettyConfig.get("name")) 
+      say web_query(command).sub("Jeannie",BettyConfig.get("name"))
     else
       help(command)
     end
