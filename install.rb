@@ -45,7 +45,7 @@ if CONTINUE == "" || CONTINUE == "y"
     end
     
     puts "add auto-complete by typing"
-    puts "complete -C #{INSTALL_LOC}betty_autocomplete.rb betty"
-    `#{INSTALL_LOC}betty_autocomplete.rb`
+    puts "complete -C #{INSTALL_LOC}autocomplete.rb betty"
+    `#{INSTALL_LOC}autocomplete.rb`
 end
 
