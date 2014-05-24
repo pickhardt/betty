@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-`complete -o bashdefault -o default -o filenames -o nospace -C ~/betty/betty-auto-completer.rb betty`
-# ^^ This command links the 'betty' command to betty-auto-completer.rb
+`complete -o bashdefault -o default -o filenames -o nospace -C ~/betty/betty_autocomplete.rb betty`
+# ^^ This command links the 'betty' command to betty_autocomplete.rb
 # It needs to be called only once upon installation, but it doesn't harm to be called every time
 
 if ARGV.length==0
-  puts "OK auto completer for betty installed"
+  puts "Betty: Autocomplete installed."
   exit 
 end
 
