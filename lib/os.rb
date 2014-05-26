@@ -1,15 +1,19 @@
+require 'rbconfig'
+
 module OS
 
   def self.platform_name
     os = ""
 
-    case RUBY_PLATFORM
-      when '/cygwin|mswin|mingw|bccwin|wince|emx/'
-        os = "Windows"
-      when '/darwin/'
-        os = "Mac OS"
+    case RbConfig::CONFIG['host_os']
+      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+        os = 'Windows'
+      when /darwin|mac os/
+        os = 'Mac OS'
+      when /linux/
+        os = 'Linux'
       else
-        os = "Linux"
+        os = 'I cannot decipher what OS you are running on :('
     end
 
     os
@@ -22,7 +26,7 @@ module OS
       os = platform_name
 
       responses << {
-        :command => "echo '#{os}'",
+        :say => "#{os}",
         :explanation => "Show what OS is used."
       }
     end
