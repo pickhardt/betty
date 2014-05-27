@@ -1,3 +1,5 @@
+require File.expand_path('../commands.rb', __FILE__)
+
 module Translate
   def self.interpret(command)
     responses = []
