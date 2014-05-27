@@ -1,10 +1,9 @@
-Betty (version 0.1.5)
+Betty (version 0.1.6)
 =====================
 
 Betty is a friendly English-like interface for your command line.
 
-She translates English-like phrases into commands in case you every run into
-situations [like this][xkcd].
+She translates English-like phrases into commands in case you ever run into situations [like this][xkcd].
 
 [xkcd]:http://xkcd.com/1168/
 
@@ -171,4 +170,5 @@ For more information on SemVer, visit [http://semver.org/](http://semver.org/).
 
 License
 -------
+
 Released under the Apache License 2.0. Related link: www.apache.org/licenses/LICENSE-2.0.html

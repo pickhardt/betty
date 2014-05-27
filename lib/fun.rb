@@ -8,6 +8,12 @@ module Fun
       }
     end
     
+    if command.match(/^open\s(the\s)?pod\sbay\sdoor(s)?$/i)
+      responses << {
+        :say => "I'm sorry, Dave. I'm afraid I can't do that."
+      }
+    end
+    
     if command.match(/^make\s+me\s+a\s+(.+)$/i)
       thing = "#{ $1 }"
       responses << {
@@ -37,6 +43,18 @@ module Fun
       responses << {
         :call => lambda { self.go_crazy },
         :say => "Woah."
+      }
+    end
+    
+    if command.match(/go home/)
+      responses << {
+        :command => "cd ~"
+      }
+    end
+    
+    if command.match(/sing (.*)/)
+      responses << {
+        :command => "say -v cello #{$~}"
       }
     end
     
@@ -71,8 +89,8 @@ module Fun
     commands = []
     commands << {
       :category => "Fun",
-      :usage => ["- betty go crazy",
-      "- betty whats the meaning of life",
+      :usage => ["go crazy",
+      "whats the meaning of life",
       "...and more that are left for you to discover!"]
     }
     commands
