@@ -1,4 +1,4 @@
-require File.expand_path ".." + "/lib/os"
+require File.expand_path('../os.rb', __FILE__)
 
 module Command
 
@@ -17,7 +17,7 @@ module Command
       else
         return @@platform_error
     end
-    return "#{browser} #{link}"
+    return "#{ browser } #{ link }"
   end
 
   def self.bus(msg= {})
@@ -26,12 +26,12 @@ module Command
         if ! msg[:osx]
           return @@platform_error
         end
-        return "osascript -e '#{msg[:osx]}'"
+        return "osascript -e '#{ msg[:osx] }'"
       when 'Linux'
         if ! msg[:linux]
           return @@platform_error
         end
-        return "dbus-send #{msg[:linux]}"
+        return "dbus-send #{ msg[:linux] }"
       else
         return @@platform_error
       end
