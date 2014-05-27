@@ -1,11 +1,13 @@
+require File.expand_path('../commands.rb', __FILE__)
+
 module Spotify
-  
+
   def self.start(command)
     matching = command.match(/^(start|resume|play)\s+(spotify|((?:the|my)\s+)?music)$/i)
 
     if matching
       {
-        msg = 
+        msg =
         :command => Command.bus({
           :osx => "tell application \"spotify\" to play",
           :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
