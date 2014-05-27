@@ -14,10 +14,7 @@ module Calculate
         arg1 = matches[1]
         arg2 = matches[3]
       else 
-        responses << {
-          say: "I'm sorry, you should use numbers. I can't calculate with apples and oranges."
-        }
-        return responses
+        return []
       end
       
       oper = matches[2]
@@ -30,10 +27,7 @@ module Calculate
       elsif ["by", "divided", "divied by", "/"].include?(oper)
         op = "/"
       else
-        responses << {
-          say: "I'm sorry, I can't do complex maths yet."
-        }
-        return responses
+        return []
       end
       
       responses << {
