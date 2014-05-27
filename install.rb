@@ -23,21 +23,19 @@ if CONTINUE == "" || CONTINUE == "y"
     if Dir.exist? INSTALL_LOC
       # raise "~/betty already exists! Please manually remove if you want to proceed" 
     else
-      COPY_COMMAND = 'cp -rf '+ Dir.pwd + ' ' + INSTALL_LOC
+      COPY_COMMAND = 'cp -rf ' + Dir.pwd + ' ' + INSTALL_LOC
       print "Running `" + COPY_COMMAND + "`\n"
       system COPY_COMMAND 
     end
 
-    # get current shell
     begin
       *junk, SHELL = `echo $SHELL`.split('/') 
     rescue Exception
        SHELL="bash" #ruby 1.8 (parsing exceptions are not rescued by default)
      end
-    bash_config='.'+SHELL.chomp + 'rc'
-    bash_config='.bash_profile' if RUBY_PLATFORM.match /darwin/ #and ... ?
+    bash_config = '.' + SHELL.chomp + 'rc'
+    bash_config = '.bash_profile' if RUBY_PLATFORM.match /darwin/ #and ... ?
     
-    # writing the alias
     SHELLRC = (Dir.home + '/' + bash_config ).chomp
     print "Writing an alias called `betty` to " + SHELLRC + "\n"
     open(SHELLRC, 'a') do |f|
@@ -47,7 +45,7 @@ if CONTINUE == "" || CONTINUE == "y"
     end
     
     puts "add auto-complete by typing"
-    puts "complete -C #{INSTALL_LOC}betty-auto-completer.rb betty"
-    `#{INSTALL_LOC}betty-auto-completer.rb`
+    puts "complete -C #{INSTALL_LOC}autocomplete.rb betty"
+    `#{INSTALL_LOC}autocomplete.rb`
 end
 

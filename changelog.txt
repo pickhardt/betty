@@ -1,3 +1,19 @@
+0.1.6 (May 26, 2014)
+--------------------
+
+Added calculations: "betty what is 3 plus 5"
+
+Added autocomplete support.
+
+Added pod bay doors to fun module.
+
+Added unit conversion: "betty what is 10 grams in kg"
+
+Added support for zip, tar bzip, and tar gzip decompression.
+
+Added support for sizes: "betty whats the size of this folder"
+
+
 0.1.5 (May 13, 2014)
 --------------------
 
