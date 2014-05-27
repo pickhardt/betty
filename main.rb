@@ -78,7 +78,7 @@ def help(command)
       say "Please note: I am case sensitive. Watch out for my feelings...", :no_name => true
     else
       say "I don't understand. Hopefully someone will make a pull request so that one day I will understand."
-      puts "I do know how to\n" + responses.map{|x|x[:category]+":\t\t"+x[:usage].sample }.join("\n")
+      #puts "I do know how to\n" + responses.map{|x| x[:category] + ":\t\t" + x[:usage].sample }.join("\n")
     end
   else
     say "What can I help you with?"
