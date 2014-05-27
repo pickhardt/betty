@@ -33,14 +33,31 @@ module Internet
   end
 
   def self.compress(command)
-    match = command.match(/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(\s+(?:directory|dir|folder|path))?$/i)
+    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress|tar|gzip|bzip)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
 
     if match
-      what_file = match[1].strip
+      how = match[1]
+      what_file = match[2].strip
+      where = match[3]
+
+      case how
+      when "zip"
+        operation = "zip"
+        type = ".zip"
+      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar", "bzip"
+        operation = "tar -cjvf"
+        type = ".tar.bz"
+      else
+        operation = "tar -czvf"
+        type = ".tar.gz"
+      end
+      if where.nil?
+        where = what_file + type
+      end
 
       {
-        :command => "cd #{ what_file }; tar -czvf #{ what_file }.tar.gz *",
-        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to parent directory"
+        :command => "#{ operation } #{ where } #{ what_file }",
+        :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to #{ where ? where : 'this directory'}"
       }
     end
   end
@@ -80,7 +97,10 @@ module Internet
       "uncompress something.tar.gz",
       "unarchive something.tar.gz to somedir",
       "(You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)",
-      "compress /path/to/dir"]
+      "compress /path/to/dir",
+      "(You can use archive, compress, and star interchangeably.)",
+      "(You can also specify to archive using zip, bzip tar, or gzip tar; the default is gzipped tar.)",
+      "compress /path/to/dir to something.tar.gz"]
     }
     commands
   end
