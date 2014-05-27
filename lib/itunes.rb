@@ -1,4 +1,4 @@
-require File.expand_path ".." + "/lib/commands"
+require File.expand_path('../commands.rb', __FILE__)
 
 module ITunes
   def self.mute_or_unmute(command)
