@@ -5,12 +5,12 @@ class Token
     build_readers_for(options)
     definition_list = self.class.definition_list
     unless definition_list.last.respond_to? :call
-      concept_config = self.class.concept_config
+      concepts = self.class.concepts
       @definition_instances = []
       @concept_instances = {}
       rest = string
       definition_list.each do |concept_name|
-        concept = concept_config[concept_name]
+        concept = concepts[concept_name]
         concept_instance = concept[:token_class].new(rest, concept)
         rest = concept_instance.match.post_match
         @definition_instances << concept_instance
@@ -44,9 +44,8 @@ class Token
 
   class << self
     module Base
-      def concepts(options)
-        @concepts = options
-      end
+      attr_accessor :concepts
+      attr_reader :definition
 
       def concept(options)
         name = options.first.first
@@ -57,14 +56,6 @@ class Token
 
       def definition(*options)
         @definition = options
-      end
-
-      def definition_list
-        @definition
-      end
-
-      def concept_config
-        @concepts
       end
 
       ##
