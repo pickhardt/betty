@@ -31,7 +31,7 @@ module Calculate
       end
       
       responses << {
-        command: "bc <<< #{arg1}#{op}#{arg2}",
+        command: "echo '#{arg1}#{op}#{arg2}' | bc",
         explanation: "Calculates #{arg1}#{op}#{arg2}"
       }
     end
