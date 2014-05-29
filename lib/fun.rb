@@ -8,6 +8,12 @@ module Fun
       }
     end
     
+    if command.match(/^open\s(the\s)?pod\sbay\sdoor(s)?$/i)
+      responses << {
+        :say => "I'm sorry, Dave. I'm afraid I can't do that."
+      }
+    end
+    
     if command.match(/^make\s+me\s+a\s+(.+)$/i)
       thing = "#{ $1 }"
       responses << {

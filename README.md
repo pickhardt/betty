@@ -1,4 +1,4 @@
-Betty (version 0.1.5)
+Betty (version 0.1.6)
 =====================
 
 Betty is a friendly English-like interface for your command line.
@@ -170,4 +170,5 @@ For more information on SemVer, visit [http://semver.org/](http://semver.org/).
 
 License
 -------
+
 Released under the Apache License 2.0. Related link: www.apache.org/licenses/LICENSE-2.0.html
