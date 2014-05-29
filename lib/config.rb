@@ -102,7 +102,7 @@ module BettyConfig
       }
     end
 
-    if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+name\s+to\s+(.+)$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
+    if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+name\s+to\s+(.+)$/i)
       new_name = $1.strip
       responses << {
         :call_before => lambda { self.set("name", new_name) },
