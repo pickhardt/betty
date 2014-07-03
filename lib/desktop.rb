@@ -1,8 +1,8 @@
 module Desktop
 
   def self.addremove(command)
-    matching = command.match(/^desktop\s+(add|increase|remove|subtract|decrease)\s+(v)(ertical|ert)?(\s+)?(desk|desktop)?/i)  ||
-            command.match(/^desktop\s+(add|increase|remove|subtract|decrease)\s+(h)(orizontal|oriz)?(\s+)?(desk|desktop)?/i)
+    matching = command.match(/^(add|increase|remove|subtract|decrease)\s+(v)(ertical|ert)?(\s+)?(desk|desktop)?/i) ||
+            command.match(/^(add|increase|remove|subtract|decrease)\s+(h)(orizontal|oriz)?(\s+)?(desk|desktop)?/i)
     action = "Adds or removes"
 
     if matching
@@ -42,7 +42,7 @@ module Desktop
       :description => 'Control \033[34mVirtual Desktops\033[0m',
       :usage => ["add vertical desktop",
       "add horiz desktop",
-      "remove v"]
+      "remove v desk"]
     }
     commands
   end
