@@ -1,5 +1,6 @@
 Betty (version 0.1.6)
 =====================
+![circle ci build](https://circleci.com/gh/pickhardt/betty/tree/dev.png)
 
 Betty is a friendly English-like interface for your command line.
 
