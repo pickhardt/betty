@@ -1,0 +1,6 @@
+dependencies:
+  pre:
+    - bundle install
+test:
+  override:
+    - bundle exec rspec spec
