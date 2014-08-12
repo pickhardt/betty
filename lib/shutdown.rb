@@ -48,12 +48,7 @@ module Shutdown
     commands << {
       :category => "Shutdown",
       :description => 'Shutdown / reboot computer right now or in a future time',
-      :usage => ["shutdown computer now"],
-      :usage => ["shutdown computer in 60 min"],
-      :usage => ["shutdown system at 00:01"],
-      :usage => ["restart computer now"],
-      :usage => ["reboot system in 2h"],
-      :usage => ["reboot system at 23:59"]
+      :usage => ["shutdown computer now", "restart computer in 60 min", "reboot system at 00:01"]
     }
     commands
   end
