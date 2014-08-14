@@ -19,7 +19,7 @@ module Calculate
       end
 
       responses << {
-        command: "bc <<< 'scale=10;sqrt(#{arg1})'",
+        command: "echo 'scale=10;sqrt(#{arg1})' | bc",
         explanation: "Calculates square root of #{arg1}"
       }
     return responses
@@ -45,7 +45,7 @@ module Calculate
       end
      
       responses << {
-        command: "bc <<< #{arg1}^#{power}",
+        command: "echo '#{arg1}^#{power}' | bc",
         explanation: "Calculates #{power_text} of #{arg1}"
       }
     return responses
@@ -95,7 +95,7 @@ module Calculate
       end
       
       responses << {
-        command: "bc <<< #{arg1}#{op}#{arg2}",
+        command: "echo '#{arg1}#{op}#{arg2}' | bc",
         explanation: "Calculates #{arg1}#{op}#{arg2}"
       }
     end
