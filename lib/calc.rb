@@ -70,6 +70,8 @@ module Calculate
         op = "*"
       elsif ["by", "divided", "divied by", "/"].include?(oper)
         op = "/"
+      elsif ["mod", "module", "%"].include?(oper)
+        op = "%"
       else
         return []
       end
