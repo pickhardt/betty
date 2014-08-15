@@ -47,7 +47,7 @@ module User
     end
     
     
-    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)?\??$/i)
+    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)+\??$/i)
       program = $1.strip
     
       command_to_use = ""
