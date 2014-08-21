@@ -1,3 +1,9 @@
+0.1.7
+--------------------
+
+Added shutdown/reboot support: "betty shutdown computer in 2 hours"
+
+
 0.1.6 (May 26, 2014)
 --------------------
 
