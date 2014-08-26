@@ -32,6 +32,15 @@ module OS
         :explanation => "Show what OS is used."
       }
     end
+    
+    if command.match(/^(?:show|me|whats|what|is|my|\s)*kernel(?:\s|name|do i have|is used|.)*$/i)
+      os = platform_name
+
+      responses << {
+        :command => "uname -a",
+        :explanation => "Show what OS is used."
+      }
+    end
 
     responses
   end
