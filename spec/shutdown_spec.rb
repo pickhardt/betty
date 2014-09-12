@@ -14,4 +14,8 @@ describe 'Shutdown' do
     it { responds_with command: "sudo shutdown -r 23:59", :explanation => "restart/shutdown system" }
   end
 
+  context 'cancel system shutdown' do
+    it { responds_with command: "sudo shutdown -c", :explanation => "cancel system restart/shutdown" }
+  end
+  
 end
