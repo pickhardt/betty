@@ -51,7 +51,8 @@ module Shutdown
       :description => 'Shutdown / reboot computer right now or in a future time',
       :usage => ["shutdown computer now",
                  "restart computer in 60 min", 
-                 "reboot system at 00:01"]
+                 "reboot system at 00:01",
+                 "abort system shutdown"]
     }
     commands
   end
