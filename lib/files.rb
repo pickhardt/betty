@@ -21,8 +21,8 @@ module Files
        end
 
        ## Rename file/folder
-       if command.match(/rename\s+(file|folder)\s/i)
-       	 paths = command.sub(/rename\s+(file|folder)\s/,'').strip.split(' ')
+       if command.match(/rename\s+(file|folder|dir|directory)\s/i)
+       	 paths = command.sub(/rename\s+(file|folder|dir|directory)\s/,'').strip.split(' ')
 
        	 if !(paths.size<2 || paths.size > 3) 
        	 	paths -= ["to"] if(paths.size==3)
@@ -46,9 +46,9 @@ module Files
        end
 
        ## Delete folder(s)
-       if command.match(/(delete|remove)\s+folder(s?)\s/) || 
+       if command.match(/(delete|remove)\s+(folder(s?)|dir|director(y|ies))(s?)\s/) || 
        	  command.match(/(delete|remove)\s+all\s+(file(s?))\s+in\s/)
-       	  paths = command.sub(/(delete|remove)\s+folder(s?)\s/,'').strip.split(' ')
+       	  paths = command.sub(/(delete|remove)\s+(folder(s?)|dir|director(y|ies))(s?)\s/,'').strip.split(' ')
 
        	  responses << {
        	  	:command => "rm -r #{paths.join(' ')}",
@@ -57,8 +57,8 @@ module Files
        end
 
        ## Delete files and folders
-       if command.match(/cleanup\s+folder(s?)\s/) || command.match(/force\s+cleanup\s+folder(s?)\s/)
-       	 paths = command.sub(/cleanup\s+folder(s?)\s/,'').strip.split(' ')
+       if command.match(/cleanup\s+(folder(s?)|dir|director(y|ies))(s?)\s/) || command.match(/force\s+cleanup\s+(folder(s?)|dir|director(y|ies))(s?)\s/)
+       	 paths = command.sub(/cleanup\s+(folder(s?)|dir|director(y|ies))(s?)\s/,'').strip.split(' ')
        	 flags = "-r "
        	 flags += command.match(/force/) ? '-f ' : ''
 
@@ -69,7 +69,7 @@ module Files
        end
 
        ## Copy, Move, Scp files/folders
-       if action = command.match(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i) 
+       if action = command.match(/(copy|move)\s+(file(s?)|folder(s?)|dir|director(y|ies)(s?))\s+(from?)\s/i) 
 
        	paths = command.sub(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i,'').strip.split(' ')
        	if !(paths.size > 3 || paths.size <2)
@@ -115,27 +115,32 @@ module Files
 		commands = []
 		commands << {
 			:category => "Files",
-			:usage =>[ "- betty create file fop.txt",
-				"- betty create new file foo.txt",
-				"- betty create files foo.txt bar.txt",
-				"- betty create new files foo.txt bar.txt",
-				"- betty create folder foo",
-				"- betty create folders foo bar",
-				"- betty create directory foo",
-				"- betty create directories foo bar",
-				"- betty create new folder foo",
-				"- betty make directory foo",
-				"- betty make directories foo bar",
-				"- betty copy file my.txt to usr/",
-				"- betty move file my.txt to usr/",
-				"- betty copy folder my_songs/ to backup/",
-				"- betty move folder my_songs/ to backup/",
-				"- betty delete file junk.txt",
-				"- betty remove file junk.txt",
-				"- betty delete folder logs/",
-				"- betty remove folder logs/",
-				"- betty cleanup folder logs/",
-				"- betty force cleanup folder logs/"
+			:usage =>[ "create file fop.txt",
+				"create new file foo.txt",
+				"create files foo.txt bar.txt",
+				"create new files foo.txt bar.txt",
+				"create folder foo",
+				"create folders foo bar",
+				"create directory foo",
+				"create directories foo bar",
+				"create new folder foo",
+				"make directory foo",
+				"make directories foo bar",
+				"copy file my.txt to usr/",
+				"move file my.txt to usr/",
+				"copy folder my_songs/ to backup/",
+				"move folder my_songs/ to backup/",
+				"delete file junk.txt",
+				"remove file junk.txt",
+				"delete folder logs/",
+				"delete directory logs/",
+				"delete folders logs/ old_logs/",
+				"remove folder logs/",
+				"remove directory logs/",
+				"remove directories logs/ old_logs/",
+				
+				"cleanup folder logs/",
+				"force cleanup folder logs/"
 			]
 		}
 	end
