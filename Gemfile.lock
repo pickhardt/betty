@@ -21,10 +21,9 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.2)
     slop (3.5.0)
-    
+
 PLATFORMS
   ruby
-
 
 DEPENDENCIES
   pry
