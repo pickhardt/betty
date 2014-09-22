@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'Fun' do
 
-
   context 'What is the meaning of life?' do
     it { responds_with say: "42." }
   end
@@ -16,5 +15,3 @@ describe 'Fun' do
   end
 
 end
-
-
