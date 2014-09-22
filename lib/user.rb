@@ -47,7 +47,7 @@ module User
     end
     
     
-    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)?\??$/i)
+    if command.match(/^what\'?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)+\??$/i)
       program = $1.strip
     
       command_to_use = ""
@@ -56,6 +56,8 @@ module User
         command_to_use = "go version"
       when "mysql"
         command_to_use = "mysql -u root -p -e ' SELECT VERSION(); '"
+      when "openssl"
+	command_to_use = "openssl version"
       else
         command_to_use = "#{ program } --version"
       end

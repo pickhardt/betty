@@ -1,5 +1,6 @@
-Betty (version 0.1.6)
+Betty (version 0.1.7)
 =====================
+![circle ci build](https://circleci.com/gh/pickhardt/betty/tree/dev.png)
 
 Betty is a friendly English-like interface for your command line.
 
@@ -157,6 +158,10 @@ Contributing
 ------------
 
 Contributions are welcome! If you would like to contribute, please issue a pull request against the **dev branch**, not the master branch.
+
+Please ensure that you use soft tabs, converting tabs to spaces. Do not use actual tab characters because it will make the spacing look weird in others' text editors.
+
+Please make sure that the tests pass and try to write tests for your contributions. To check the tests, first run `bundle install` followed by `bundle exec rspec spec`
 
 
 Versioning
