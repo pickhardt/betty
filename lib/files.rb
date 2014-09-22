@@ -11,7 +11,7 @@ module Files
 	   	 }
 	   end
 
-       ## Create Folder
+     ## Create Folder
 	   if command.match(/(create|make)\s+([new\s]?)+(folder(s?)|dir|director(y|ies))(s?)\s/i)
 	   	 files = command.sub(/(create|make)\s+([new\s]?)+(folder(s?)|dir|director(y|ies))(s?)\s/i,'').strip.split(' ')
 	   	 responses << {
@@ -35,78 +35,78 @@ module Files
        end
      end
 
-       ## Delete file(s)
-       if command.match(/(delete|remove)\s+file(s?)\s/)
-       	paths = command.sub(/(delete|remove)\s+file\s/,'').strip.split(' ')
+     ## Delete file(s)
+     if command.match(/(delete|remove)\s+file(s?)\s/)
+     	paths = command.sub(/(delete|remove)\s+file\s/,'').strip.split(' ')
+     
+     	responses << {
+     		:command => "rm #{paths.join(' ')}",
+     		:explanation => "Remove file(s)"
+     	}
+     end
+     
+     ## Delete folder(s)
+     if command.match(/(delete|remove)\s+folder(s?)\s/) || 
+     	  command.match(/(delete|remove)\s+all\s+(file(s?))\s+in\s/)
+     	  paths = command.sub(/(delete|remove)\s+folder(s?)\s/,'').strip.split(' ')
+     
+     	  responses << {
+     	  	:command => "rm -r #{paths.join(' ')}",
+     	  	:explanation => "Remove folder(s)"
+     	  }
+     end
 
-       	responses << {
-       		:command => "rm #{paths.join(' ')}",
-       		:explanation => "Remove file(s)"
-       	}
-       end
+     ## Delete files and folders
+     if command.match(/cleanup\s+folder(s?)\s/) || command.match(/force\s+cleanup\s+folder(s?)\s/)
+     	 paths = command.sub(/cleanup\s+folder(s?)\s/,'').strip.split(' ')
+     	 flags = "-r "
+     	 flags += command.match(/force/) ? '-f ' : ''
+     
+     	 responses << {
+     	 	:command => "rm #{flags} #{paths.join(' ')}",
+     	 	:explanation => "Removes all files and folders in give folder"
+     	 }
+     end
 
-       ## Delete folder(s)
-       if command.match(/(delete|remove)\s+folder(s?)\s/) || 
-       	  command.match(/(delete|remove)\s+all\s+(file(s?))\s+in\s/)
-       	  paths = command.sub(/(delete|remove)\s+folder(s?)\s/,'').strip.split(' ')
-
-       	  responses << {
-       	  	:command => "rm -r #{paths.join(' ')}",
-       	  	:explanation => "Remove folder(s)"
-       	  }
-       end
-
-       ## Delete files and folders
-       if command.match(/cleanup\s+folder(s?)\s/) || command.match(/force\s+cleanup\s+folder(s?)\s/)
-       	 paths = command.sub(/cleanup\s+folder(s?)\s/,'').strip.split(' ')
-       	 flags = "-r "
-       	 flags += command.match(/force/) ? '-f ' : ''
-
-       	 responses << {
-       	 	:command => "rm #{flags} #{paths.join(' ')}",
-       	 	:explanation => "Removes all files and folders in give folder"
-       	 }
-       end
-
-       ## Copy, Move, Scp files/folders
-       if action = command.match(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i) 
-
-       	paths = command.sub(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i,'').strip.split(' ')
-       	if !(paths.size > 3 || paths.size <2)
-       	 paths -= ['to'] if(paths.size == 3)  # Remove 'to' if exist
-
-       	 source, destination = paths
-
-       	 ## Remote transfer ## !!!! SUGGESTION REQUIRED !!!!
-       	 if (source.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)|| (destination.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)
-       	 	flags = ""
-       	 	flags += (File.directory?(source) || File.directory?(destination)) ? "-r " : ''
-
-       	 	responses << {
-       	 		:command => "scp #{flags} #{source} #{destination}",
-       	 		:explanation => "Remote Transfer"
-       	 	}
-       	 elsif File.exist?(source) 
-            ## Move
-       	 	if action[1] == 'move' 
-       	 		responses << {
-       	 			:command => "mv #{source} #{destination}",
-       	 			:explanation => "Move the file/folder"
-       	 		}
-       	 	## Copy	
-       	 	elsif action[1] == 'copy'
-       	 		flags = ""
-       	 		flags += File.directory?(source) ? "-R" : ''
-       	 		responses << {
-       	 			:command => "cp #{flags} #{source} #{destination}",
-       	 			:explanation => "Move the file/folder"
-       	 		}
-       	 	end
-       	 end	
-
-       	end # path
-
-       end
+     ## Copy, Move, Scp files/folders
+     if action = command.match(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i) 
+     
+     	paths = command.sub(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i,'').strip.split(' ')
+     	if !(paths.size > 3 || paths.size <2)
+     	 paths -= ['to'] if(paths.size == 3)  # Remove 'to' if exist
+     
+     	 source, destination = paths
+     
+     	 ## Remote transfer ## !!!! SUGGESTION REQUIRED !!!!
+     	 if (source.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)|| (destination.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)
+     	 	flags = ""
+     	 	flags += (File.directory?(source) || File.directory?(destination)) ? "-r " : ''
+     
+     	 	responses << {
+     	 		:command => "scp #{flags} #{source} #{destination}",
+     	 		:explanation => "Remote Transfer"
+     	 	}
+     	 elsif File.exist?(source) 
+          ## Move
+     	 	if action[1] == 'move' 
+     	 		responses << {
+     	 			:command => "mv #{source} #{destination}",
+     	 			:explanation => "Move the file/folder"
+     	 		}
+     	 	## Copy	
+     	 	elsif action[1] == 'copy'
+     	 		flags = ""
+     	 		flags += File.directory?(source) ? "-R" : ''
+     	 		responses << {
+     	 			:command => "cp #{flags} #{source} #{destination}",
+     	 			:explanation => "Move the file/folder"
+     	 		}
+     	 	end
+     	 end	
+     
+     	end # path
+     
+     end
 
 	   responses
 	end
