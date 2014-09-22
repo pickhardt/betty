@@ -16,7 +16,7 @@ By Analogy
 
 iPhone users: it's like Siri for the command line.
 
-Android users: it's like Google Now for the command line. (What's Google Now? It's that thing you talk to that does stuff.)
+Android users: it's like Google Voice Search for the command line. (What's Google Voice Search? It's that thing you talk to that does stuff.)
 
 
 Set Up
