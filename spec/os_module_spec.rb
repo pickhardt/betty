@@ -26,17 +26,17 @@ describe 'OS' do
       result = OS.platform_name
       expect(result).to eq("OS X")
     end
-   end
-
-   context "help" do
-     subject { OS.help }
-
-     it "should return right help" do
-       responds_with(
-         category: "OS",
-         description: 'Show \033[34mOS\033[0m name',
-         usage: ["show what OS is used"]
-       )
-     end
-   end
   end
+
+  context "help" do
+    subject { OS.help }
+
+    it "should return right help" do
+      responds_with(
+        category: "OS",
+        description: 'Show \033[34mOS\033[0m name',
+        usage: ["show what OS is used"]
+      )
+    end
+  end
+end
