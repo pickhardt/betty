@@ -159,6 +159,8 @@ Contributing
 
 Contributions are welcome! If you would like to contribute, please issue a pull request against the **dev branch**, not the master branch.
 
+Please ensure that you use soft tabs, converting tabs to spaces. Do not use actual tab characters because it will make the spacing look weird in others' text editors.
+
 Please make sure that the tests pass and try to write tests for your contributions. To check the tests, first run `bundle install` followed by `bundle exec rspec spec`
 
 
