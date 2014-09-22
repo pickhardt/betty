@@ -69,43 +69,38 @@ module Files
      end
 
      ## Copy, Move, Scp files/folders
-     if action = command.match(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i) 
-     
-       paths = command.sub(/(copy|move)\s+(file(s?)|folder(s?))\s+(from?)\s/i,'').strip.split(' ')
-       if !(paths.size > 3 || paths.size <2)
-        paths -= ['to'] if(paths.size == 3)  # Remove 'to' if exist
-     
-        source, destination = paths
-     
-        ## Remote transfer ## !!!! SUGGESTION REQUIRED !!!!
-        if (source.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)|| (destination.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)
-          flags = ""
-          flags += (File.directory?(source) || File.directory?(destination)) ? "-r " : ''
-     
-          responses << {
-            :command => "scp #{flags} #{source} #{destination}",
-            :explanation => "Remote Transfer"
-          }
-        elsif File.exist?(source) 
-          ## Move
-          if action[1] == 'move' 
-            responses << {
-              :command => "mv #{source} #{destination}",
-              :explanation => "Move the file/folder"
-            }
-          ## Copy  
-          elsif action[1] == 'copy'
-            flags = ""
-            flags += File.directory?(source) ? "-R " : ''
-            responses << {
-              :command => "cp #{flags}#{source} #{destination}",
-              :explanation => "Move the file/folder"
-            }
-          end
-        end  
-     
+     if action = command.match(/(copy|move)\s+(file(s?)|folder(s?)\s+)?(from\s+)?/i)
+       paths = command.sub(/(copy|move)\s+(file(s?)|folder(s?)\s+)?(from\s+)?/i, '').strip.split(' ')
+       if !(paths.size > 3 || paths.size < 2)
+         paths -= ['to'] if paths.size == 3  # Remove 'to' if exist
+
+         source, destination = paths
+
+         ## Remote transfer ## !!!! SUGGESTION REQUIRED !!!!
+         if (source.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)|| (destination.split('@')[1].split(':')[0].match(/(.com|\d+)/) rescue false)
+           flags = ""
+           flags += (File.directory?(source) || File.directory?(destination)) ? "-r " : ''
+         
+           responses << {
+             :command => "scp #{flags}#{source} #{destination}",
+             :explanation => "Remote transfer"
+           }
+         else
+           if action[1].downcase == 'move' 
+             responses << {
+               :command => "mv #{source} #{destination}",
+               :explanation => "Moves the file/folder"
+             }
+           elsif action[1].downcase == 'copy'
+             flags = ""
+             flags += File.directory?(source) ? "-R " : ''
+             responses << {
+               :command => "cp #{flags}#{source} #{destination}",
+               :explanation => "Copies the file/folder"
+             }
+           end
+         end
        end # path
-     
      end
 
      responses
