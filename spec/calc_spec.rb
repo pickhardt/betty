@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe 'Calculate' do
-
-
   context 'what is the square root of 9' do
     it { responds_with :command => "echo 'scale=10;sqrt(9)' | bc", :explanation => "Calculates square root of 9" }
   end
@@ -26,5 +24,4 @@ describe 'Calculate' do
   context 'what is 16 mod 5' do
     it { responds_with :command => "echo '16%5' | bc", :explanation => "Calculates 16%5" }
   end
-
 end
