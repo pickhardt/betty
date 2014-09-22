@@ -1,3 +1,13 @@
+0.1.7 (September 21, 2014)
+--------------------------
+
+Added rock, paper, scissors.
+
+Added some tests.
+
+Fixed a bug with the copy and move commands.
+
+
 0.1.6 (May 26, 2014)
 --------------------
 
