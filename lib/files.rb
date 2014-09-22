@@ -20,20 +20,20 @@ module Files
 	   	 }
        end
 
-       ## Rename file/folder
-       if command.match(/rename\s+(file|folder)\s/i)
-       	 paths = command.sub(/rename\s+(file|folder)\s/,'').strip.split(' ')
-
-       	 if !(paths.size<2 || paths.size > 3) 
-       	 	paths -= ["to"] if(paths.size==3)
-       	 	old_f, new_f = paths
-
-       	 	responses << {
-       	 		:command => "mv #{old_f} #{new_f}",
-       	 		:explanation => "Rename file/folder"
-       	 	}
-       	 end
+     ## Rename file/folder
+     if command.match(/rename\s+(file|folder)\s/i)
+       paths = command.sub(/rename\s+(file|folder)\s/,'').strip.split(' ')
+       
+       if !(paths.size<2 || paths.size > 3) 
+         paths -= ["to"] if(paths.size==3)
+         old_f, new_f = paths
+         
+         responses << {
+         	:command => "mv #{old_f} #{new_f}",
+         	:explanation => "Rename file/folder"
+         }
        end
+     end
 
        ## Delete file(s)
        if command.match(/(delete|remove)\s+file(s?)\s/)
