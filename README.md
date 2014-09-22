@@ -159,6 +159,8 @@ Contributing
 
 Contributions are welcome! If you would like to contribute, please issue a pull request against the **dev branch**, not the master branch.
 
+Please make sure that the tests pass and try to write tests for your contributions. To check the tests, first run `bundle install` followed by `bundle exec rspec spec`
+
 
 Versioning
 ----------
