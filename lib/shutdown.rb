@@ -36,7 +36,7 @@ module Shutdown
     if command.match(/^(?:cancel|abort)\s+(?:system|computer)\s+(?:restart|reboot|shutdown)$/)
       responses << {
         :command => "sudo shutdown -c",
-        :explanation => "cancel system restart/shutdown."
+        :explanation => "cancel system restart/shutdown"
       }
     end
 
