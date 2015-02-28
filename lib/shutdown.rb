@@ -32,11 +32,12 @@ module Shutdown
       }
     end
 
-    if act = command.match(/^(?:restart|reboot|shutdown)\s+(?:system|computer|pc)\s+?(?:when\s+)?(.*)?\s*(exits|completes|finishes|finish|complete|exit)?$/)
+    if act = command.match(/^(?:restart|reboot|shutdown)\s+(?:system|computer|pc)\s+?(?:when\s+)?(.* || [0123456789])?\s*(exits|completes)?$/)
       action = act.to_s.split
+ 
       process = action[3] 
       `sudo echo "got root "` #getting root now to avoid getting password prompt later
-	puts "waiting for #{process} to exit"
+      puts "waiting for #{process} to exit"
       while true
         processes = `ps -e`
         is_running = processes.scan(process.downcase)
@@ -48,8 +49,8 @@ module Shutdown
 
       end
       responses << {
-	:command => "sudo shutdown -h now",
-	:explanation => "shutdown system when any given process exits"
+        :command => "sudo shutdown -h now",
+        :explanation => "shutdown system when any given process exits"
       }
     end
     responses
