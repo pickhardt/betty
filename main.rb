@@ -100,10 +100,7 @@ def run(response)
 
   if response[:command]
     command=response[:command]
-    
-    # useful for debugging only
-    
-    #say "Running #{ command }" if not command.match(/^echo/)
+    say "Running #{ command }" if not command.match(/^echo/)
     res = `#{command}`
     puts res
     if BettyConfig.get("speech")
