@@ -143,6 +143,14 @@ The following is a non-exhaustive list of things you can do:
     betty next spotify
     betty previous spotify
     
+    Shutdown
+    betty shutdown computer now
+    betty shutdown system in 10 min
+    betty reboot system now
+    betty shutdown computer when apt-get finishes
+    betty shutdown computer when firefox (or any running application) exits
+
+    
     User
     betty whats my username
     betty whats my real name
@@ -152,7 +160,7 @@ The following is a non-exhaustive list of things you can do:
 	
 	Web queries
 	betty turn web on
-	betty please tell me what is the weather like in London
+	betty please tell me what is the weather like in London   
 
 Contributing
 ------------

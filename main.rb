@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'logger'
+require 'open3'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.7'
@@ -100,7 +101,10 @@ def run(response)
 
   if response[:command]
     command=response[:command]
-    say "Running #{ command }" if not command.match(/^echo/)
+    
+    # useful for debugging only
+    
+    #say "Running #{ command }" if not command.match(/^echo/)
     res = `#{command}`
     puts res
     if BettyConfig.get("speech")
