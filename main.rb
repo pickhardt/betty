@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require 'logger'
-require 'open3'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.7'
