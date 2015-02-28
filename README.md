@@ -147,7 +147,7 @@ The following is a non-exhaustive list of things you can do:
     betty shutdown computer now
     betty shutdown system in 10 min
     betty reboot system now
-    betty shutdown computer when apt-get finishes
+    betty shutdown computer when apt-get completes
     betty shutdown computer when firefox (or any running application) exits
 
     
