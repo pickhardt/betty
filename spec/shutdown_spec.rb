@@ -13,7 +13,7 @@ describe 'shutdown' do
       it { responds_with command:"sudo shutdown -h 11:30",explanation:"restart/shutdown system at 11:30"}
     end
  
-    # # Enable this if you don't mind giving root priviledges to tests
+    # # Enable this if you don't mind giving root privileges to tests
 
     # context 'shutdown system when NotRunning exits' do
     #   it { responds_with command:"echo \"NotRunning is NOT running\"",explanation:"prevent shutdown accidentally"}
