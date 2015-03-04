@@ -149,6 +149,13 @@ The following is a non-exhaustive list of things you can do:
     betty whats my ip address
     betty who else is logged in
     betty whats my version of ruby
+
+    Shutdown
+    betty shutdown computer now
+    betty shutdown computer when apt finishes
+    betty reboot system at 11:00
+    betty shutdown computer when firefox exits
+    betty shutdown computer in 30 min
 	
 	Web queries
 	betty turn web on
