@@ -146,7 +146,7 @@ The following is a non-exhaustive list of things you can do:
     User
     betty whats my username
     betty whats my real name
-    betty whats my ip addres
+    betty whats my ip address
     betty who else is logged in
     betty whats my version of ruby
 
