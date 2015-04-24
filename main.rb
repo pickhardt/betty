@@ -156,12 +156,12 @@ def speak(text)
          end
       else
          if has_spd_say
-          system("spd-say -t female2 -m some -r 5 -p -25 -s #{text}")
+          system("spd-say -t female2 -m some -r 5 -p -25 -s \"#{text}\"")
          end
       end
       else
         if has_spd_say
-          system("spd-say -t female2 -m some -r 5 -p -25 -s #{text}")
+          system("spd-say -t female2 -m some -r 5 -p -25 -s \"#{text}\"")
         end
       end
   end
