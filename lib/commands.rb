@@ -36,5 +36,23 @@ module Command
         return @@platform_error
       end
   end
+
+  def self.syscmd(msg= {})
+    case OS.platform_name
+      when 'OS X'
+        if ! msg[:osx]
+          return @@platform_error
+        end
+        return "#{ msg[:osx] }"
+      when 'Linux'
+        if ! msg[:linux]
+          return @@platform_error
+        end
+        return "#{ msg[:linux] }"
+      else
+        return @@platform_error
+      end
+  end
+
 end
 
