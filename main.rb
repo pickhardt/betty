@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'logger'
-require 'colorize'
+require '~/.gem/ruby/1.8/gems/colorize-0.7.7/lib/colorize'
 
 $URL = 'https://github.com/pickhardt/betty'
 $VERSION = '0.1.7'
