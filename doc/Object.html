@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Object - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">BasicObject
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-ask">#ask</a>
+    
+    <li ><a href="#method-i-get_input_integer">#get_input_integer</a>
+    
+    <li ><a href="#method-i-get_input_y_n">#get_input_y_n</a>
+    
+    <li ><a href="#method-i-help">#help</a>
+    
+    <li ><a href="#method-i-interpret">#interpret</a>
+    
+    <li ><a href="#method-i-main">#main</a>
+    
+    <li ><a href="#method-i-run">#run</a>
+    
+    <li ><a href="#method-i-sanitize">#sanitize</a>
+    
+    <li ><a href="#method-i-say">#say</a>
+    
+    <li ><a href="#method-i-speak">#speak</a>
+    
+    <li ><a href="#method-i-web_query">#web_query</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CONTINUE">CONTINUE
+        
+        <dd>
+        
+      
+        <dt id="COPY_COMMAND">COPY_COMMAND
+        
+        <dd><p>copy to ~/betty/</p>
+        
+      
+        <dt id="INSTALL_LOC">INSTALL_LOC
+        
+        <dd>
+        
+      
+        <dt id="SHELL">SHELL
+        
+        <dd>
+        
+      
+        <dt id="SHELLRC">SHELLRC
+        
+        <dd><p>writing the alias</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-ask" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ask</span><span
+            class="method-args">(prompt="", newline=false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ask-source">
+            <pre><span class="ruby-comment"># File install.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ask</span>(<span class="ruby-identifier">prompt</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">newline</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">prompt</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">newline</span>
+  <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span>(<span class="ruby-identifier">prompt</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">squeeze</span>(<span class="ruby-string">&quot; &quot;</span>).<span class="ruby-identifier">strip</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_input_integer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_input_integer</span><span
+            class="method-args">(min, max, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_input_integer-source">
+            <pre><span class="ruby-comment"># File main.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_input_integer</span>(<span class="ruby-identifier">min</span>, <span class="ruby-identifier">max</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">input</span> = <span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">strip</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:allow_no</span>] <span class="ruby-operator">&amp;&amp;</span> [<span class="ruby-string">&#39;n&#39;</span>, <span class="ruby-string">&#39;no&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">input</span>.<span class="ruby-identifier">downcase</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">input_integer</span> = <span class="ruby-identifier">input</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">input_integer</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">input</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">input_integer</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">input_integer</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">max</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">input_integer</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Sorry, please enter an integer between #{ min } and #{ max }#{ options[:allow_no] ? &#39;, or N for no&#39; : &#39;&#39; }.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_input_y_n" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_input_y_n</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_input_y_n-source">
+            <pre><span class="ruby-comment"># File main.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_input_y_n</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">downcase</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;y&#39;</span>, <span class="ruby-string">&#39;yes&#39;</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;n&#39;</span>, <span class="ruby-string">&#39;no&#39;</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> 
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Sorry, please enter Y for Yes or N for No.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File main.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-comment"># betty --help find</span>
+  <span class="ruby-comment"># betty I need help with the find command</span>
+  <span class="ruby-identifier">command</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;I need&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;help&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;me&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;with&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;the&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;command&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-string">&quot;--&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">strip</span>
+  <span class="ruby-identifier">responses</span> = []
+  <span class="ruby-identifier">$executors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">executor</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">responses</span> = <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">executor</span>.<span class="ruby-identifier">help</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">detect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-value">:category</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-node">&quot;#{ command.split.first.downcase }&quot;</span>}
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;I can do that if you help me. Check out the following examples&quot;</span>
+      <span class="ruby-comment"># say &quot;#{ response[:usage] }&quot;, :no_name =&gt; true</span>
+      <span class="ruby-identifier">response</span>[<span class="ruby-value">:usage</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">usage</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-identifier">usage</span>, <span class="ruby-value">:no_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Please note: I am case sensitive. Watch out for my feelings...&quot;</span>, <span class="ruby-value">:no_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;I don&#39;t understand. Hopefully someone will make a pull request so that one day I will understand.&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;What can I help you with?&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File main.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+  <span class="ruby-identifier">$executors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">executor</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">executors_responses</span> = <span class="ruby-identifier">executor</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+    <span class="ruby-identifier">responses</span> = <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">executors_responses</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">executors_responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">executors_responses</span>[<span class="ruby-value">0</span>][<span class="ruby-value">:command</span>] 
+      <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">info</span>(<span class="ruby-string">&#39;main_interpret&#39;</span>) {<span class="ruby-node">&quot;#{command} ==&gt; #{executor.name} ==&gt; #{executors_responses[0][:command]}&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-main" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main</span><span
+            class="method-args">(commands)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main-source">
+            <pre><span class="ruby-comment"># File main.rb, line 188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main</span>(<span class="ruby-identifier">commands</span>)
+  <span class="ruby-identifier">command</span> = <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
+  <span class="ruby-identifier">responses</span> = <span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:ask_first</span>]
+      <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;I found the command &#39;#{ responses[0][:command] }&#39;&quot;</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;       #{ responses[0][:explanation] }&quot;</span>, <span class="ruby-value">:no_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Do you want me to run this? Y/n&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">get_input_y_n</span>
+        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">response</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">response</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Okay, I have multiple ways to respond.&quot;</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Enter the number of the command you want me to run, or N (no) if you don&#39;t want me to run any.&quot;</span>
+    <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;[#{ index + 1 }] #{ response[:command] }&quot;</span>, <span class="ruby-value">:no_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">say</span>(<span class="ruby-node">&quot;    #{ response[:explanation] }&quot;</span>, <span class="ruby-value">:no_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:explanation</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">which_to_run</span> = <span class="ruby-identifier">get_input_integer</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">responses</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">:allow_no</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">run</span>(<span class="ruby-identifier">responses</span>[<span class="ruby-identifier">which_to_run</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">which_to_run</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># edit ~/.bettyconfig or say &#39;use web&#39; </span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;web&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">command</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;help&quot;</span>)
+      <span class="ruby-identifier">say</span> <span class="ruby-identifier">web_query</span>(<span class="ruby-identifier">command</span>) 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">help</span>(<span class="ruby-identifier">command</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(response)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File main.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">response</span>)  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:call_before</span>]
+    <span class="ruby-identifier">response</span>[<span class="ruby-value">:call_before</span>].<span class="ruby-identifier">call</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:say</span>]
+    <span class="ruby-identifier">say</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:say</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:call</span>]
+    <span class="ruby-identifier">response</span>[<span class="ruby-value">:call</span>].<span class="ruby-identifier">call</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:command</span>]
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Running #{ response[:command] }&quot;</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-node">%x#{response[:command]}`</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">res</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;speech&quot;</span>)
+      <span class="ruby-identifier">speak</span>(<span class="ruby-identifier">res</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sanitize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sanitize</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sanitize-source">
+            <pre><span class="ruby-comment"># File main.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">color</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/\(\S+)/</span>)[<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">replace_with</span> = <span class="ruby-identifier">color</span>[<span class="ruby-value">7</span><span class="ruby-operator">..</span><span class="ruby-value">-8</span>]
+    <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">color</span>, <span class="ruby-identifier">replace_with</span>)
+  <span class="ruby-keyword">rescue</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/ [+-]/</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-string">&#39;%20&#39;</span>)
+  <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;\&#39;</span>, <span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">text</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-say" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">say</span><span
+            class="method-args">(phrase, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="say-source">
+            <pre><span class="ruby-comment"># File main.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">say</span>(<span class="ruby-identifier">phrase</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">my_name</span> = <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;name&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{ options[:no_name] ? &#39;&#39; : my_name + &#39;: &#39; }#{ phrase }&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;speech&quot;</span>)
+    <span class="ruby-identifier">speak</span>(<span class="ruby-identifier">phrase</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-speak" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">speak</span><span
+            class="method-args">(text)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="speak-source">
+            <pre><span class="ruby-comment"># File main.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">speak</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">has_command?</span>(<span class="ruby-string">&#39;say&#39;</span>)
+    <span class="ruby-identifier">say</span> = <span class="ruby-string">&#39;say&#39;</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot; -v &#39;#{BettyConfig.get(&quot;voice&quot;)}&#39;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;voice&quot;</span>)
+    <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;#{say} \&quot;#{ text }\&quot;&quot;</span>) <span class="ruby-comment"># formerly mpg123 -q</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">has_afplay</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">has_command?</span>(<span class="ruby-string">&#39;afplay&#39;</span>)
+    <span class="ruby-identifier">has_mpg123</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">has_command?</span>(<span class="ruby-string">&#39;mpg123&#39;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_afplay</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">has_mpg123</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;open-uri&#39;</span>
+      <span class="ruby-identifier">text</span> = <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">text</span>)
+      <span class="ruby-identifier">speech_path</span> = <span class="ruby-string">&#39;/tmp/betty_speech.mp3&#39;</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-identifier">url</span> = <span class="ruby-string">&#39;http://translate.google.com/translate_tts?tl=en&amp;q=&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">text</span>
+        <span class="ruby-identifier">open</span>(<span class="ruby-identifier">speech_path</span>, <span class="ruby-string">&#39;wb&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">file</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">read</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_afplay</span> 
+          <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;afplay #{ speech_path }&quot;</span>)
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">has_mpg123</span>
+          <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;mpg123 -q #{ speech_path }&quot;</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;rm #{ speech_path }&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-web_query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">web_query</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>needs <a
+href="BettyConfig.html#method-c-get">BettyConfig.get</a>(“web”)!=“false”</p>
+
+<p>edit ~/.bettyconfig or say &#39;use web&#39; example: “betty what is the
+weather”</p>
+          
+          
+
+          
+          <div class="method-source-code" id="web_query-source">
+            <pre><span class="ruby-comment"># File main.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">web_query</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/http&#39;</span>
+  <span class="ruby-identifier">encoded</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">chatmode</span> = <span class="ruby-constant">BettyConfig</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;chat&quot;</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+  
+  <span class="ruby-identifier">web_service</span> = <span class="ruby-string">&quot;https://ask.pannous.com&quot;</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;/api?out=simple&amp;input=#{ encoded }&quot;</span>
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;&amp;exclude=ChatBot,Dialogues&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">chatmode</span> 
+
+  <span class="ruby-identifier">url</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">web_service</span>)
+  <span class="ruby-identifier">req</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Get</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Asking the internet...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">chatmode</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Thinking...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">chatmode</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">url</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">url</span>.<span class="ruby-identifier">port</span>, <span class="ruby-value">:use_ssl</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:read_timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">https</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">https</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">req</span>)
+    }
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

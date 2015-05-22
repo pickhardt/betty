@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Spotify - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-interpret">::interpret</a>
+    
+    <li ><a href="#method-c-next">::next</a>
+    
+    <li ><a href="#method-c-pause">::pause</a>
+    
+    <li ><a href="#method-c-prev">::prev</a>
+    
+    <li ><a href="#method-c-start">::start</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Spotify">
+  <h1 id="module-Spotify" class="module">
+    module Spotify
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
+  <span class="ruby-identifier">commands</span> = []
+  <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-value">:category</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Spotify&quot;</span>,
+    <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Control \033[34mSpotify\033[0m&#39;</span>,
+    <span class="ruby-value">:usage</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;- betty play spotify&quot;</span>,
+    <span class="ruby-string">&quot;- betty pause spotify&quot;</span>,
+    <span class="ruby-string">&quot;- betty next spotify&quot;</span>,
+    <span class="ruby-string">&quot;- betty previous spotify&quot;</span>]
+  }
+  <span class="ruby-identifier">commands</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+
+  <span class="ruby-identifier">start_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">start_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">start_command</span>
+
+  <span class="ruby-identifier">pause_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pause</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pause_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pause_command</span>
+
+  <span class="ruby-identifier">next_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">next</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">next_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">next_command</span>
+
+  <span class="ruby-identifier">prev_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prev_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prev_command</span>
+
+  <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-next" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-keyword">next</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(next|advance)\s+(song|music|track|spotify)$/i</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matching</span>
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;osascript -e &#39;tell application \&quot;spotify\&quot; to next track&#39;&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Makes spotify play the next track.&quot;</span>
+    }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-pause" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pause</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pause-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pause</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^pause\s+(spotify|((?:the|my)\s+)?music)$/i</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matching</span>
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;osascript -e &#39;tell application \&quot;spotify\&quot; to pause&#39;&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Pauses spotify.&quot;</span>
+    }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-prev" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prev</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prev-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^prev(?:ious)?\s+(song|music|track|spotify)$/i</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matching</span>
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;osascript -e &#39;tell application \&quot;spotify\&quot; to previous track&#39;&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Makes spotify play the previous track.&quot;</span>
+    }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre><span class="ruby-comment"># File lib/spotify.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(start|resume|play)\s+(spotify|((?:the|my)\s+)?music)$/i</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matching</span>
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;osascript -e &#39;tell application \&quot;spotify\&quot; to play&#39;&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Starts playing spotify.&quot;</span>
+    }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module User - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-has_command-3F">::has_command?</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-interpret">::interpret</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-User">
+  <h1 id="module-User" class="module">
+    module User
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-has_command-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">has_command?</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="has_command-3F-source">
+            <pre><span class="ruby-comment"># File lib/user.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_command?</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-node">%xwhich #{ command }`</span>
+  <span class="ruby-identifier">response</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/user.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
+  <span class="ruby-identifier">commands</span> = []
+  <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-value">:category</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;User&quot;</span>,
+    <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Show information related to your \033[34mUser\033[0m accounts&#39;</span>,
+    <span class="ruby-value">:usage</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;- betty whats my username&quot;</span>,
+    <span class="ruby-string">&quot;- betty whats my real name&quot;</span>,
+    <span class="ruby-string">&quot;- betty whats my ip address&quot;</span>,
+    <span class="ruby-string">&quot;- betty who else is logged in&quot;</span>,
+    <span class="ruby-string">&quot;- betty whats my version of ruby&quot;</span>]
+  }
+  <span class="ruby-identifier">commands</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/user.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^who\s+am\si$/i</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^what\?s?(\s+is)?\s+my\s(user)?name\??$/i</span>)
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;whoami&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Gets your system username.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^who\s+am\si$/i</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^what\?s?(\s+is)?\s+my\s((real|full|actual)\s+)?name\??$/i</span>)
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;finger $(whoami) | sed &#39;s/.*: *//;q&#39;&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Gets your full name.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^what\?s?(\s+is)?(\s+my)?(\s+ip)?\s?(address)?\??$/i</span>)
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;curl ifconfig.me&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Gets your external ip address.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^who\?s?(\s+else)?(\s+is)?\s(logged|signed|connected)\s+?in\??$/i</span>)
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;who | cut -f 1 -d &#39; &#39; | uniq&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Lists who is logged in on this machine.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^where\s+am\si$/i</span>)
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;pwd&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Shows you your current directory.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+  
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^what\?s?(?:\s+is)?(?:\s+(?:the|my))?\s+version(?:\s+of)?(\s[a-zA-Z\-_]+)?\??$/i</span>)
+    <span class="ruby-identifier">program</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">strip</span>
+  
+    <span class="ruby-identifier">command_to_use</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">program</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;go&quot;</span>
+      <span class="ruby-identifier">command_to_use</span> = <span class="ruby-string">&quot;go version&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span>
+      <span class="ruby-identifier">command_to_use</span> = <span class="ruby-string">&quot;mysql -u root -p -e &#39; SELECT VERSION(); &#39;&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">command_to_use</span> = <span class="ruby-node">&quot;#{ program } --version&quot;</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">command_to_use</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Gets the version of #{ program }.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
