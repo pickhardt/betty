@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby -W0
 require 'logger'
-require '~/.gem/ruby/1.8/gems/colorize-0.7.7/lib/colorize'
+require '~/.gem/ruby/1.8/gems/colorize-0.7.7/lib/colorize' # --user-install 'ed 
 
-$URL = 'https://github.com/pickhardt/betty'
-$VERSION = '0.1.7'
+$URL = 'https://github.com/deph0/betty'
+$VERSION = '0.1.8'
 $executors = []
 $LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
 
@@ -69,7 +69,7 @@ def help(command)
   end
   if command != ""
     command = command.strip
-    response = responses.detect{|h| h[:category].downcase == "#{ command.split.first.downcase }"}
+    response = responses.detect{|h| h[:category].to_s.downcase == "#{ command.split.first.to_s.downcase }"}
     if response
       say "I can do that if you help me. Check out the following examples"
       # say "#{ response[:usage] }", :no_name => true
@@ -83,6 +83,13 @@ def help(command)
     end
   else
     say "What can I help you with?"
+    libs = Dir.entries(File.expand_path File.dirname(__FILE__) + '/lib') # working dir of betty
+    libs.delete('.'); libs.delete('..')
+    libs.each_with_index do |x, i|
+      libs[i] = x.sub(".rb","")
+    end
+    say "Please choose out of one: #{libs}"
+    say "such as 'betty help spotify'"
   end
 end
 
