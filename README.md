@@ -1,4 +1,4 @@
-Betty (version 0.1.7)
+Betty (version 0.1.8-unoffical)
 =====================
 ![circle ci build](https://circleci.com/gh/pickhardt/betty/tree/dev.png)
 
@@ -21,6 +21,8 @@ Android users: it's like Google Voice Search for the command line. (What's Googl
 
 Set Up
 ------
+
+-- this repo requires you to do "gem install --user-install colorize"
 
 Manually:
 
