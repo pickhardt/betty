@@ -22,7 +22,7 @@ module Spotify
   end
 
   def self.pause(command)
-    matching = command.match(/^pause\s+(spotify|((?:the|my)\s+)?music)$/i)
+    matching = command.match(/^(pause|stop)\s+(spotify|((?:the|my)\s+)?music)$/i)
 
     if matching
       {
@@ -33,6 +33,24 @@ module Spotify
           +         " >/dev/null"
         }),
         :explanation => "Pauses spotify."
+      }
+    else
+      nil
+    end
+  end
+
+  def self.quit(command)
+    matching = command.match(/^quit\s+(spotify|((?:the|my)\s+)?music)$/i)
+
+    if matching
+      {
+        :command => Command.bus({
+          :osx => "tell application \"spotify\" to quit",
+          :linux => "--print-reply --dest=org.mpris.MediaPlayer2.spotify" \
+          +         " /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Quit"\
+          +         " >/dev/null"
+        }),
+        :explanation => "Exists spotify."
       }
     else
       nil
@@ -76,21 +94,39 @@ module Spotify
     end
   end
 
+  def self.playing(command)
+    matching = command.match(/^what\'?s?\s+((songs?|musics?|tracks?|spotify)\s+)?(is)?\s?play(?:ing)?$/i)
+
+    if matching
+      {
+        :command => Command.bus({:osx => "tell application \"spotify\" to get name of current track"}),
+        :explanation => "Gets the name of the playing track on Spotify."
+      }
+    else
+      nil
+    end
+  end
 
   def self.interpret(command)
     responses = []
 
     start_command = self.start(command)
     responses << start_command if start_command
-
+    
     pause_command = self.pause(command)
     responses << pause_command if pause_command
+
+    quit_command = self.quit(command)
+    responses << quit_command if quit_command
 
     next_command = self.next(command)
     responses << next_command if next_command
 
     prev_command = self.prev(command)
     responses << prev_command if prev_command
+
+    playing_command = self.playing(command)
+    responses << playing_command if playing_command
 
     responses
   end
@@ -103,7 +139,9 @@ module Spotify
       :usage => ["play spotify",
       "pause spotify",
       "next spotify",
-      "previous spotify"]
+      "previous spotify",
+      "what song is playing",
+      "quit spotify"]
     }
     commands
   end

@@ -53,6 +53,19 @@ module ITunes
     end
   end
 
+  def self.quit(command)
+    matching = command.match(/^quit\s+(itunes|((?:the|my)\s+)?music)$/i)
+
+    if matching
+      {
+        :command => Command.bus({:osx => "tell application \"iTunes\" to quit"}),
+        :explanation => "Exists iTunes."
+      }
+    else
+      nil
+    end
+  end
+
   def self.next(command)
     matching = command.match(/^(next|advance)\s+(song|music|track|iTunes)$/i)
 
@@ -113,6 +126,9 @@ module ITunes
     prev_command = self.prev(command)
     responses << prev_command if prev_command
 
+    quit_command = self.quit(command)
+    responses << quit_command if quit_command
+
     playing_command = self.playing(command)
     responses << playing_command if playing_command
 
@@ -131,6 +147,7 @@ module ITunes
       "stop my music",
       "next song",
       "prev track",
+      "quit itunes",
       "what song is playing",
       "(Note that the words song, track, music, etc. are interchangeable)"]
     }

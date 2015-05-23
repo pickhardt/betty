@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby -W0
 require 'logger'
 require '~/.gem/ruby/1.8/gems/colorize-0.7.7/lib/colorize'
 
