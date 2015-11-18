@@ -1,3 +1,5 @@
+require File.expand_path('../commands.rb', __FILE__)
+
 module ITunes
   def self.mute_or_unmute(command)
     matching = command.match(/^(un)?mute\s+(itunes|((?:the|my)\s+)?music)$/i)
