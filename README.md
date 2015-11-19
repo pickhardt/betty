@@ -1,4 +1,4 @@
-Betty (version 0.1.7)
+Betty (version 0.1.8)
 =====================
 ![circle ci build](https://circleci.com/gh/pickhardt/betty/tree/dev.png)
 
