@@ -1,3 +1,5 @@
+require File.expand_path('../commands.rb', __FILE__)
+
 module Spotify
   
   def self.start(command)
