@@ -1,11 +1,11 @@
-0.1.8 (XX XX, 201X)
+0.1.8 (November 19, 2015)
 --------------------------
 
-X
+Fix ITunes module (pull request #108 from ghost/itunes)
 
-X
+Added module for cmus-remote shell music player (pull request #98 from lpanebr/dev)
 
-X
+Added missing module (pull request #120 from ghost/missing-module)
 
 
 0.1.7 (September 21, 2014)
