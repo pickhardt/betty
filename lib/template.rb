@@ -62,4 +62,6 @@ module Template
   end
 end
 
-$executors << Map
+# this last line is where the magic actually happens; you need to take the executors and assign it to something that does the work
+# here it is commented out since this is, well, a template
+#$executors << Some Class Goes Here
