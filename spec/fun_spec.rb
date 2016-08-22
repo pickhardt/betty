@@ -13,5 +13,13 @@ describe 'Fun' do
   context 'sudo make me a sandwich' do
     it { responds_with say: "I think you meant to place sudo at the start of the command." }
   end
+  
+  context "what if batman does not have any kryptonite" do
+    it { responds_with say: "Batman always has kryptonite" }
+  end
+
+  context "what if batman does not have kryptonite" do
+    it { responds_with say: "Batman always has kryptonite" }
+  end
 
 end
