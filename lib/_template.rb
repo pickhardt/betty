@@ -6,7 +6,7 @@
 # cp lib/_template.rb lib/git.rb
 #
 
-module _Template
+module Template
   #
   # If you need unit conversions or other meta methods you'd want to locate them here at the top to be consistent with the code base
   #  See process.rb for examples or convert.rb
