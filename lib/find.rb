@@ -1,41 +1,43 @@
-module Find
-  def self.interpret(command)
-    responses = []
+require './lib/simple_matcher'
 
-    match = command.match(/^find\s+(?:me\s+)?(?:all\s+)?(\S+\s+)?files(?:\s+in\s+(\S+))?(?:\s+that\s+contain\s+(.+))?$/i)
 
-    if match
-      directory = match[2] ? match[2].strip : "."
-      contains = match[3] ? match[3].strip : nil
+class Find < Token
+  concepts(
+    find: {
+      token_class: SimpleMatcher,
+      regex: /^find\s+(?:me\s+)?(?:all\s+)?/i
+    },
+    extensions: {
+      token_class: SimpleMatcher,
+      regex: /^(\S+\s+)?/i
+    },
+    files: {
+      token_class: SimpleMatcher,
+      regex: /^files/i
+    },
+    directory: {
+      token_class: SimpleMatcher,
+      regex: /(?:\s+in\s+(\S+))?/i,
+      default: '.'
+    },
+    search_text: {
+      token_class: SimpleMatcher,
+      regex: /(?:\s+that\s+contain\s+(.+))?$/i,
+      question: 'What do you want to search for?'
+    }
+  )
 
-      if contains
-        # pattern for grep --include
-        # we must have ',' in the end in case there is only one extension
-        pattern = match[1] ? "\\*.\{#{ match[1].strip },\}" : "\\*"
+  definition :find, :extensions, :files, :directory, :search_text
 
-        responses << {
-          :command => "grep --include=#{ pattern } -Rn #{ contains } #{ directory }",
-          :explanation => "Find files in #{ directory } with name matching "\
-                          "#{ pattern } that contain '#{ contains }'."
-        }
-      else
-        if match[1]
-          # replace ',' with '|' for egrep pattern
-          extensions = match[1].strip.gsub(',', '|')
-          pattern = "\\.(#{ extensions })$"
-        else
-          pattern = ".*"
-        end
-
-        responses << {
-          :command => "find #{ directory } | egrep '#{ pattern }'",
-          :explanation => "Find files in #{ directory } with name "\
-                          "matching #{ pattern}."
-        }
-      end
-    end
-
-    responses
+  def call
+    extensions = extensions.call
+    search_text = search_text.call
+    directory = directory.call
+    {
+      command: "grep --include=#{ extensions } -Rn #{ search_text } #{ directory }",
+      explanation: "Find files in #{ directory } with extension "\
+                   "#{ extensions } that contain '#{ search_text }'."
+    }
   end
 
   def self.help
