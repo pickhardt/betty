@@ -7,6 +7,12 @@ module Fun
         :say => "42."
       }
     end
+
+    if command.match(/^open\s(the\s)?pod\sbay\sdoor(s)?$/i)
+      responses << {
+        :say => "I'm sorry, Dave. I'm afraid I can't do that."
+      }
+    end
     
     if command.match(/^superman\s+vs\s+batman$/i)
       responses << {
