@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Process - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-examples">::examples</a>
+    
+    <li ><a href="#method-c-find_user_id">::find_user_id</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-interpret">::interpret</a>
+    
+    <li ><a href="#method-c-my_user_id">::my_user_id</a>
+    
+    <li ><a href="#method-c-test">::test</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Process">
+  <h1 id="module-Process" class="module">
+    module Process
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-examples" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">examples</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="examples-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">examples</span>
+  [ <span class="ruby-string">&quot;list of all processes&quot;</span>,
+    <span class="ruby-string">&quot;processes by user root&quot;</span>,
+    <span class="ruby-string">&quot;show me my processes matching log&quot;</span> ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_user_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_user_id</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_user_id-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_user_id</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">id</span>=<span class="ruby-node">%xid -u #{name}`</span>
+  <span class="ruby-identifier">id</span>.<span class="ruby-identifier">strip</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
+  <span class="ruby-identifier">commands</span> = []
+  <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-value">:category</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Process&quot;</span>,
+    <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Manipulate a running \033[34mProcess\033[0m&#39;</span>,
+    <span class="ruby-value">:usage</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;- betty show me all processes by root containing grep&quot;</span>,
+    <span class="ruby-string">&quot;- betty show me all my processes containing netbio&quot;</span>]
+  }
+  <span class="ruby-identifier">commands</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+  
+  <span class="ruby-identifier">process_pattern</span>=<span class="ruby-regexp">%r{
+    (show|find|give|me|a|list|of|those|\s)*
+    (?&lt;all&gt;all\s)?
+    (?&lt;my&gt;my\s)?
+    PROCESS(es)?
+    (with|which|that|\s)*
+    (for|process|\s)* (id\s(?&lt;process_id&gt;[0-9]+))?
+    (for|belonging|belong|to|by|\s)* (user\s(?&lt;user_id&gt;\w+))?
+    ((like|matching|with|pattern|containing|that|which|contain|\s)+ (?&lt;pattern&gt;\w+))?
+  }imx</span>
+  
+  <span class="ruby-comment"># (?# todo &lt;kill&gt;kill\s)</span>
+  <span class="ruby-comment"># (?# regex comments need newer versions of ruby)</span>
+  
+  <span class="ruby-identifier">match</span>=<span class="ruby-identifier">process_pattern</span>.<span class="ruby-identifier">match</span> <span class="ruby-identifier">command</span> 
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>  
+    <span class="ruby-identifier">command</span>=<span class="ruby-string">&quot;ps&quot;</span>
+    <span class="ruby-identifier">args</span> =  <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">args</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot; -afx&quot;</span>               <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">:all</span>]
+    <span class="ruby-identifier">args</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot; -U#{ my_user_id }&quot;</span>  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">:my</span>]
+    <span class="ruby-identifier">args</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot; -U#{ find_user_id(match[:user_id]) }&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">:user_id</span>]
+    <span class="ruby-identifier">args</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot; | grep #{ match[:pattern] }&quot;</span>          <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">:pattern</span>]
+    <span class="ruby-comment"># args+=&quot; | kill&quot; if match[:kill] #todo</span>
+    
+      <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> {
+        <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{command} #{args}&quot;</span>,
+        <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;List all processes&quot;</span>
+      }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-my_user_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_user_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="my_user_id-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">my_user_id</span>
+  <span class="ruby-identifier">my_name</span>=<span class="ruby-value">%xecho $USER`</span>
+  <span class="ruby-identifier">find_user_id</span> <span class="ruby-identifier">my_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-test" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test-source">
+            <pre><span class="ruby-comment"># File lib/process.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">test</span>
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">phrase</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">examples</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;FAILED &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">phrase</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">phrase</span>).<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
