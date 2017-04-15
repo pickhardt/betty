@@ -87,7 +87,23 @@ module Calculate
     return responses
     end
 
-
+    matches = command.match(/^what\s+is\s+(.+)\s+choose\s+(.)$/)
+    if matches
+ 
+      if (matches[1].numeric? && matches[2].numeric?)
+        arg1 = matches[1]
+        arg2 = matches[2]
+      else 
+        return []
+      end
+      
+      responses << {
+        command: "echo 'define f (x) { if (x <= 1) return (1); return (f(x-1) * x); } f(#{arg1})/(f(#{arg2})*f(#{arg1}-#{arg2}))' | bc",
+        explanation: "Calculates #{arg1} choose #{arg2}"
+      }
+    return responses
+    end
+    
     matches = command.match(/^what\s+is\s+(.+)\s+(.+)\s(.+)$/)
     if matches
  
