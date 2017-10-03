@@ -23,17 +23,38 @@ module Internet
       if where.nil?
         where = what_file.split(".").first
       end
+
+      #TODO: Get the "tar" bit as well as it might be a plain bzip2 og gzip file
+      if(what_file)
+        type = what_file.split(".").last
+      end
+
       in_same_directory = where == '.' || where.downcase.match(/^((?:this|same)\s+)?(?:dir(?:ectory)|folder|path)?$/)
 
+      case type
+      when "gz"
+        operation = "tar -zxvf"
+        postOp = "-C "
+      when "bz2"
+        operation = "tar -jxvf"
+        postOp = "-C "
+      when "zip"
+        operation = "unzip"
+        postOp = "-d "
+      else
+        operation = "tar -zxvf"
+        postOp = "-C "
+      end
+
       {
-        :command => "#{ in_same_directory ? '' : 'mkdir ' + where + ' && ' } tar -zxvf #{ what_file } #{ in_same_directory ? '' : '-C ' + where }".strip,
+        :command => "#{ in_same_directory ? '' : 'mkdir ' + where + ' && ' } #{ operation } #{ what_file } #{ in_same_directory ? '' : "#{ postOp }" + where }".strip,
         :explanation => "Uncompresses the contents of the file #{ what_file }, outputting the contents to #{ in_same_directory ? 'this directory' : where }."
       }
     end
   end
 
   def self.compress(command)
-    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress|tar|gzip|bzip)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
+    match = command.match(/^(zip|archive|tar gzip|gzip tar|tar bzip|bzip tar|tar bzip2|bzip2 tar|compress|tar|gzip|bzip|bzip2)\s+([^\s]+)(?:\s+(?:directory|dir|folder|path))?(?:\s+(?:to\s+)?(.+))?$/i)
 
     if match
       how = match[1]
@@ -42,11 +63,11 @@ module Internet
 
       case how
       when "zip"
-        operation = "zip"
+        operation = "zip -r"
         type = ".zip"
-      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar", "bzip"
+      when "tar bzip", "bzip tar", "tar bzip2", "bzip2 tar", "bzip", "bzip2"
         operation = "tar -cjvf"
-        type = ".tar.bz"
+        type = ".tar.bz2"
       else
         operation = "tar -czvf"
         type = ".tar.gz"
@@ -56,7 +77,7 @@ module Internet
       end
 
       {
-        :command => "#{ operation } #{ where } #{ what_file }",
+        :command => "#{ operation } #{ where } #{ what_file } ",
         :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to #{ where ? where : 'this directory'}"
       }
     end
