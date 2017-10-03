@@ -77,7 +77,7 @@ module Internet
       end
 
       {
-        :command => "#{ operation } #{ where } #{ what_file } ",
+        :command => "#{ operation } #{ where } #{ what_file }",
         :explanation => "Compress the contents of #{ what_file } directory, outputting the compressed file to #{ where ? where : 'this directory'}"
       }
     end
