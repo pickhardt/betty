@@ -23,7 +23,7 @@ if CONTINUE == "" || CONTINUE == "y"
     if Dir.exist? INSTALL_LOC
       # raise "~/betty already exists! Please manually remove if you want to proceed" 
     else
-      COPY_COMMAND = 'cp -rf ' + Dir.pwd + ' ' + INSTALL_LOC
+      COPY_COMMAND = 'cp -rf ' + File.dirname(__FILE__) + ' ' + INSTALL_LOC
       print "Running `" + COPY_COMMAND + "`\n"
       system COPY_COMMAND 
     end
