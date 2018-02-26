@@ -1,5 +1,16 @@
+# os.rb
+#
+# Author: betty developer
+# Date: 2014
+# Copyright: See the license agreement
+#
+
+# task: This module determins the kind of OS that betty is running on
+# and shows the OS when user asks betty
+
 module OS
 
+  # finds the OS and returns its name
   def self.platform_name
     os = "Unknown OS!"
 
@@ -21,6 +32,8 @@ module OS
     os
   end
 
+  # Validates the question that is asked from betty
+  # Sees whether or not the question is related to OS
   def self.interpret(command)
     responses = []
 
@@ -45,6 +58,7 @@ module OS
     responses
   end
 
+  # Shows the help for the specified executer
   def self.help
     commands = []
     commands << {

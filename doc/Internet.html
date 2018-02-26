@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Internet - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-compress">::compress</a>
+    
+    <li ><a href="#method-c-download">::download</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-interpret">::interpret</a>
+    
+    <li ><a href="#method-c-uncompress">::uncompress</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Internet">
+  <h1 id="module-Internet" class="module">
+    module Internet
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-compress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compress</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="compress-source">
+            <pre><span class="ruby-comment"># File lib/internet.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">compress</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">match</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(?:zip|archive|tar gzip|gzip tar|compress)\s+([^\s]+)(\s+(?:directory|dir|folder|path))?$/i</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>
+    <span class="ruby-identifier">what_file</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>
+
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;cd #{ what_file }; tar -czvf #{ what_file }.tar.gz *&quot;</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Compress the contents of #{ what_file } directory, outputting the compressed file to parent directory&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File lib/internet.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">download</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">match</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^download\s+([^\s]{3,})(?:\s+to\s+(.+))?$/i</span>)
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>
+    <span class="ruby-identifier">where</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">output</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">2</span>]
+    <span class="ruby-identifier">output</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">strip</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">output</span>
+    
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;curl#{ output ? &#39; -o &#39; + output : &#39;&#39;} #{ where }&quot;</span>.<span class="ruby-identifier">strip</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Downloads the contents of the URL#{ output ? &#39; to &#39; + output : &#39;&#39; }.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/internet.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help</span>
+  <span class="ruby-identifier">commands</span> = []
+  <span class="ruby-identifier">commands</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-value">:category</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Internet&quot;</span>,
+    <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Download files from \033[34minternet\033[0m, uncompress/compress them&#39;</span>,
+    <span class="ruby-value">:usage</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;- betty download http://www.mysite.com/something.tar.gz to something.tar.gz&quot;</span>,
+    <span class="ruby-string">&quot;- betty uncompress something.tar.gz&quot;</span>,
+    <span class="ruby-string">&quot;- betty unarchive something.tar.gz to somedir&quot;</span>,
+    <span class="ruby-string">&quot;(You can use unzip, unarchive, untar, uncompress, and expand interchangeably.)&quot;</span>,
+    <span class="ruby-string">&quot;- betty compress /path/to/dir&quot;</span>]
+  }
+  <span class="ruby-identifier">commands</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/internet.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> = []
+  
+  <span class="ruby-identifier">download_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">download</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">download_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">download_command</span>
+  
+  <span class="ruby-identifier">uncompress_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uncompress</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">uncompress_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">uncompress_command</span>
+
+  <span class="ruby-identifier">compress_command</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">compress</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">responses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">compress_command</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">compress_command</span>
+  
+  <span class="ruby-identifier">responses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-uncompress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uncompress</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uncompress-source">
+            <pre><span class="ruby-comment"># File lib/internet.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uncompress</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">match</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^(?:unzip|unarchive|untar|uncompress|expand)\s+([^\s]+)(?:\s+(?:to\s+)?(.+))?$/i</span>)
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">match</span>
+    <span class="ruby-identifier">what_file</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">where</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">2</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">where</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">where</span> = <span class="ruby-identifier">what_file</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;.&quot;</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">in_same_directory</span> = <span class="ruby-identifier">where</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;.&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">where</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^((?:this|same)\s+)?(?:dir(?:ectory)|folder|path)?$/</span>)
+    
+    {
+      <span class="ruby-value">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{ in_same_directory ? &#39;&#39; : &#39;mkdir &#39; + where + &#39; &amp;&amp; &#39; } tar -zxvf #{ what_file } #{ in_same_directory ? &#39;&#39; : &#39;-C &#39; + where }&quot;</span>.<span class="ruby-identifier">strip</span>,
+      <span class="ruby-value">:explanation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Uncompresses the contents of the file #{ what_file }, outputting the contents to #{ in_same_directory ? &#39;this directory&#39; : where }.&quot;</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
