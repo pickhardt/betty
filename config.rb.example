@@ -1,0 +1,3 @@
+module ApiConfig
+  GOOGLE_SEARCH_API_KEY = "AIzaSyCxPfXTDuuTjBCTmDlQB5HJsbKfANFlwso"
+end

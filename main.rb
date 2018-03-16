@@ -6,7 +6,7 @@ $VERSION = '0.1.7'
 $executors = []
 $LOG = Logger.new(File.open(ENV['HOME'] + '/.betty_history', 'a+'))
 
-Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file|
+(Dir[File.dirname(__FILE__) + '/lib/*.rb']+Dir[File.dirname(__FILE__) + '/utils/*.rb']).each {|file|
   begin
     require file
   rescue Exception => e
