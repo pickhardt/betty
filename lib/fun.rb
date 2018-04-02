@@ -8,6 +8,19 @@ module Fun
       }
     end
     
+    if command.match(/^superman\s+vs\s+batman$/i)
+      responses << {
+        say: [true,false].sample ? "Batman" : "Superman"
+      }
+    end
+
+    if command.match(/^what\s+if\s+batman\s+does\snot\s+have\s+a?n?y?\s*kryptonite$/i)
+      responses << {
+        say: "Batman always has kryptonite"
+      }
+    end
+
+    
     if command.match(/^open\s(the\s)?pod\sbay\sdoor(s)?$/i)
       responses << {
         :say => "I'm sorry, Dave. I'm afraid I can't do that."
@@ -43,12 +56,6 @@ module Fun
       responses << {
         :call => lambda { self.go_crazy },
         :say => "Woah."
-      }
-    end
-    
-    if command.match(/go home/)
-      responses << {
-        :command => "cd ~"
       }
     end
     
