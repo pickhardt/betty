@@ -1,6 +1,6 @@
 module User  
   def self.has_command?(command)
-    response = `which #{ command }`
+    response = `which #{ command } 2>/dev/null`
     response != ""
   end
 
