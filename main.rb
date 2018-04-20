@@ -123,47 +123,28 @@ def sanitize(text)
 end
 
 def speak(text)
-  if User.has_command?('say')
-    say = 'say'
+  return if text.empty?
+  speaker = BettyConfig.get("speaker")
+  if speaker == "say"
     voice=BettyConfig.get("voice")
-    say += " -v '#{voice}'" if voice
-    system("#{say} \"#{ text }\"") # formerly mpg123 -q
-  else
-    has_afplay = User.has_command?('afplay')
-    has_mpg123 = User.has_command?('mpg123')
-    has_spd_say = User.has_command?('spd-say')
+    speaker += " -v '#{voice}'" if voice
+    system("#{ speaker } \"#{ text }\"") # formerly mpg123 -q
+  elsif speaker == "spd-say"
+    system("spd-say -t female2 -m some -r 5 -p -25 -s \"#{text}\"")
+  elsif Internet.connection_enable? && (speaker == "afplay" || speaker == "mpg123")
+    require 'open-uri'
+    text = sanitize(text)
+    speech_path = '/tmp/betty_speech.mp3'
 
-    if Internet.connection_enable?
+    url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
+    open(speech_path, 'wb') do |file|
+      file << open(url).read
+    end
 
-      if has_afplay || has_mpg123
-         require 'open-uri'
-         text = sanitize(text)
-         speech_path = '/tmp/betty_speech.mp3'
+    speaker += " -q " if speaker == "mpg123"
+    system("#{ speaker } #{ speech_path }")
 
-         if text != ''
-           url = 'http://translate.google.com/translate_tts?tl=en&q=' + text
-           open(speech_path, 'wb') do |file|
-             file << open(url).read
-           end
-
-           if has_afplay
-             system("afplay #{ speech_path }")
-           elsif has_mpg123
-             system("mpg123 -q #{ speech_path }")
-           end
-
-           system("rm #{ speech_path }")
-         end
-      else
-         if has_spd_say
-          system("spd-say -t female2 -m some -r 5 -p -25 -s \"#{text}\"")
-         end
-      end
-      else
-        if has_spd_say
-          system("spd-say -t female2 -m some -r 5 -p -25 -s \"#{text}\"")
-        end
-      end
+    system("rm #{ speech_path }")
   end
 end
 
