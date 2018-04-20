@@ -2,7 +2,7 @@ module BettyConfig
   require 'yaml'
   
   @@config = {}
-  @@default_config = {"name" => "Betty","speech"=>false,"web"=>false,"chat"=>false}
+  @@default_config = {"name" => "Betty","speech"=>false,"speaker"=>"","web"=>false,"chat"=>false}
   
   def self.config_object
     @@config.inspect
@@ -38,10 +38,22 @@ module BettyConfig
     
     # todo: merge all turn ... on|off commands
     if command.match(/^(turn|switch|the|\s)*speech\s+on$/i) || command.match(/^speak\s+to\s+me$/)
-      responses << {
-        :call_before => lambda { self.set("speech", true) },
-        :say => "Speech ON",
-      }
+      if self.get("speaker").empty?
+        speaker_available = self.set_speaker
+      else
+        speaker_available = true
+      end
+
+      if speaker_available
+        responses << {
+          :call_before => lambda { self.set("speech", true) },
+          :say => "Speech ON",
+        }
+      else
+        responses << {
+          :say => "Something's wrong with my throat, I can't speak (the program 'say' would help me fix this)."
+        }
+      end
     end
 
     if command.match(/^(turn|switch|the|\s)*speech\s+off$/i) || command.match(/^stop\s+speak(ing)?\s+to\s+me$/)
@@ -79,12 +91,17 @@ module BettyConfig
       }
     end
     
-
     if command.match(/^(list\s(your\s)?voices)/i)
-      responses << {
-        :command => 'say -v "?"',
-        :explanation => 'List the availables voices for text-to-speech.'
-      }
+        if User.has_command?('say')
+            responses << {
+                :command => 'say -v "?"',
+                :explanation => 'List the availables voices for text-to-speech.'
+            }
+        else
+            responses << {
+                :say => "I don't seem to have a voice at all (the program 'say' would help me get some)."
+            }
+        end
     end
 
     if command.match(/^(?:set|change|make)\s+(?:your|betty\'?s?)\s+voice\s+to\s+(.+)$/i)
@@ -131,6 +148,17 @@ module BettyConfig
       "stop speaking to me"]
     }
     commands
+  end
+
+  def self.set_speaker
+    success = false
+    ["say", "spd-say", "mpg123", "afplay"].each do |speaker|
+      if User.has_command?(speaker)
+        self.set("speaker", speaker)
+        success = true
+      end
+    end
+    success
   end
 end
 

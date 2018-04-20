@@ -53,9 +53,15 @@ module Fun
     end
     
     if command.match(/sing (.*)/)
-      responses << {
-        :command => "say -v cello #{$~}"
-      }
+        if User.has_command?('say')
+            responses << {
+                :command => "say -v cello #{$~}"
+            }
+        else
+            responses << {
+                :say => "I don't have my singing voice today (the program 'say' would help me get one)."
+            }
+        end
     end
     
     responses
