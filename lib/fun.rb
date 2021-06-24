@@ -13,7 +13,13 @@ module Fun
         say: [true,false].sample ? "Batman" : "Superman"
       }
     end
-
+    
+    if command.match(/^self destruct$/i)
+      responses << {
+        say: "Initiating self destruct sequence..3..2..1..Boom!"
+      }
+    end
+    
     if command.match(/^what\s+if\s+batman\s+does\snot\s+have\s+a?n?y?\s*kryptonite$/i)
       responses << {
         say: "Batman always has kryptonite"
